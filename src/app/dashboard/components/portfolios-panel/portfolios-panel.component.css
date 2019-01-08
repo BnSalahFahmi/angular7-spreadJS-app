@@ -1,0 +1,17 @@
+.card-header {
+    padding: 1rem 1.25rem 1rem 1.25rem !important;
+    font-size: 17px !important;
+}
+.card-header.yellow{
+    background-color: #FFC107 !important;
+    color: #fff !important;
+}
+
+.right {
+    float: right;
+    margin-right: 10px;
+}
+
+.portfolio-card {
+    border-radius: 0px !important;
+}

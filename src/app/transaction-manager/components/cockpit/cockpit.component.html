@@ -1,0 +1,19 @@
+<!-- <button (click)="onClickMe($event)">Save Excel!</button> -->
+<!-- <div id="ss" style="width: 600px; height: 550px; border: 1px solid gray"></div> -->
+<gc-spread-sheets id="spreadSheet" [hostStyle]="hostStyle" [newTabVisible]="newTabVisible" [tabStripVisible]="tabStripVisible"
+                      [showHorizontalScrollbar]="showHorizontalScrollbar"
+                      [showVerticalScrollbar]="showVerticalScrollbar" [backColor]="spreadBackColor"
+                      [grayAreaBackColor]="grayAreaBackColor" [allowUserZoom]="allowUserZoom"
+                      [allowUserResize]="allowUserResize" hostClass="spreadContainer"
+                      (workbookInitialized)="workbookInit($event)"
+                      (rowChanged)="onRowChanged($event)" 
+                      (cellChanged)="onCellChanged($event)"
+                      (valueChanged)="onValueChanged($event)">
+        <!-- <gc-worksheet [dataSource]="data" [autoGenerateColumns]="autoGenerateColumns">
+            <gc-column width=150 dataField="Name"></gc-column>
+            <gc-column width=150 dataField="CountryRegionCode"></gc-column>
+            <gc-column width=100 dataField="City"></gc-column>
+            <gc-column width=200 dataField="AddressLine"></gc-column>
+            <gc-column width=100 dataField="PostalCode"></gc-column>
+        </gc-worksheet> -->
+</gc-spread-sheets>

@@ -1,0 +1,20 @@
+<div class="pages-top">
+  <div class="avatar-wrap">
+    <div class="avatar">
+      <img src="{{avatarImgSrc}}" alt="avatar">
+    </div>
+    <div class="info-wrap" >
+      <span class="app-name" title="{{userName}}">{{TransactionName}}</span>
+    </div>
+  </div>
+
+  <div class="collapse-menu" (click)="_sidebarToggle()">
+    <i class="fa fa-navicon fa-fw" *ngIf="sidebarToggle"></i>
+    <i class="fa fa-navicon fa-fw" *ngIf="!sidebarToggle"></i>
+  </div>
+
+  <div class="msg-tips-wrap">
+    <!-- Add some navbar items here -->
+  </div>
+
+</div>

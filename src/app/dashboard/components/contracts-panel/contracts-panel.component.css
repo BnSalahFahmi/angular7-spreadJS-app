@@ -1,0 +1,18 @@
+.card-header {
+    padding: 1rem 1.25rem 1rem 1.25rem !important;
+    font-size: 17px !important;
+}
+
+.card-header.primary{
+    background-color: #FF5722 !important;
+    color: #fff !important;
+}
+
+.right {
+    float: right;
+    margin-right: 10px;
+}
+
+.contract-card {
+    border-radius: 0px !important;
+}

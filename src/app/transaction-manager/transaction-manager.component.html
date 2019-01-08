@@ -1,0 +1,35 @@
+<button class="btn btn-primary" (click)="delegateOpenTab($event)">New Transaction</button>
+<hr class="line-separator"/>
+<tabset>
+  <tab [removable] = "false">
+      <ng-template tabHeading>
+          <span>Summary</span>
+      </ng-template>
+      <div class="row">
+          <div class="col-md-8">
+            <card cardTitle='Cockpit' isCollapse="true">
+              <cockpit></cockpit>
+            </card>
+          </div>
+          <div class="col-md-4">
+            <card cardTitle="Configuration Panel" isCollapse="true">
+              <du-todolist></du-todolist>
+            </card>
+          </div>
+        </div>
+  </tab>
+  <tab *ngFor="let tab of (tabs$ | async) as tabs; let i = index" [active] = 'true' heading="{{tab.heading}}">
+  <div class="row">
+      <div class="col-md-8">
+        <card cardTitle='Cockpit' isCollapse="true">
+          <!-- <cockpit></cockpit> -->
+        </card>
+      </div>
+      <div class="col-md-4">
+        <card cardTitle="Configuration Panel" isCollapse="true">
+          <du-todolist></du-todolist>
+        </card>
+      </div>
+    </div>
+  </tab>
+</tabset>
