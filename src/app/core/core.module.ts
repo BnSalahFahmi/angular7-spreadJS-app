@@ -13,6 +13,7 @@ import { MenuComponent } from './layouts/menu/menu.component';
 import { GlobalService } from './../shared/services/global.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TransactionInfoComponent } from './layouts/transaction-info/transaction-info.component';
 
 export const Guards = [
     
@@ -35,7 +36,8 @@ export const Guards = [
         NavbarComponent,
         ContentTopComponent,
         NotificationComponent,
-        RightConfigComponent
+        RightConfigComponent,
+        TransactionInfoComponent
     ],
     exports: [
         SidebarComponent,
@@ -43,7 +45,8 @@ export const Guards = [
         ContentTopComponent,
         NotificationComponent,
         RightConfigComponent,
-        LoadingComponent
+        LoadingComponent,
+        TransactionInfoComponent
     ]
 })
 export class CoreModule {

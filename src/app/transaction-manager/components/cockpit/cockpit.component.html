@@ -1,19 +1,69 @@
-<!-- <button (click)="onClickMe($event)">Save Excel!</button> -->
-<!-- <div id="ss" style="width: 600px; height: 550px; border: 1px solid gray"></div> -->
-<gc-spread-sheets id="spreadSheet" [hostStyle]="hostStyle" [newTabVisible]="newTabVisible" [tabStripVisible]="tabStripVisible"
-                      [showHorizontalScrollbar]="showHorizontalScrollbar"
-                      [showVerticalScrollbar]="showVerticalScrollbar" [backColor]="spreadBackColor"
-                      [grayAreaBackColor]="grayAreaBackColor" [allowUserZoom]="allowUserZoom"
-                      [allowUserResize]="allowUserResize" hostClass="spreadContainer"
-                      (workbookInitialized)="workbookInit($event)"
-                      (rowChanged)="onRowChanged($event)" 
-                      (cellChanged)="onCellChanged($event)"
-                      (valueChanged)="onValueChanged($event)">
-        <!-- <gc-worksheet [dataSource]="data" [autoGenerateColumns]="autoGenerateColumns">
-            <gc-column width=150 dataField="Name"></gc-column>
-            <gc-column width=150 dataField="CountryRegionCode"></gc-column>
-            <gc-column width=100 dataField="City"></gc-column>
-            <gc-column width=200 dataField="AddressLine"></gc-column>
-            <gc-column width=100 dataField="PostalCode"></gc-column>
-        </gc-worksheet> -->
+<gc-spread-sheets mwlDroppable id='spreadSheet' [hostStyle]='hostStyle' [newTabVisible]='newTabVisible' [tabStripVisible]='tabStripVisible'
+                    [showHorizontalScrollbar]='showHorizontalScrollbar'
+                    [showVerticalScrollbar]='showVerticalScrollbar' [backColor]='spreadBackColor'
+                    [grayAreaBackColor]='grayAreaBackColor' [allowUserZoom]='allowUserZoom'
+                    [allowUserResize]='allowUserResize' hostClass='spreadContainer'
+                    (workbookInitialized)='workbookInit($event)'>
 </gc-spread-sheets>
+
+<!-- (cellClick) = 'onCellClick($event)'
+                    (cellDoubleClick) = 'onCellDoubleClick($event)'
+                    (enterCell) = 'onEnterCell($event)'
+                    (leaveCell) = 'onLeaveCell($event)'
+                    (valueChanged) = 'onValueChanged($event)'
+                    (topRowChanged) = 'onTopRowChanged($event)'
+                    (leftColumnChanged) = 'onLeftColumnChanged($event)'
+                    (rangeFiltering) = 'onRangeFiltering($event)'
+                    (rangeFiltered) = 'onRangeFiltered($event)'
+                    (tableFiltering) = 'onTableFiltering($event)'
+                    (tableFiltered) = 'onTableFiltered($event)'
+                    (rangeSorting) = 'onRangeSorting($event)'
+                    (rangeSorted) = 'onRangeSorted($event)'
+                    (clipboardChanging) = 'onClipboardChanging($event)'
+                    (clipboardChanged) = 'onClipboardChanged($event)'
+                    (clipboardPasting) = 'onClipboardPasting($event)'
+                    (clipboardPasted) = 'onClipboardPasted($event)'
+                    (columnWidthChanging) = 'onColumnWidthChanging($event)'
+                    (columnWidthChanged) = 'onColumnWidthChanged($event)'
+                    (rowHeightChanging) = 'onRowHeightChanging($event)'
+                    (rowHeightChanged) = 'onRowHeightChanged($event)'
+                    (dragDropBlock) = 'onDragDropBlock($event)'
+                    (dragDropBlockCompleted) = 'onDragDropBlockCompleted($event)'
+                    (dragFillBlock) = 'onDragFillBlock($event)'
+                    (dragFillBlockCompleted) = 'onDragFillBlockCompleted($event)'
+                    (editStarting) = 'onEditStarting($event)'
+                    (editChange) = 'onEditChange($event)'
+                    (editEnding) = 'onEditEnding($event)'
+                    (editEnd) = 'onEditEnd($event)'
+                    (editEnded) = 'onEditEnded($event)'
+                    (rangeGroupStateChanging) = 'onRangeGroupStateChaning($event)'
+                    (rangeGroupStateChanged) = 'onRangeGroupStateChanged($event)'
+                    (selectionChanging) = 'onSelectionChaning($event)'
+                    (selectionChanged) = 'onSelectionChanged($event)'
+                    (sheetTabClick) = 'onSheetTabClick($event)'
+                    (sheetTabDoubleClick) = 'onSheetTabDoubleClick($event)'
+                    (sheetNameChanging) = 'onSheetNameChaning($event)'
+                    (sheetNameChanged) = 'onSheetNameChanged($event)'
+                    (userZooming) = 'onUserZooming($event)'
+                    (userFormulaEntered) = 'onUserFormulaEntered($event)'
+                    (cellChanged) = 'onCellChanged($event)'
+                    (columnChanged) = 'onColumnChanged($event)'
+                    (rowChanged) = 'onRowChanged($event)'
+                    (activeSheetChanging) = 'onActiveSheetChaning($event)'
+                    (activeSheetChanged) = 'onActiveSheetChanged($event)'
+                    (sparklineChanged) = 'onSparklineChanged($event)'
+                    (rangeChanged) = 'onRangeChanged($event)'
+                    (buttonClicked) = 'onButtonClicked($event)'
+                    (editorStatusChanged) = 'onEditorStatusChanged($event)'
+                    (floatingObjectChanged) = 'onFloatingObjectChanged($event)'
+                    (floatingObjectSelectionChanged) = 'onFloatingObjectSelectionChanged($event)'
+                    (pictureChanged) = 'onPictureChanged($event)'
+                    (floatingObjectRemoving) = 'onFloatingObjectRemoving($event)'
+                    (floatingObjectRemoved) = 'onFloatingObjectRemoved($event)'
+                    (pictureSelectionChanged) = 'onPictureSelectionChanged($event)'
+                    (floatingObjectLoaded) = 'onFloatingObjectLoaded($event)'
+                    (touchToolStripOpening) = 'onTouchToolStripOpening($event)'
+                    (commentChanged) = 'onCommentChanged($event)'
+                    (commentRemoving) = 'onCommentRemoving($event)'
+                    (commentRemoved) = 'onCommentRemoved($event)'
+                    (slicerChanged) = 'onSlicerChanged($event)' -->

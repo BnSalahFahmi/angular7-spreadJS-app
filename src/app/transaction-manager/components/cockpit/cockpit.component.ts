@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as GC from "@grapecity/spread-sheets";
 //import {saveAs} from 'file-saver';
 //GC.Spread.Sheets.LicenseKey = 'x.x.x.x.x.x.x.x.x.x.x.x.x.x.x';
 
@@ -12,8 +13,8 @@ export class CockpitComponent implements OnInit {
   spread: GC.Spread.Sheets.Workbook;
   excelIO;
   hostStyle = {
-      width: '710px',
-      height: '430px'
+    width: '710px',
+    height: '430px'
   };
   newTabVisible = true;
   tabStripVisible = true;
@@ -26,7 +27,7 @@ export class CockpitComponent implements OnInit {
   data: any;
   autoGenerateColumns = false;
 
-  constructor() { 
+  constructor() {
     //this.excelIO = new Excel.IO();
   }
 
@@ -37,15 +38,23 @@ export class CockpitComponent implements OnInit {
     //this.spread=new GC.Spread.Sheets.Workbook(document.getElementById("spread-demo"),{sheetCount:1}); 
   }
 
-  getSpread(){
+  getSpread() {
     //var spread = GC.Spread.Sheets.findControl(document.getElementById("spreadSheet"));
-    alert(this.spread.getActiveSheet().name());
+    return this.spread;
   }
 
   workbookInit(args) {
     this.spread = args.spread;
     let sheet = this.spread.getActiveSheet();
-    sheet.getCell(0, 0).text("My SpreadJS Angular Transaction").foreColor("blue");
+    this.bindSheetEvents(sheet);
+    //var cell = sheet.getCell(1, 1);
+    //cell.value("10/12/2018 11:00 PM");
+    //cell.cellType(new DatePickerCellType());
+    //sheet.getCell(0, 0).text("My SpreadJS Angular Transaction").foreColor("blue");
+  }
+
+  onDropEnd(event) {
+    console.log('dropped');
   }
 
   onFileChange(args) {
@@ -64,26 +73,107 @@ export class CockpitComponent implements OnInit {
 
   // Excel export
   onClickMe(args) {
-  //   const self = this;
-  //   const filename = 'exportExcel.xlsx';
-  //   const json = JSON.stringify(self.spread.toJSON());
-  //   self.excelIO.save(json, function (blob) {
-  //     saveAs(blob, filename);
-  //   }, function (e) {
-  //     console.log(e);
-  //   });
+    const self = this;
+    const filename = 'exportExcel.xlsx';
+    const json = JSON.stringify(self.spread.toJSON());
+    self.excelIO.save(json, function (blob) {
+      //saveAs(blob, filename);
+    }, function (e) {
+      console.log(e);
+    });
   }
 
-  onValueChanged(event){
-    alert('yup');
+  bindSheetEvents(sheet) {
+    /* CellChanged Event */
+    sheet.bind(GC.Spread.Sheets.Events.CellChanged, function (e, info) {
+      if (info.propertyName === "value") {
+        //TODO
+      }
+    });
+
+    /* CellClick Event */
+    sheet.bind(GC.Spread.Sheets.Events.CellClick, function (e, info) {
+      //TODO
+    });
+
+    /* CellDoubleClick Event */
+    sheet.bind(GC.Spread.Sheets.Events.CellDoubleClick, function (e, info) {
+      //TODO
+    });
+
+    /* DragDropBlock Event */
+    sheet.bind(GC.Spread.Sheets.Events.DragDropBlock, function (e, info) {
+     //TODO
+    });
+
+    /* DragDropBlockCompleted Event */
+    sheet.bind(GC.Spread.Sheets.Events.DragDropBlockCompleted, function (e, info) {
+      //TODO
+    });
+
+    /* DragFillBlock Event */
+    sheet.bind(GC.Spread.Sheets.Events.DragFillBlock, function (e, info) {
+      //TODO
+    });
+
+    /* DragFillBlockCompleted Event */
+    sheet.bind(GC.Spread.Sheets.Events.DragFillBlockCompleted, function (e, info) {
+      //TODO
+    });
+
+    /* EditStarting Event */
+    sheet.bind(GC.Spread.Sheets.Events.EditStarting, function (e, info) {
+      //TODO
+    });
+
+    /* EditChange Event */
+    sheet.bind(GC.Spread.Sheets.Events.EditChange, function (e, info) {
+      //TODO
+    });
+
+    /* EditEnded Event */
+    sheet.bind(GC.Spread.Sheets.Events.EditEnded, function (e, info) {
+      //TODO
+    });
+
+    /* EnterCell Event */
+    sheet.bind(GC.Spread.Sheets.Events.EnterCell, function (e, info) {
+      //TODO
+    });
+
+    /* LeaveCell Event */
+    sheet.bind(GC.Spread.Sheets.Events.LeaveCell, function (e, info) {
+      //TODO
+    });
+
+    /* SheetNameChanging Event */
+    sheet.bind(GC.Spread.Sheets.Events.SheetNameChanging, function (e, info) {
+      //TODO
+    });
+
+    /* SheetNameChanged Event */
+    sheet.bind(GC.Spread.Sheets.Events.SheetNameChanged, function (e, info) {
+      //TODO
+    });
+
+    /* SheetTabClick Event */
+    sheet.bind(GC.Spread.Sheets.Events.SheetTabClick, function (e, info) {
+      //TODO
+    });
+
+    /* UserFormulaEntered Event */
+    sheet.bind(GC.Spread.Sheets.Events.UserFormulaEntered, function (e, info) {
+      //TODO
+    });
   }
 
-  onRowChanged(event){
-
+  unbindAllSpreadEvents(sheet) {
+    this.spread.unbindAll();
   }
 
-  onCellChanged(event){
-
+  unbindSpreadEvent(event){
+    //this.spread.unbind(GC.Spread.Sheets.Events.CellChanged);
+    this.spread.unbind(event);
   }
 
 }

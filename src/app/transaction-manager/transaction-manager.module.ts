@@ -20,10 +20,12 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/index' ;
 import { routes } from './transaction-manager.routing';
+import { TransactionService } from './services/transaction.service';
 import { TransactionEffects } from './store/transaction.effects';
 import { TransactionTabsEffects } from './store/transactionTabs.effects';
-import { SpreadSheetsModule } from "../../../lib/gc.spread.sheets.angular.12.0.0";
-import { TransactionService } from './services/transaction.service';
+// import { SpreadSheetsModule } from "../../../lib/gc.spread.sheets.angular.12.0.0";
+import { SpreadSheetsModule } from "@grapecity/spread-sheets-angular";
+import { DragAndDropModule } from 'angular-draggable-droppable';
 
 @NgModule({
     imports: [
@@ -35,7 +37,8 @@ import { TransactionService } from './services/transaction.service';
         StoreModule.forFeature('TransactionFeature', reducers),
         EffectsModule.forFeature([TransactionEffects, TransactionTabsEffects]),
         TabsModule,
-        SpreadSheetsModule
+        SpreadSheetsModule,
+        DragAndDropModule
     ],
     providers: [
         GlobalService,

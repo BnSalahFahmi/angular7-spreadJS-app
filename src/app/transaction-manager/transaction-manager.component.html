@@ -18,16 +18,16 @@
           </div>
         </div>
   </tab>
-  <tab *ngFor="let tab of (tabs$ | async) as tabs; let i = index" [active] = 'true' heading="{{tab.heading}}">
+  <tab *ngFor="let tab of (tabs$ | async) as tabs; let i = index" [active] = 'true' heading="{{tab.heading}}" [removable] = "true">
   <div class="row">
       <div class="col-md-8">
         <card cardTitle='Cockpit' isCollapse="true">
-          <!-- <cockpit></cockpit> -->
+          <cockpit></cockpit>
         </card>
       </div>
       <div class="col-md-4">
         <card cardTitle="Configuration Panel" isCollapse="true">
-          <du-todolist></du-todolist>
+          <!-- <du-todolist></du-todolist> -->
         </card>
       </div>
     </div>

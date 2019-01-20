@@ -26,6 +26,7 @@ $config-width:230px;
     @include transition(all .4s);
     &:hover {
         color: $primary;
+        cursor: pointer;
     }
 }
 
