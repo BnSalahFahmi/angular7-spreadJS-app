@@ -30,6 +30,9 @@
     .user-info-wrap {
         transform: scale(0, 0);
     } */
+    .fa-search.form-control-feedback{
+        display: none;
+    }
 }
 
 @media (max-width:1440px) {

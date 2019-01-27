@@ -1,0 +1,18 @@
+@import '../../../shared/theme/conf';
+.container .form-group {
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+}
+
+.label-with-margin, .btn-with-margin{
+    margin: 5px;
+}
+
+.btn-same-width {
+    width: 120px;
+}
+
+.transaction-btns {
+    position: relative;
+    margin-left: auto;   
+}

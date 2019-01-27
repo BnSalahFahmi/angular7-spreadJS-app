@@ -6,7 +6,7 @@ import * as GC from "@grapecity/spread-sheets";
 @Component({
   selector: 'cockpit',
   templateUrl: './cockpit.component.html',
-  styleUrls: ['./cockpit.component.css']
+  styleUrls: ['./cockpit.component.scss']
 })
 export class CockpitComponent implements OnInit {
 

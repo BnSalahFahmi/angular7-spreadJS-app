@@ -19,6 +19,8 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { TabManagerComponent } from './components/tab-manager/tab-manager.component';
 import { RouterModule } from '@angular/router';
 import { NgxBootstrapModule } from '../shared/ui/ngxbootstrap.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 @NgModule({
   imports: [
@@ -27,6 +29,7 @@ import { NgxBootstrapModule } from '../shared/ui/ngxbootstrap.module';
     ReactiveFormsModule,
     RouterModule.forChild([]),
     JsonpModule,
+    //NgxSpinnerModule
   ],
   declarations: [
     CardComponent,

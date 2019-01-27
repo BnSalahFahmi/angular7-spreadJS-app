@@ -8,7 +8,7 @@ import { NotificationModel } from '../../../shared/models/notification-model';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  avatarImgSrc: string = 'assets/images/favicon.ico';
+  avatarImgSrc: string = 'assets/images/angular_logo.png';
   TransactionName: string = 'Angular 7';
 
   sidebarToggle: boolean = true;

@@ -1,0 +1,24 @@
+<card>
+  <div class="form-group" style="margin-bottom:7px">
+    <input type="text" class="new-task-input" [(ngModel)]="paramNode.name" (keyup.enter)="creatNewTask()">
+    <i class="fa fa-bars node-action"></i>
+    <i class="fa fa-trash node-action"></i>
+    <i class="fa fa-plus node-action"></i>
+  </div>
+  <table class="table table-bordered table-hover">
+    <tbody>
+      <tr>
+        <td>Param 1</td>
+        <td>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="paramNode.param1">
+        </td>
+      </tr>
+      <tr>
+        <td>Param 2</td>
+        <td>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="paramNode.param2">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</card>

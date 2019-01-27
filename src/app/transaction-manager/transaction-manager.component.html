@@ -1,35 +1,31 @@
-<button class="btn btn-primary" (click)="delegateOpenTab($event)">New Transaction</button>
-<hr class="line-separator"/>
-<tabset>
-  <tab [removable] = "false">
-      <ng-template tabHeading>
-          <span>Summary</span>
-      </ng-template>
-      <div class="row">
-          <div class="col-md-8">
-            <card cardTitle='Cockpit' isCollapse="true">
-              <cockpit></cockpit>
-            </card>
-          </div>
-          <div class="col-md-4">
-            <card cardTitle="Configuration Panel" isCollapse="true">
-              <du-todolist></du-todolist>
-            </card>
-          </div>
-        </div>
-  </tab>
-  <tab *ngFor="let tab of (tabs$ | async) as tabs; let i = index" [active] = 'true' heading="{{tab.heading}}" [removable] = "true">
+<div *ngIf="!(tabs$ | async) as tabs">
+  <button class="btn btn-primary" (click)="delegateOpenTab($event)">New Transaction</button>
   <div class="row">
-      <div class="col-md-8">
-        <card cardTitle='Cockpit' isCollapse="true">
-          <cockpit></cockpit>
-        </card>
+    <h3 style="position: absolute; left:50%; top: 48%">Welcome to ASDS</h3>
+  </div>
+</div>
+
+<div *ngIf="(tabs$ | async) as tabs">
+  <button class="btn btn-primary add-transaction-icon" (click)="delegateOpenTab($event)"><i class="fa fa-plus"></i></button>
+  <tabset>
+    <tab *ngFor="let tab of (tabs$ | async) as tabs; let i = index" [active]='true' heading="{{tab.heading}}">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <transaction-info></transaction-info>
+        </div>
       </div>
-      <div class="col-md-4">
-        <card cardTitle="Configuration Panel" isCollapse="true">
-          <!-- <du-todolist></du-todolist> -->
-        </card>
+      <div class="row">
+        <div class="col-md-8">
+          <card cardTitle='Cockpit' isCollapse="true">
+            <cockpit></cockpit>
+          </card>
+        </div>
+        <div class="col-md-4">
+          <card cardTitle="Configuration Panel" isCollapse="true">
+            <param-node></param-node>
+          </card>
+        </div>
       </div>
-    </div>
-  </tab>
-</tabset>
+    </tab>
+  </tabset>
+</div>

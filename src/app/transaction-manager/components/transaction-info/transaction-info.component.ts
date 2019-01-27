@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'transaction-info',
   templateUrl: './transaction-info.component.html',
-  styleUrls: ['./transaction-info.component.css']
+  styleUrls: ['./transaction-info.component.scss']
 })
 export class TransactionInfoComponent implements OnInit {
 

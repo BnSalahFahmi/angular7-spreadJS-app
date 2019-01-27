@@ -18,6 +18,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpReqInterceptor } from './shared/utilities/http.interceptor';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 
 // Import containers
 import {
@@ -42,6 +43,7 @@ const APP_CONTAINERS = [
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    NgxSpinnerModule,
     RouterModule.forRoot(routes, {
        useHash: true,
        initialNavigation: 'enabled',
@@ -62,6 +64,7 @@ const APP_CONTAINERS = [
   ],
   providers: [
     TabsetConfig,
+    NgxSpinnerService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpReqInterceptor, multi: true },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
