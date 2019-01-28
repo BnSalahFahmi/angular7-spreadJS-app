@@ -29,7 +29,7 @@
 							"./node_modules/@grapecity/spread-sheets/styles/gc.spread.sheets.excel2013white.css"
                         ],
 						"scripts": [
-							"./lib/gc.spread.date-picker.js"
+
 						]
                     },
                     "configurations": {
