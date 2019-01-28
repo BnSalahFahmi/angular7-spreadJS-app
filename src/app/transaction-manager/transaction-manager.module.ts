@@ -25,7 +25,6 @@ import { TransactionEffects } from './store/transaction.effects';
 import { TransactionTabsEffects } from './store/transactionTabs.effects';
 // import { SpreadSheetsModule } from "../../../lib/gc.spread.sheets.angular.12.0.0";
 import { SpreadSheetsModule } from "@grapecity/spread-sheets-angular";
-import { DragAndDropModule } from 'angular-draggable-droppable';
 import {TransactionInfoComponent} from "./components/transaction-info/transaction-info.component";
 import { ParamNodeComponent } from './components/param-node/param-node.component';
 
@@ -39,8 +38,7 @@ import { ParamNodeComponent } from './components/param-node/param-node.component
         StoreModule.forFeature('TransactionFeature', reducers),
         EffectsModule.forFeature([TransactionEffects, TransactionTabsEffects]),
         TabsModule,
-        SpreadSheetsModule,
-        DragAndDropModule
+        SpreadSheetsModule
     ],
     providers: [
         GlobalService,

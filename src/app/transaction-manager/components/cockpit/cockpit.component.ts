@@ -38,6 +38,23 @@ export class CockpitComponent implements OnInit {
     //this.spread=new GC.Spread.Sheets.Workbook(document.getElementById("spread-demo"),{sheetCount:1}); 
   }
 
+  onDrop(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    var data = event.dataTransfer.getData("text");
+    // do what you want with data
+  }
+
+  onDragOver(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+  }
+
+  onDragLeave(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+  }
+
   getSpread() {
     //var spread = GC.Spread.Sheets.findControl(document.getElementById("spreadSheet"));
     return this.spread;
@@ -103,7 +120,7 @@ export class CockpitComponent implements OnInit {
 
     /* DragDropBlock Event */
     sheet.bind(GC.Spread.Sheets.Events.DragDropBlock, function (e, info) {
-     //TODO
+      //TODO
     });
 
     /* DragDropBlockCompleted Event */
@@ -171,7 +188,7 @@ export class CockpitComponent implements OnInit {
     this.spread.unbindAll();
   }
 
-  unbindSpreadEvent(event){
+  unbindSpreadEvent(event) {
     //this.spread.unbind(GC.Spread.Sheets.Events.CellChanged);
     this.spread.unbind(event);
   }

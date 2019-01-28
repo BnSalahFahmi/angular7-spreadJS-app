@@ -1,9 +1,19 @@
-<gc-spread-sheets mwlDroppable id='spreadSheet' [hostStyle]='hostStyle' [newTabVisible]='newTabVisible' [tabStripVisible]='tabStripVisible'
-                    [showHorizontalScrollbar]='showHorizontalScrollbar'
-                    [showVerticalScrollbar]='showVerticalScrollbar' [backColor]='spreadBackColor'
-                    [grayAreaBackColor]='grayAreaBackColor' [allowUserZoom]='allowUserZoom'
-                    [allowUserResize]='allowUserResize' hostClass='spreadContainer'
-                    (workbookInitialized)='workbookInit($event)'>
+<gc-spread-sheets   
+        id='spreadSheet' 
+        hostClass='spreadContainer'
+        [hostStyle]='hostStyle' 
+        [newTabVisible]='newTabVisible' 
+        [tabStripVisible]='tabStripVisible'
+        [showHorizontalScrollbar]='showHorizontalScrollbar'
+        [showVerticalScrollbar]='showVerticalScrollbar' 
+        [backColor]='spreadBackColor'
+        [grayAreaBackColor]='grayAreaBackColor' 
+        [allowUserZoom]='allowUserZoom'
+        [allowUserResize]='allowUserResize'
+        (workbookInitialized)='workbookInit($event)'
+        (dragover)="onDragOver($event)" 
+        (dragleave)="onDragLeave($event)" 
+        (drop)="onDrop($event)">            
 </gc-spread-sheets>
 
 <!-- (cellClick) = 'onCellClick($event)'

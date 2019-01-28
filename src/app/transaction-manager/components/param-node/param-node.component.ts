@@ -17,4 +17,9 @@ export class ParamNodeComponent implements OnInit {
     this.paramNode = mockParamNode();
   }
 
+  drag(ev) {
+    //ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("string", this.paramNode);
+  }
+
 }

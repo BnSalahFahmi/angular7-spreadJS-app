@@ -154,3 +154,7 @@
         margin: auto 5px;
     }
 }
+
+.btn:focus {
+    box-shadow: none !important;
+}
