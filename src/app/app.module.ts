@@ -13,12 +13,11 @@ import { NgxBootstrapModule } from './shared/ui/ngxbootstrap.module';
 import { TabsModule, TabsetConfig } from 'ngx-bootstrap/tabs';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
-//import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpReqInterceptor } from './shared/utilities/http.interceptor';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
 
 // Import containers
 import {
@@ -40,10 +39,14 @@ const APP_CONTAINERS = [
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 100000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    }),
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    NgxSpinnerModule,
     RouterModule.forRoot(routes, {
        useHash: true,
        initialNavigation: 'enabled',
@@ -64,7 +67,6 @@ const APP_CONTAINERS = [
   ],
   providers: [
     TabsetConfig,
-    NgxSpinnerService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpReqInterceptor, multi: true },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],

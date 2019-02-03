@@ -5,6 +5,8 @@ import * as transactionTabsActions from './store/transactionTabs.actions';
 import { selectTransactionTabs } from './store';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as fromTransactionTabs from './store/index';
+import { GlobalService } from '../shared/services/global.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -19,7 +21,7 @@ export class TransactionMgtComponent implements OnInit {
   tabs$: Observable<any>;
   listTabs:any = [];
 
-  constructor(private store:Store<any>, private router: Router, private route: ActivatedRoute, private cd: ChangeDetectorRef) {
+  constructor(private toastr: ToastrService, private store:Store<any>, private globalService: GlobalService, private router: Router, private route: ActivatedRoute, private cd: ChangeDetectorRef) {
     
     this.tabs$ = this.store.pipe(select(fromTransactionTabs.selectTransactionTabs));
     /* this.tabs$.subscribe((resp)=> {
@@ -55,22 +57,35 @@ export class TransactionMgtComponent implements OnInit {
         id: this.listTabs.length,
         type: "NEW TRANCSACTION",
         heading: 'New Transaction',
+        active:true,
         closable: true
       }
     }));
   }
-  delegateRemoveTab(tab: any,event?:Event) {
+  delegateRemoveTab(tab: any, event?:Event) {
     this.store.dispatch(new transactionTabsActions.CloseTabAction(tab));
   }
-  onSelectTab(event){
+
+  removeTabHandler(tab){
     console.log();
   }
 
-  onDeSelectTab(event){
+  onSelectTab(tab){
+    //tab.active = true
+    //this.globalService.refreshSpreadSheetEvent.next(true);
+  }
+
+  onDeSelectTab(tab){
+    //tab.active = false;
     console.log();
   }
 
   onBeforeRemoveTab(event){
     console.log();
+  }
+
+  open(){
+    debugger;
+    this.toastr.error('Hello world!', 'Toastr fun!', {timeOut: 3000, closeButton: true, progressBar: true});
   }
 }

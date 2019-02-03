@@ -1,29 +1,28 @@
+import { Injectable } from '@angular/core';
 import { Subject } from "rxjs";
 
-export class LoadingService {
-    
-  private componentLoadingSubject: Subject<Object>;
-  private httpLoadingSubject: Subject<Object>;
+@Injectable({
+  providedIn: 'root'
+})
+export class LoadingScreenService {
 
-  constructor() {
-    this.componentLoadingSubject = new Subject<Object>();
-    this.httpLoadingSubject = new Subject<Object>();
+  private _loading: boolean = false;
+  loadingStatus: Subject<boolean> = new Subject();
+
+  get loading():boolean {
+    return this._loading;
   }
 
-  pushComponentLoadingNotification(loading: boolean) {
-    this.componentLoadingSubject.next(loading);
+  set loading(value) {
+    this._loading = value;
+    this.loadingStatus.next(value);
   }
 
-  pushHttpLoadingNotification(loading: boolean) {
-    this.httpLoadingSubject.next(loading);
-    this.componentLoadingSubject.next(loading);
+  startLoading() {
+    this.loading = true;
   }
 
-  getComponentLoadingObservable() {
-    return this.componentLoadingSubject.asObservable();
-  }
-
-  getHttpLoadingObservable() {
-    return this.httpLoadingSubject.asObservable();
+  stopLoading() {
+    this.loading = false;
   }
 }

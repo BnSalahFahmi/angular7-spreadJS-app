@@ -6,7 +6,7 @@ $body-bg:#141420;
 $sidebar-bg:#171824;
 $sidebar-fonts-color:#fff;
 $card-bg:#171824;
-$card-border:transparent;
+$card-border: #CFD8DC;
 $white:#fff;
 $black:#000;
 $border-color:#12121f;
@@ -17,6 +17,12 @@ $success:#04ad53;
 $danger:#ff184a;
 $warning:#ff7300;
 $info:#1e65ff;
+$btn-primary: #3f51b5;
+$btn-info: #33b5e5;
+$btn-success: #388e3c;
+$btn-danger:#fa5167;
+$btn-orange: #FF5722;
+$loader:#FF5722;
 body {
     background: $body-bg;
 }

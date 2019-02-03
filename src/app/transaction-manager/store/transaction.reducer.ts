@@ -12,7 +12,7 @@ export interface TransactionState {
 }
 
 export const INITIAL_STATE: TransactionState = {
-    data: [],
+    data: null,
     selected: null,
     done: true,
     error: null

@@ -1,8 +1,20 @@
 .nav-link {
     padding: .3rem 1rem !important;
+    color: #616161;
     border-radius: 0px !important;
+}
+
+.nav-link.active, .nav-link:hover {
+    color: #263238 !important;
 }
 
 .tab-content {
     padding: 5px;
+}
+
+.nav-tabs .nav-link {
+    margin-right: 2px;
+    border-right: 1px solid #EEEEEE;
+    border-top: 1px solid #EEEEEE;
+    border-left: 1px solid #EEEEEE;
 }

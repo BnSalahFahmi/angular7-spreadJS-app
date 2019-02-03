@@ -20,6 +20,7 @@ import { TabManagerComponent } from './components/tab-manager/tab-manager.compon
 import { RouterModule } from '@angular/router';
 import { NgxBootstrapModule } from '../shared/ui/ngxbootstrap.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AlertComponent,
     WeatherComponent,
     ProfileComponent,
+    LoaderComponent,
     LoadingComponent,
     TabManagerComponent,
     NotFoundComponent
@@ -57,6 +59,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AlertComponent,
     WeatherComponent,
     ProfileComponent,
+    LoaderComponent,
     LoadingComponent,
     TabManagerComponent,
     NotFoundComponent,

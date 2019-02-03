@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as GC from "@grapecity/spread-sheets";
+import { GlobalService } from '../../../shared/services/global.service';
 //import {saveAs} from 'file-saver';
 //GC.Spread.Sheets.LicenseKey = 'x.x.x.x.x.x.x.x.x.x.x.x.x.x.x';
 
@@ -11,9 +12,10 @@ import * as GC from "@grapecity/spread-sheets";
 export class CockpitComponent implements OnInit {
 
   spread: GC.Spread.Sheets.Workbook;
+  sheetMenus = [];
   excelIO;
   hostStyle = {
-    width: '710px',
+    width: '100%',
     height: '430px'
   };
   newTabVisible = true;
@@ -27,21 +29,30 @@ export class CockpitComponent implements OnInit {
   data: any;
   autoGenerateColumns = false;
 
-  constructor() {
+  constructor(private globalService: GlobalService) {
     //this.excelIO = new Excel.IO();
   }
 
   ngOnInit() {
-    // this.spread = new GC.Spread.Sheets.Workbook(document.getElementById("ss"),{sheetCount:3});
     // let sheet = this.spread.getActiveSheet();
     // sheet.getCell(0, 0).text("My SpreadJS Angular Transaction").foreColor("blue");
     //this.spread=new GC.Spread.Sheets.Workbook(document.getElementById("spread-demo"),{sheetCount:1}); 
+    //this.spread = new GC.Spread.Sheets.Workbook(document.getElementById("ss"),{sheetCount:3});
+    this.globalService.refreshSpreadSheetEvent.subscribe(refresh => {
+      debugger;
+      if(refresh && this.spread){
+        setTimeout(function () {
+          this.spread.refresh();
+        }, 1000);
+      }
+    })
   }
 
   onDrop(event: any) {
     event.preventDefault();
     event.stopPropagation();
     var data = event.dataTransfer.getData("text");
+    debugger;
     // do what you want with data
   }
 
@@ -62,16 +73,13 @@ export class CockpitComponent implements OnInit {
 
   workbookInit(args) {
     this.spread = args.spread;
+    this.initSpreadSheet(this.spread);
     let sheet = this.spread.getActiveSheet();
     this.bindSheetEvents(sheet);
     //var cell = sheet.getCell(1, 1);
     //cell.value("10/12/2018 11:00 PM");
     //cell.cellType(new DatePickerCellType());
     //sheet.getCell(0, 0).text("My SpreadJS Angular Transaction").foreColor("blue");
-  }
-
-  onDropEnd(event) {
-    console.log('dropped');
   }
 
   onFileChange(args) {
@@ -191,6 +199,250 @@ export class CockpitComponent implements OnInit {
   unbindSpreadEvent(event) {
     //this.spread.unbind(GC.Spread.Sheets.Events.CellChanged);
     this.spread.unbind(event);
+  }
+
+  initSpreadSheet = function (spread) {
+
+    spread.options.highlightInvalidData = true;
+    spread.options.allowCopyPasteExcelStyle = true;
+    spread.options.allowExtendPasteRange = true;
+    spread.getActiveSheet().options.allowCellOverflow = false;
+
+    spread.commandManager().setShortcutKey(undefined, GC.Spread.Commands.Key.c, true, false, false, false);
+    spread.commandManager().setShortcutKey(undefined, GC.Spread.Commands.Key.x, true, false, false, false);
+    spread.commandManager().setShortcutKey(undefined, GC.Spread.Commands.Key.del, false, false, false, false);
+
+    spread.commandManager().register("customCut", function () {
+      //TODO
+      //spread.commandManager().execute({ cmd: "cut", sheetName: spread.getActiveSheet().name(), ranges: [new GC.Spread.Sheets.Range(fromRow, fromCol, toRow, toCol)] });
+    }, GC.Spread.Commands.Key.x, true, false, false, false);
+
+    spread.commandManager().register("customCopy", function () {
+      //TODO
+      //spread.commandManager().execute({ cmd: "copy", sheetName: spread.getActiveSheet().name(), ranges: [new GC.Spread.Sheets.Range(fromRow, fromCol, toRow, toCol)] });
+    }, GC.Spread.Commands.Key.c, true, false, false, false);
+
+    spread.commandManager().register("customDel", function () {
+      // TODO
+    }, GC.Spread.Commands.Key.del, false, false, false, false);
+
+    spread.commandManager().register('addRows', function addRowAction() {
+      //TODOD
+    });
+    spread.commandManager().register('deleteCols', function deleteRowAction() {
+      //TODO
+    });
+    var deleteRowAction = function () {
+      //TODO
+    }
+    spread.commandManager().register('clearContent', deleteRowAction);
+    spread.commandManager().register('enterFormula', function formulaAction() {
+
+    });
+    spread.commandManager().register('showNode', function showNodeAction() {
+      //todo
+    });
+
+    spread.commandManager().register('deleteSpreadSheet', function deleteSheetAction() {
+      //TODO
+    });
+
+
+
+
+    spread.commandManager().register('showSpreadSheet', function showNodeAction() {
+      //TODO
+    });
+
+    var customCopy = {
+      text: 'Copy',
+      name: 'customCopy',
+      command: 'customCopy',
+      workArea: 'viewportcolHeaderrowHeaderslicercorner'
+    };
+
+    var customCut = {
+      text: 'Cut',
+      name: 'customCut',
+      command: 'customCut',
+      workArea: 'viewportcolHeaderrowHeaderslicercorner'
+    };
+
+    var insertRows = {
+      text: 'Insert',
+      name: 'insertRows',
+      command: 'addRows',
+      workArea: 'rowHeader'
+    };
+    var insertCols = {
+      text: 'Insert',
+      name: 'addCols',
+      command: 'addCols',
+      workArea: 'colHeader'
+    };
+    var deleteRows = {
+      text: 'Delete',
+      name: 'deleteRows',
+      command: 'deleteRows',
+      workArea: 'rowHeader'
+    };
+    var deleteCols = {
+      text: 'Delete',
+      name: 'deleteCols',
+      command: 'deleteCols',
+      workArea: 'colHeader'
+    };
+    var clearContent = {
+      text: 'Clear Contents',
+      name: 'clearContent',
+      command: 'clearContent',
+      workArea: 'rowHeader'
+    };
+    var clearContent = {
+      text: 'Clear Contents',
+      name: 'clearContent',
+      command: 'clearContent',
+      workArea: 'colHeader'
+    };
+    var clearContent = {
+      text: 'Clear Contents',
+      name: 'clearContent',
+      command: 'clearContent',
+      workArea: 'viewport'
+    };
+    var enterFormula = {
+      text: 'Enter Formula',
+      name: 'enterFormula',
+      command: 'enterFormula',
+      iconClass: "gc-spread-pasteFormulas",
+      workArea: 'viewport'
+    };
+    var showNode = {
+      text: 'Show Node',
+      name: 'showNode',
+      command: 'showNode',
+      iconClass: "gc-spread-viewNode",
+      workArea: 'viewport'
+    };
+
+    var insertSheet = {
+      text: 'Insert',
+      name: 'insertSheet',
+      command: 'insertSpreadSheet',
+      workArea: 'sheetTab'
+    };
+
+    var deleteSheet = {
+      text: 'Delete',
+      name: 'deleteSheet',
+      command: 'deleteSpreadSheet',
+      workArea: 'sheetTab'
+    };
+
+    var separator = {
+      type: 'separator'
+    };
+    for (var i = 0; i < spread.contextMenu.menuData.length; i++) {
+      if (spread.contextMenu.menuData[i].name == 'gc.spread.copy') {
+        spread.contextMenu.menuData.splice(i, 1);
+        this.insertArrayAt(spread.contextMenu.menuData, i, customCopy);
+      }
+      if (spread.contextMenu.menuData[i].name == 'gc.spread.cut') {
+        spread.contextMenu.menuData.splice(i, 1);
+        this.insertArrayAt(spread.contextMenu.menuData, i, customCut);
+      }
+      if (spread.contextMenu.menuData[i].name == 'gc.spread.insertRows') {
+        spread.contextMenu.menuData.splice(i, 1);
+        this.insertArrayAt(spread.contextMenu.menuData, i, insertRows);
+      }
+      if (spread.contextMenu.menuData[i].name == 'gc.spread.insertColumns') {
+        spread.contextMenu.menuData.splice(i, 1);
+        this.insertArrayAt(spread.contextMenu.menuData, i, insertCols);
+      }
+      if (spread.contextMenu.menuData[i].name == 'gc.spread.deleteRows') {
+        spread.contextMenu.menuData.splice(i, 1);
+        this.insertArrayAt(spread.contextMenu.menuData, i, deleteRows);
+      }
+      if (spread.contextMenu.menuData[i].name == 'gc.spread.deleteColumns') {
+        spread.contextMenu.menuData.splice(i, 1);
+        this.insertArrayAt(spread.contextMenu.menuData, i, deleteCols);
+      }
+      if (spread.contextMenu.menuData[i].text == 'Clear Contents') {
+        spread.contextMenu.menuData.splice(i, 1);
+        this.insertArrayAt(spread.contextMenu.menuData, i, clearContent);
+      }
+      if (spread.contextMenu.menuData[i].name == 'gc.spread.hideSheet') {
+        spread.contextMenu.menuData.splice(i, 1);
+      }
+      if (spread.contextMenu.menuData[i].name == 'gc.spread.unhideSheet') {
+        spread.contextMenu.menuData.splice(i, 1);
+      }
+      if (spread.contextMenu.menuData[i].name == 'gc.spread.deleteSheet') {
+        spread.contextMenu.menuData.splice(i, 1);
+        this.insertArrayAt(spread.contextMenu.menuData, i, deleteSheet);
+      }
+    }
+
+    //spread.contextMenu.menuData.push(enterFormula);
+    //spread.contextMenu.menuData.push(separator);
+    spread.contextMenu.menuData.push(showNode);
+    spread.contextMenu.menuData.push(separator);
+    var showSheets = {
+      text: 'Show Sheets',
+      name: 'showSheets',
+      workArea: 'viewportcorner',
+      iconClass: "gc-spread-pasteOptions",
+      subMenu: this.getSubMenus()
+    };
+
+    var found = spread.contextMenu.menuData.find(function (element) {
+      return element && element.name == 'showSheets';
+    });
+    if (found) {
+      spread.contextMenu.menuData.splice(spread.contextMenu.menuData.indexOf(found), 1);
+      spread.contextMenu.menuData.push(showSheets);
+    } else {
+      spread.contextMenu.menuData.push(showSheets);
+    }
+    for (let i in this.getSubMenus()) {
+      if(this.sheetMenus[i]){
+        var subMenuFound = spread.contextMenu.menuData.find(function (element) {
+          return this && element && this.sheetMenus[i] && element.name == this.sheetMenus[i].name;
+        });
+        if (subMenuFound) {
+          spread.contextMenu.menuData.splice(spread.contextMenu.menuData.indexOf(subMenuFound), 1);
+          spread.contextMenu.menuData.push(Object.assign({ workArea: 'slicer' }, this.sheetMenus[i]));
+        } else
+          spread.contextMenu.menuData.push(Object.assign({ workArea: 'slicer' }, this.sheetMenus[i]));
+      }
+    }
+
+
+  }
+
+  getSubMenus = function () {
+    for (var index in this.spread.sheets) {
+      var sheet = this.spread.sheets[index];
+      if (sheet.visible()) {
+        this.sheetMenus.push({
+          text: sheet.name(),
+          name: sheet.name().replace(/\s+/g, ''),
+          iconClass: "gc-spread-editComment",
+          command: 'showSpreadSheet'
+        });
+      }
+    }
+    return this.sheetMenus;
+  }
+
+  insertAt(array, index) {
+    var arrayToInsert = Array.prototype.splice.apply(arguments, [2]);
+    return this.insertArrayAt(array, index, arrayToInsert);
+  }
+
+  insertArrayAt(array, index, arrayToInsert) {
+    Array.prototype.splice.apply(array, [index, 0].concat(arrayToInsert));
+    return array;
   }
 
 }

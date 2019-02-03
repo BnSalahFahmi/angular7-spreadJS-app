@@ -1,0 +1,18 @@
+.toast-container .toast {
+    box-shadow: 0 0 6px #eeeeee !important;
+    padding: 10px 15px 10px 50px !important;
+    width: 290px !important;
+}
+
+.toast-success  {
+    background-color: #009688 !important;
+}
+
+.toast-error {
+    background-color: #F44336 !important;
+}
+
+.toast-close-button {
+    right: -0.3em !important;
+    top: -0.5em !important;
+}

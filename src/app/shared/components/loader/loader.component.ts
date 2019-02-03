@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingService } from '../../services/loading.service';
+import { LoadingScreenService } from '../../services/loading.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-loader',
@@ -8,17 +9,21 @@ import { LoadingService } from '../../services/loading.service';
 })
 export class LoaderComponent implements OnInit {
 
-  httpLoading: boolean;
+  loading: boolean = false;
+  loadingSubscription: Subscription;
 
-  constructor(private loadingService: LoadingService) {
-    loadingService.getHttpLoadingObservable().subscribe((loading: boolean) => {
-      if(loading!=null){
-        this.httpLoading = loading
-      }
-    })
+  constructor(private loadingScreenService: LoadingScreenService) {
+    
    }
 
-  ngOnInit() {
+   ngOnInit() {
+    this.loadingSubscription = this.loadingScreenService.loadingStatus.subscribe((value) => {
+      this.loading = value;
+    });
+  }
+
+  ngOnDestroy() {
+    this.loadingSubscription.unsubscribe();
   }
 
 }

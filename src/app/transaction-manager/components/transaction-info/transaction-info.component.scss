@@ -1,4 +1,9 @@
 @import '../../../shared/theme/conf';
+
+:host /deep/ .transaction-info-card .card-content {
+    padding: 5px !important;
+}
+
 .container .form-group {
     margin-top: 2px !important;
     margin-bottom: 2px !important;

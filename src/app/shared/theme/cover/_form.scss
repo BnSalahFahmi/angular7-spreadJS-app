@@ -42,6 +42,9 @@
     @include placeholderStyle($fonts-color, 0.4);
     &:focus {
         @include box-shadow(none);
+        border-top: 1px solid #ced4da !important;
+        border-right: 1px solid #ced4da !important;
+        border-left: 1px solid #ced4da !important;
     }
 }
 
@@ -56,10 +59,11 @@
 }
 
 input.form-control {
+    height: 32px;
     border-radius: 0;
-    border: none;
-    border-bottom: 1px solid transparent;
-    background: $border-color;
+    //border: none;
+    //border-bottom: 1px solid transparent;
+    //background: $border-color;
     @include transition(all 1s);
     &:focus {
         border-bottom: 1px solid $primary;
@@ -313,6 +317,10 @@ checkbox && radio
 .label {
     padding: 1px 4px;
     border-radius: 2px;
+}
+
+.form-label {
+    font-size: 15px;
 }
 
 .label-primary {
