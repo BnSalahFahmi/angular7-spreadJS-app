@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 /* components */
 import { CardComponent } from './components/card/card.component';
 import { TodolistComponent } from './components/todolist/todolist.component';
@@ -21,22 +21,26 @@ import { RouterModule } from '@angular/router';
 import { NgxBootstrapModule } from '../shared/ui/ngxbootstrap.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
-
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild([]),
-    JsonpModule,
-    //NgxSpinnerModule
+    NgbModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    RouterModule.forChild([])
   ],
   declarations: [
     CardComponent,
     FileTreeComponent,
     TodolistComponent,
-    // TabsetComponent,
     TabContentComponent,
     ProgressBarComponent,
     SwitchComponent,
@@ -46,13 +50,12 @@ import { LoaderComponent } from './components/loader/loader.component';
     LoaderComponent,
     LoadingComponent,
     TabManagerComponent,
-    NotFoundComponent
+    NotFoundComponent  
   ],
   exports: [
     CardComponent,
     FileTreeComponent,
     TodolistComponent,
-    // TabsetComponent,
     TabContentComponent,
     ProgressBarComponent,
     SwitchComponent,
@@ -63,7 +66,13 @@ import { LoaderComponent } from './components/loader/loader.component';
     LoadingComponent,
     TabManagerComponent,
     NotFoundComponent,
-    RouterModule
+    RouterModule,
+    TranslateModule,
+    NgbModule,
+    NgMultiSelectDropDownModule
+  ],
+  providers: [
+    
   ]
 })
 export class SharedModule { }

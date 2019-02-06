@@ -1,5 +1,9 @@
 @import '../../../shared/theme/conf';
 
+:host /deep/ .transaction-info-card .card{
+    margin-bottom: 5px !important;
+}
+
 :host /deep/ .transaction-info-card .card-content {
     padding: 5px !important;
 }

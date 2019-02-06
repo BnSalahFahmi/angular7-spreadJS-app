@@ -30,7 +30,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         ButtonsModule, 
         CarouselModule, 
         CollapseModule,
-        BsDropdownModule, 
         ModalModule,
         PaginationModule,
         PopoverModule,
@@ -43,7 +42,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         TypeaheadModule,
         FormsModule,
         ReactiveFormsModule,
-        CommonModule
+        CommonModule,
+        BsDropdownModule.forRoot()
     ],
       exports:[
         AccordionModule, 

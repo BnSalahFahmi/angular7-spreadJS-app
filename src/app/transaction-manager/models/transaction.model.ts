@@ -7,7 +7,6 @@ export interface Transaction {
 	updator: object;
 	updateDate: Date;
 	cockpit: any;
-	actif: boolean;
 }
 
 export function mockTransaction(): Transaction {
@@ -20,6 +19,5 @@ export function mockTransaction(): Transaction {
 		updator: {},
 		updateDate: null,
 		cockpit: null,
-		actif: true,
 	}
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
@@ -25,7 +25,9 @@ import {
   SimpleLayoutComponent
 } from './core/containers';
 import { HttpModule } from '@angular/http';
-import { TransactionService } from './transaction-manager/services/Transaction.service';
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 //import { TransactionMgtComponent } from './Transaction-manager/transaction-manager.component';
 
 
@@ -34,13 +36,24 @@ const APP_CONTAINERS = [
   SimpleLayoutComponent
 ]
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 @NgModule({
   imports: [
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    }),
     ToastrModule.forRoot({
-      timeOut: 100000,
+      timeOut: 3000,
       positionClass: 'toast-top-right',
       preventDuplicates: true
     }),
@@ -58,7 +71,7 @@ const APP_CONTAINERS = [
     StoreDevtoolsModule.instrument({
       name: 'NgRx Store DevTools',
       logOnly: environment.production,
-    }),
+    })
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   declarations: [

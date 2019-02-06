@@ -4,6 +4,11 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 import { FullLayoutComponent } from './core/containers';
 
 export const routes: Routes = [
+  // {
+  //   path: 'login',
+  //   component: AccessDeniedComponent,
+  //   canActivate: [AccessGuardService]
+  // },
   {
     path: '',
     component: FullLayoutComponent,
@@ -11,27 +16,20 @@ export const routes: Routes = [
       title: 'Home'
     },
     children: [
-      // {
-      //   path: 'index',
-      //   loadChildren: './dashboard/dashboard.module#DashboardModule',
-      //   canActivate: []
-      // },
       {
-        path: 'index',
+        path: 'transactions',
         loadChildren: './transaction-manager/transaction-manager.module#TransactionMgtModule',
         canActivate: []
       },
       {
         path:'',
-        redirectTo: 'index',
+        redirectTo: 'transactions',
         pathMatch: 'full'
       }
     ]
   },
-  {
-    path: '**',
-    component: NotFoundComponent
-  }
+  { path: '',  redirectTo:'', pathMatch:'full' },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 /* components */
 import { SharedModule } from './../shared/shared.module';
 import { LoadingComponent } from './../shared/components/loading/loading.component';
-import { RightConfigComponent } from './layouts/right-config/right-config.component';
+import { RightConfigComponent } from './components/right-config/right-config.component';
 import { NotificationComponent } from './../shared/components/notification/notification.component';
-import { ContentTopComponent } from './layouts/content-top/content-top.component';
-import { NavbarComponent } from './layouts/navbar/navbar.component';
-import { SidebarComponent } from './layouts/sidebar/sidebar.component';
-import { MenuComponent } from './layouts/menu/menu.component';
+import { ContentTopComponent } from './components/content-top/content-top.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { MenuComponent } from './components/menu/menu.component';
 import { GlobalService } from './../shared/services/global.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

@@ -32,8 +32,9 @@ export class NavbarComponent {
     type: 'default',
     title: 'Look here!',
     value: 'This alert needs your attention.'
-}) {
+  }) {
     //this._globalService._notification(data);
     this._globalService.dataBusChanged('notification', data);
-}
+  }
+
 }

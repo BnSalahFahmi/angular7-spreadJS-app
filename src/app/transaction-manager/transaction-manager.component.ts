@@ -17,7 +17,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TransactionMgtComponent implements OnInit {
   showloading: boolean = false;
-
   tabs$: Observable<any>;
   listTabs:any = [];
 

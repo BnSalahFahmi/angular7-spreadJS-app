@@ -27,6 +27,9 @@ import { TransactionTabsEffects } from './store/transactionTabs.effects';
 import { SpreadSheetsModule } from "@grapecity/spread-sheets-angular";
 import {TransactionInfoComponent} from "./components/transaction-info/transaction-info.component";
 import { ParamNodeComponent } from './components/param-node/param-node.component';
+import { SpreadViewComponent } from './containers/spread-view/spread-view-container.component';
+import { GraphViewComponent } from './containers/graph-view/graph-view-container.component';
+import { GraphComponent } from './components/graph/graph.component';
 
 @NgModule({
     imports: [
@@ -38,18 +41,21 @@ import { ParamNodeComponent } from './components/param-node/param-node.component
         StoreModule.forFeature('TransactionFeature', reducers),
         EffectsModule.forFeature([TransactionEffects, TransactionTabsEffects]),
         TabsModule,
-        SpreadSheetsModule
+        SpreadSheetsModule,
     ],
     providers: [
-        GlobalService,
-        TransactionService
+        TransactionService,
+        GlobalService
     ],
     declarations: [
         TransactionMgtComponent,
         CockpitComponent,
         TransactionInfoComponent,
         IconComponent,
-        ParamNodeComponent
+        ParamNodeComponent,
+        SpreadViewComponent,
+        GraphViewComponent,
+        GraphComponent
     ],
     exports: [
         

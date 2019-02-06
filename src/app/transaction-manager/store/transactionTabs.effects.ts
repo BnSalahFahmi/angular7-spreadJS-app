@@ -9,7 +9,7 @@ import * as actions from './transactionTabs.actions'
 import { map, switchMap, catchError } from 'rxjs/operators';
 import * as fromTransactionTabs from './../store/index';
 import { TransactionService } from '../services/transaction.service';
-// import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -19,6 +19,7 @@ export class TransactionTabsEffects {
     constructor(
         private actions$: Actions,
         private TransactionService: TransactionService,
+        private toasterService: ToastrService,
         private router: Router,
         private appState$: Store<any>) {}
 
@@ -34,7 +35,7 @@ export class TransactionTabsEffects {
                         type: state.type,
                         tab: {...state.tab} 
                     })),catchError(err => {
-                        //this.toasterService.error(err.message);
+                        this.toasterService.error(err.message);
                         return of(new actions.OpenTabFailAction({ error: err.message }))
                     }));
             }
