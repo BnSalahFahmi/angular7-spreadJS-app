@@ -17,7 +17,7 @@ import { collapse } from '../shared/animation/collapse-animate';
   selector: 'transaction-manager',
   templateUrl: './transaction-manager.component.html',
   styleUrls: ['./transaction-manager.component.scss'],
-  animations:[collapse]
+  //animations:[collapse]
 })
 export class TransactionMgtComponent implements OnInit {
   showloading: boolean = false;

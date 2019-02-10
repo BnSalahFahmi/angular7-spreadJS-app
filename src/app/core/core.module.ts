@@ -9,6 +9,7 @@ import { ContentTopComponent } from './components/content-top/content-top.compon
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { LoginComponent } from './components/login/login.component';
 import { GlobalService } from './../shared/services/global.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +30,7 @@ export const Guards = [
         
     ],
     declarations: [
+        LoginComponent,
         MenuComponent,
         SidebarComponent,
         NavbarComponent,
@@ -37,6 +39,7 @@ export const Guards = [
         RightConfigComponent
     ],
     exports: [
+        LoginComponent,
         SidebarComponent,
         NavbarComponent,
         ContentTopComponent,

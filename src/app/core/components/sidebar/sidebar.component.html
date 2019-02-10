@@ -2,9 +2,8 @@
   <span class="sidebar-top-line"></span>
   <div class="form-group has-search">
     <span class="fa fa-search form-control-feedback"></span>
-    <input type="text" class="form-control" placeholder = "Search ...">
+    <input type="text" class="form-control" placeholder="Search ...">
   </div>
-  <!-- <du-menu [menuInfo]="menuInfo"></du-menu> -->
 
   <div id="accordion" class="accordion">
     <card cardTitle="Transactions" isCollapse="true">
@@ -13,6 +12,12 @@
     <card cardTitle="Structures" isCollapse="true">
       <du-menu [menuInfo]="menuInfo"></du-menu>
     </card>
-</div>
+  </div>
+  <div class="row">
+    <div class="btns-container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <button class="btn btn-small btn-secondary">Show All</button>
+      <button class="btn btn-small btn-secondary">Show Only Mine</button>
+    </div>
+  </div>
 
 </div>

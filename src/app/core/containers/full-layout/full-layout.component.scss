@@ -16,13 +16,13 @@
     background: transparent;
     overflow-x: hidden;
     .pages-content {
-        padding: 10px;
+        padding: 5px;
         flex: 1;
         background: #fafafa61;
         border-left: 1px solid $border-color;
         border-top: 1px solid $border-color;
         color: $fonts-color;
         overflow-x: hidden;
-        overflow-y: scroll;
+        //overflow-y: scroll;
     }
 }

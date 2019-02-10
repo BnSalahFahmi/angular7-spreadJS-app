@@ -52,6 +52,14 @@
     background: $btn-primary !important;
 }
 
+.btn-secondary {
+    background: $btn-secondary;
+}
+
+.btn-secondary:hover {
+    background: $btn-secondary !important;
+}
+
 .btn-green {
     background: $btn-green;
 }
@@ -189,4 +197,9 @@
 
 .btn:focus {
     box-shadow: none !important;
+}
+
+.btn-small {
+    height: 21px;
+    line-height: 0.1;
 }

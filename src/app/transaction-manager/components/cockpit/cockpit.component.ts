@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as GC from "@grapecity/spread-sheets";
 import { GlobalService } from '../../../shared/services/global.service';
 import { Transaction } from '../../models/transaction.model';
+import { getValueByType } from '../../utils/Utils';
 //import {saveAs} from 'file-saver';
 //GC.Spread.Sheets.LicenseKey = 'x.x.x.x.x.x.x.x.x.x.x.x.x.x.x';
 
@@ -33,14 +34,10 @@ export class CockpitComponent implements OnInit {
   autoGenerateColumns = false;
 
   constructor(private globalService: GlobalService) {
-    //this.excelIO = new Excel.IO();
+    
   }
 
   ngOnInit() {
-    // let sheet = this.spread.getActiveSheet();
-    // sheet.getCell(0, 0).text("My SpreadJS Angular Transaction").foreColor("blue");
-    //this.spread=new GC.Spread.Sheets.Workbook(document.getElementById("spread-demo"),{sheetCount:1}); 
-    //this.spread = new GC.Spread.Sheets.Workbook(document.getElementById("ss"),{sheetCount:3});
     this.globalService.refreshSpreadSheetEvent.subscribe(refresh => {
       if(refresh && this.spread){
         setTimeout(function () {
@@ -68,11 +65,11 @@ export class CockpitComponent implements OnInit {
     var row = position.row;
     var cell = position.col;
     this.spread.suspendPaint();
-    this.spread.getActiveSheet().setValue(row, cell, data.name);
+    this.spread.getActiveSheet().setValue(row, cell, getValueByType(data.name));
     this.spread.getActiveSheet().setValue(row + 1, cell, "Param 1");
-    this.spread.getActiveSheet().setValue(row + 1, cell + 1, data.param1);
+    this.spread.getActiveSheet().setValue(row + 1, cell + 1, getValueByType(data.param1));
     this.spread.getActiveSheet().setValue(row + 2, cell, "Param 2");
-    this.spread.getActiveSheet().setValue(row + 2, cell + 1, data.param2);
+    this.spread.getActiveSheet().setValue(row + 2, cell + 1, getValueByType(data.param2));
     this.spread.resumePaint();
   }
 
@@ -96,10 +93,6 @@ export class CockpitComponent implements OnInit {
     this.initSpreadSheet(this.spread);
     let sheet = this.spread.getActiveSheet();
     this.bindSheetEvents(sheet);
-    //var cell = sheet.getCell(1, 1);
-    //cell.value("10/12/2018 11:00 PM");
-    //cell.cellType(new DatePickerCellType());
-    //sheet.getCell(0, 0).text("My SpreadJS Angular Transaction").foreColor("blue");
   }
 
   onFileChange(args) {

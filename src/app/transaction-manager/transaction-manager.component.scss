@@ -63,3 +63,9 @@
 :host /deep/ .btn-same-width {
     width: 120px;
 }
+
+:host /deep/ .transaction-info-container .card-content:first-child {
+    height: auto;
+    max-height: 75vh;
+    overflow-y: scroll;
+}
