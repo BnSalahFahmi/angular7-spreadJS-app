@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as GC from "@grapecity/spread-sheets";
 import { GlobalService } from '../../../shared/services/global.service';
+import { Transaction } from '../../models/transaction.model';
 //import {saveAs} from 'file-saver';
 //GC.Spread.Sheets.LicenseKey = 'x.x.x.x.x.x.x.x.x.x.x.x.x.x.x';
 
@@ -10,6 +11,8 @@ import { GlobalService } from '../../../shared/services/global.service';
   styleUrls: ['./cockpit.component.scss']
 })
 export class CockpitComponent implements OnInit {
+
+  @Input() transaction: Transaction;
 
   spread: GC.Spread.Sheets.Workbook;
   sheetMenus = [];
@@ -39,7 +42,6 @@ export class CockpitComponent implements OnInit {
     //this.spread=new GC.Spread.Sheets.Workbook(document.getElementById("spread-demo"),{sheetCount:1}); 
     //this.spread = new GC.Spread.Sheets.Workbook(document.getElementById("ss"),{sheetCount:3});
     this.globalService.refreshSpreadSheetEvent.subscribe(refresh => {
-      debugger;
       if(refresh && this.spread){
         setTimeout(function () {
           this.spread.refresh();
@@ -51,9 +53,27 @@ export class CockpitComponent implements OnInit {
   onDrop(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    var data = event.dataTransfer.getData("text");
-    debugger;
-    // do what you want with data
+    var receivedData = event.dataTransfer.getData("node");
+    var data = JSON.parse(receivedData);
+    var canvas = document.getElementById('vp_vp');
+    var coordinate = canvas.getBoundingClientRect();
+    var clientX = event.clientX - coordinate.left;
+    var clientY = event.clientY - coordinate.top + window.pageYOffset;
+    var result = this.spread.hitTest(clientX, clientY);
+    var pos = result.worksheetHitInfo;
+    this.initCell(pos, data);
+  }
+
+  initCell(position, data){
+    var row = position.row;
+    var cell = position.col;
+    this.spread.suspendPaint();
+    this.spread.getActiveSheet().setValue(row, cell, data.name);
+    this.spread.getActiveSheet().setValue(row + 1, cell, "Param 1");
+    this.spread.getActiveSheet().setValue(row + 1, cell + 1, data.param1);
+    this.spread.getActiveSheet().setValue(row + 2, cell, "Param 2");
+    this.spread.getActiveSheet().setValue(row + 2, cell + 1, data.param2);
+    this.spread.resumePaint();
   }
 
   onDragOver(evt) {

@@ -2,7 +2,17 @@
   <span class="sidebar-top-line"></span>
   <div class="form-group has-search">
     <span class="fa fa-search form-control-feedback"></span>
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" placeholder = "Search ...">
   </div>
-  <du-menu [menuInfo]="menuInfo"></du-menu>
+  <!-- <du-menu [menuInfo]="menuInfo"></du-menu> -->
+
+  <div id="accordion" class="accordion">
+    <card cardTitle="Transactions" isCollapse="true">
+      <du-menu [menuInfo]="menuInfo"></du-menu>
+    </card>
+    <card cardTitle="Structures" isCollapse="true">
+      <du-menu [menuInfo]="menuInfo"></du-menu>
+    </card>
+</div>
+
 </div>

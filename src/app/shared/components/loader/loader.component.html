@@ -1,3 +1,9 @@
-<div class="spinner-container-main">
-    <div class="spinner"></div>
+<div *ngIf="!(isLoading | async); else spinner">
+
 </div>
+
+<ng-template #spinner>
+    <div class="spinner-container-main">
+        <div class="spinner"></div>
+    </div>
+</ng-template>

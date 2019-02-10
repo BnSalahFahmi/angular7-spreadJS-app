@@ -1,28 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Subject } from "rxjs";
+import { Subject } from 'rxjs';
+import { LoaderState } from '../store/loader.state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadingScreenService {
+  private loaderSubject = new Subject<LoaderState>();
 
-  private _loading: boolean = false;
-  loadingStatus: Subject<boolean> = new Subject();
+  loaderState = this.loaderSubject.asObservable();
 
-  get loading():boolean {
-    return this._loading;
+  constructor() { }
+
+  show() {
+    this.loaderSubject.next(<LoaderState>{ show: true });
   }
 
-  set loading(value) {
-    this._loading = value;
-    this.loadingStatus.next(value);
-  }
-
-  startLoading() {
-    this.loading = true;
-  }
-
-  stopLoading() {
-    this.loading = false;
+  hide() {
+    this.loaderSubject.next(<LoaderState>{ show: false });
   }
 }

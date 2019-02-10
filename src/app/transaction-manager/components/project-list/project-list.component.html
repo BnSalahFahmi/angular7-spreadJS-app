@@ -1,0 +1,45 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col" (sort)="onSort($event)">
+        <div class="custom-checkbox">
+          <input type="checkbox" id="cb1">
+          <label for="cb1"></label>
+        </div>
+      </th>
+      <th scope="col" class='numeric-sort' sortable="recovered_id" (sort)="onSort($event)">Recovered Project Id</th>
+      <th scope="col" class='numeric-sort' sortable="project_id" (sort)="onSort($event)">Project Id</th>
+      <th scope="col" class='alpha-sort' sortable="project_name" (sort)="onSort($event)">Project Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of tableData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
+      <td>
+        <div class="custom-checkbox">
+          <input type="checkbox" id="cb1">
+          <label for="cb1"></label>
+        </div>
+      </td>
+      <td>{{item.recovered_id}}</td>
+      <td>{{item.project_id}}</td>
+      <td>{{item.project_name}}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="pagination-wrapper">
+  <div class="form-group pages">
+    <pagination-controls class="my-pagination" id="pager" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+      previousLabel="Prev" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+    </pagination-controls>
+  </div>
+  <div class="form-group options pages">
+    <select class="custom-select select-small" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="loadData()">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+</div>
+<!-- <div class="mt-4">
+      <app-pagination class="mt-2" [paginator]="paginator" [sizes]="[10, 15, 20, 25]" (changeSizeEvent)="onClickGoToPage($event)" (changePageEvent)="onClickGoToPage($event)"></app-pagination>
+  </div> -->

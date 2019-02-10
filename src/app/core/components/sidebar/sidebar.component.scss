@@ -4,14 +4,15 @@
     height: 100%;
     background: $sidebar-bg;
     overflow-x: hidden;
-    @include transition(all .5s);
+    z-index: 20000;
+    @include transition(all .3s);
     border: none;
     .sidebar-top-line {
         display: block;
         width: 80%;
         position: relative;
         left: 10%;
-        border-top: 1px solid $border-color;
+        border-top: 1px solid $sidebar-top-line;
     }
 }
 
@@ -37,7 +38,7 @@
 
 @media (max-width:1440px) {
     .pages-sider {
-        width: 210px;
+        width: 260px;
     }
     .side-collapsed {
         width: 0;
@@ -47,6 +48,7 @@
 @media (max-width:970px) {
     .pages-sider {
         width: 210px;
+        position: absolute;
     }
     .side-collapsed {
         width: 0;
@@ -55,7 +57,8 @@
 
 @media (max-width:414px) {
     .pages-sider {
-        width: 60px;
+        width: 210px;
+        position: absolute;
     }
     .side-collapsed {
         width: 0;
@@ -69,6 +72,24 @@
 
 .has-search .form-control {
     padding-left: 2.375rem;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    color: $sidebar-fonts-color;
+    font-size: $sm-text;
+    text-indent: 1.5em;
+    &:focus{
+        .form-control-feedback{
+            color: #FFF !important;
+        }
+        border-color: white !important;
+    }
+}
+
+.has-search .form-control:focus{
+    box-shadow: 0 0 0 1px #FFF !important;
 }
 
 .has-search .form-control-feedback {
@@ -81,4 +102,78 @@
     text-align: center;
     pointer-events: none;
     color: #aaa;
+}
+
+.accordion{
+    margin: 10px 2px 0px 2px;
+}
+
+:host /deep/ .accordion .card {
+    margin-bottom: 8px;
+}
+
+:host /deep/ .accordion .card .card-content{
+    padding: 0px;
+}
+
+:host /deep/ .accordion .menu-item .menu-link{
+    color: #303030 !important;
+}
+
+:host /deep/ .accordion .card-header {
+    //padding: 5px 10px !important;
+}
+
+.accordion .card-header:after {
+    font-family: 'FontAwesome';  
+    content: "\f068";
+    float: right; 
+}
+.accordion .card-header.collapsed:after {
+    content: "\f067"; 
+}
+
+.search-group {
+    position: absolute;
+    top: 50%;
+    right: 170px;
+    transform: translate(0, -50%);
+    width: 340px;
+    background: $border-color;
+    border: 1px solid $border-color;
+    border-radius: 2px;
+    overflow: hidden;
+    .search-input {
+        width: 300px;
+        height: 40px;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: $sidebar-fonts-color;
+        font-size: $sm-text;
+        text-indent: 1.5em;
+    }
+    .search-btn {
+        position: relative;
+        top: -1px;
+        right: 1px;
+        width: 30px;
+        height: 30px;
+        background: $primary;
+        border: 0;
+        border-radius: 50%;
+        outline: none;
+        line-height: 30px;
+        text-align: center;
+        color: $body-bg;
+        transform: scale(0);
+        transition: all .4s;
+        &:hover {
+            background: lighten($primary, 10%);
+            transform: scale(1);
+        }
+    }
+    .search-input:focus+.search-btn {
+        transform: scale(1);
+    }
 }

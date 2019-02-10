@@ -5,11 +5,12 @@ $config-width:230px;
     flex-direction: column;
     position: relative;
     width: 0;
+    z-index: 20000;
     height: 100%;
     background: $sidebar-bg;
     border-left: 1px solid $border-color;
     overflow-x: hidden;
-    @include transition(all .4s);
+    @include transition(all .3s);
 }
 
 .config-switch {

@@ -16,12 +16,10 @@
 //           const langPath = `assets/i18n/${lang || 'en'}/${lang || 'en'}.json`;
 //           this.http.get<{}>(langPath).subscribe(
 //             translation => {
-//               debugger;
 //               this.data = Object.assign({}, translation || {});
 //               resolve(this.data);
 //             },
 //             error => {
-//               debugger;
 //               this.data = {};
 //               resolve(this.data);
 //             }

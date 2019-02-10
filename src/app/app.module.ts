@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { routes } from './app.routing';
 import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
@@ -42,7 +42,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   imports: [
-    HttpClientModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
@@ -55,10 +57,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
-      preventDuplicates: true
+      preventDuplicates: true,
+      closeButton: true
     }),
-    FormsModule,
-    ReactiveFormsModule,
     SharedModule,
     RouterModule.forRoot(routes, {
        useHash: true,
@@ -80,7 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     TabsetConfig,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpReqInterceptor, multi: true },
+    //{ provide: HTTP_INTERCEPTORS, useClass: HttpReqInterceptor, multi: true },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]

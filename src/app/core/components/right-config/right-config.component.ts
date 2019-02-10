@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../../shared/services/global.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+
+export interface Language {
+  id: number,
+  name: string,
+  flag: string
+}
 
 @Component({
   selector: 'right-config',
@@ -13,7 +20,23 @@ export class RightConfigComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
-  constructor(private _globalService: GlobalService, private _translate: TranslateService) { }
+  languages: Language[] = [{
+    id: 1,
+    name: 'English',
+    flag: 'http://flags.fmcdn.net/data/flags/h80/us.png'
+  },
+  {
+    id: 2,
+    name: 'French',
+    flag: 'http://flags.fmcdn.net/data/flags/h80/fr.png'
+  },
+  {
+    id: 3,
+    name: 'Deutsch',
+    flag: 'http://flags.fmcdn.net/data/flags/h80/de.png'
+  }];
+  selectedLanguage = 'English';
+  constructor(private _globalService: GlobalService, private _translate: TranslateService, private _toastrService: ToastrService) { }
 
   ngOnInit() {
     this.dropdownList = [
@@ -34,9 +57,9 @@ export class RightConfigComponent implements OnInit {
     };
   }
   onItemSelect(item: any) {
-    if(item.item_id == 1)
+    if (item.item_id == 1)
       this.useLang('en');
-    else if(item.item_id == 2)
+    else if (item.item_id == 2)
       this.useLang('fr');
   }
   onSelectAll(items: any) {
@@ -48,7 +71,22 @@ export class RightConfigComponent implements OnInit {
     this._globalService.dataBusChanged('sidebarToggle', !this.isConfigToggle);
   }
 
-  useLang(lang: string){
+  onLangChange() {
+    switch (this.selectedLanguage) {
+      case 'English':
+        this.useLang('en');
+        break;
+      case 'French':
+        this.useLang('fr');
+        break;
+      case 'Deutsch':
+        this.useLang('en');
+        break;
+    }
+  }
+
+  useLang(lang: string) {
     this._translate.use(lang);
+    this._toastrService.success('Language has been changed', 'Success');
   }
 }

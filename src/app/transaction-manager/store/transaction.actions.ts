@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { type } from '../../shared/utilityHelpers';
+import { ShowLoader, HideLoader } from '../../shared/decorators';
 
     
 export const LOAD_DATA = '[Transaction] Load Data';
@@ -18,17 +19,19 @@ export const DELETE_TRANSACTION= '[Transaction] Delete';
 export const DELETE_TRANSACTION_SUCCESS= '[Transaction] Delete Success';
 export const DELETE_TRANSACTION_FAIL= '[Transaction] Delete Fail';
 
-
+@ShowLoader()
 export class LoadDataAction implements Action {
     readonly type = LOAD_DATA;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(LOAD_DATA)
 export class LoadDataSuccessAction implements Action {
     readonly type = LOAD_DATA_SUCCESS;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(LOAD_DATA)
 export class LoadDataFailAction implements Action {
     readonly type = LOAD_DATA_FAIL;
     constructor(public payload?: any) { }

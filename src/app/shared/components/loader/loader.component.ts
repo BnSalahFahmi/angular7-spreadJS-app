@@ -1,29 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingScreenService } from '../../services/loading.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject, Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { LoaderState } from '../../store/loader.state';
+import { Store, select } from '@ngrx/store';
+import * as fromApp from '../../../reducers/index';
+import { isLoadingSpinnerActive } from '../../../core/store/loader.reducer';
 
 @Component({
-  selector: 'app-loader',
+  selector: 'screen-loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent implements OnInit {
 
-  loading: boolean = false;
-  loadingSubscription: Subscription;
+  isLoading: Observable<any>;
 
-  constructor(private loadingScreenService: LoadingScreenService) {
+  //private subscription: Subscription;
+
+  constructor(private store: Store<fromApp.State>) {
+    this.isLoading = this.store.pipe(
+      select((state: fromApp.State) => state.loading.active)
+    )
+
+    this.isLoading.subscribe(data => console.log(data));
+  }
+
+  ngOnInit() {
     
-   }
-
-   ngOnInit() {
-    this.loadingSubscription = this.loadingScreenService.loadingStatus.subscribe((value) => {
-      this.loading = value;
-    });
   }
 
   ngOnDestroy() {
-    this.loadingSubscription.unsubscribe();
+    
   }
 
 }

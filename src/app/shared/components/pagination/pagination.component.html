@@ -1,0 +1,21 @@
+<div style="text-align: center">
+  <nav aria-label="...">
+      <ul class="display-flex m-0 p-0">
+          <li class="ml-0">
+              <select class="form-control form-control-sm" [(ngModel)]="paginator.size"
+                  (change)="onSelectChangeSize()">
+                  <option *ngFor="let ele of sizes" [value]="ele">{{ele}}</option>
+              </select>
+          </li>
+          <li *ngFor="let item of paginator.items; let i = index" class="page-item" [class.active]="item.index == paginator.page">
+              <ng-container *ngIf="item.numeric && item.status=='VISIBLE'">
+                  <button type="button" class="btn btn-sm btn-link ml-2" (click)="onClickPageChange(i)">{{item.name}}</button>
+              </ng-container>
+              <ng-container *ngIf="!item.numeric">
+                  <button *ngIf="item.status == 'ENABLED'" type="button" class="btn btn-sm btn-link ml-2" (click)="onClickPageChange(i)">{{item.name}}</button>
+                  <button *ngIf="item.status == 'DISABLED'" type="button" class="btn btn-sm btn-link ml-2" disabled>{{item.name}}</button>
+              </ng-container>
+          </li>
+      </ul>
+  </nav>
+</div>

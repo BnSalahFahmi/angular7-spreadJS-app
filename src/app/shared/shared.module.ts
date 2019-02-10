@@ -1,4 +1,6 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http';
@@ -12,10 +14,8 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { FileTreeComponent } from './components/file-tree/file-tree.component';
 import { SwitchComponent } from './components/switch/switch.component';
 import { AlertComponent } from './components/alert/alert.component';
-import { WeatherComponent } from './components/weather/weather.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { LoadingComponent } from './components/loading/loading.component';
 import { TabManagerComponent } from './components/tab-manager/tab-manager.component';
 import { RouterModule } from '@angular/router';
 import { NgxBootstrapModule } from '../shared/ui/ngxbootstrap.module';
@@ -23,21 +23,36 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgxPaginationModule } from 'ngx-pagination';
 // import ngx-translate and the http loader
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { LoadingScreenService } from './services/loading.service';
+import { GlobalService } from './services/global.service';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { PaginationService } from './services/pagination.service';
+import { TableSortableHeader } from './directives/tableSortableHeader.directive';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
   imports: [
     CommonModule,
+    //BrowserModule,
+    //BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     NgbModule,
+    NgxPaginationModule,
+    NgSelectModule,
+    MomentModule,
     NgMultiSelectDropDownModule.forRoot(),
     RouterModule.forChild([])
   ],
   declarations: [
+    TableSortableHeader,
     CardComponent,
     FileTreeComponent,
     TodolistComponent,
@@ -45,34 +60,44 @@ import { HttpClient } from '@angular/common/http';
     ProgressBarComponent,
     SwitchComponent,
     AlertComponent,
-    WeatherComponent,
     ProfileComponent,
     LoaderComponent,
-    LoadingComponent,
-    TabManagerComponent,
-    NotFoundComponent  
-  ],
-  exports: [
-    CardComponent,
-    FileTreeComponent,
-    TodolistComponent,
-    TabContentComponent,
-    ProgressBarComponent,
-    SwitchComponent,
-    AlertComponent,
-    WeatherComponent,
-    ProfileComponent,
-    LoaderComponent,
-    LoadingComponent,
     TabManagerComponent,
     NotFoundComponent,
+    PaginationComponent
+  ],
+  exports: [
+    // Modules
+    CommonModule,
     RouterModule,
     TranslateModule,
     NgbModule,
-    NgMultiSelectDropDownModule
+    NgxPaginationModule,
+    NgMultiSelectDropDownModule,
+    TableSortableHeader,
+    NgSelectModule,
+    MomentModule,
+    HttpClientModule,
+    //BrowserModule,
+    //BrowserAnimationsModule,
+    // Components
+    CardComponent,
+    FileTreeComponent,
+    TodolistComponent,
+    TabContentComponent,
+    ProgressBarComponent,
+    SwitchComponent,
+    AlertComponent,
+    ProfileComponent,
+    LoaderComponent,
+    TabManagerComponent,
+    NotFoundComponent,
+    PaginationComponent,
   ],
   providers: [
-    
+    GlobalService,
+    PaginationService,
+    LoadingScreenService
   ]
 })
 export class SharedModule { }

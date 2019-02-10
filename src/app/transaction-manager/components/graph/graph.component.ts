@@ -1,12 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { jsPlumb } from 'jsplumb';
-import { jsPlumbInstance } from "jsplumb";
 
 
 @Component({
   selector: 'graph',
   templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.css']
+  styleUrls: ['./graph.component.scss']
 })
 export class GraphComponent implements OnInit {
 
@@ -18,7 +16,7 @@ export class GraphComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.jsPlumbInstance = jsPlumb.getInstance();
+    //this.jsPlumbInstance = jsPlumb.getInstance();
   }
 
   // @ViewChild(FlowchartComponent) flowchart:FlowchartComponent;

@@ -3,7 +3,7 @@ import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>`
+  template: `<screen-loader></screen-loader><router-outlet></router-outlet>`
 })
 export class AppComponent {
   title = 'app';

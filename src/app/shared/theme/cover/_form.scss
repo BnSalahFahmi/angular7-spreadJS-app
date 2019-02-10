@@ -39,13 +39,20 @@
     background-color: transparent;
     box-shadow: none;
     font-size: 14px;
-    @include placeholderStyle($fonts-color, 0.4);
+    border-radius: 2px !important;
     &:focus {
-        @include box-shadow(none);
-        border-top: 1px solid #ced4da !important;
-        border-right: 1px solid #ced4da !important;
-        border-left: 1px solid #ced4da !important;
+        box-shadow: 0 0 0 2px rgba(0,123,255,.25)
     }
+}
+
+.form-check-input {
+    position: relative;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+input[type=checkbox] {
+
 }
 
 .form-control-sm {
@@ -60,14 +67,14 @@
 
 input.form-control {
     height: 32px;
-    border-radius: 0;
+    border-radius: 2;
     //border: none;
     //border-bottom: 1px solid transparent;
     //background: $border-color;
-    @include transition(all 1s);
-    &:focus {
-        border-bottom: 1px solid $primary;
-    }
+    //@include transition(all 1s);
+    // &:focus {
+    //     border: 2px solid $input-border-focus;
+    // }
 }
 
 input.form-control[disabled] {
@@ -89,7 +96,7 @@ input.table-form-control {
     color: $fonts-color;
     text-align: center;
     &:focus {
-        border: 1px solid $primary;
+        border: 1px solid $input-border-focus;
     }
 }
 
@@ -102,7 +109,7 @@ textarea.form-control {
     border-radius: 0;
     @include transition(border 1s);
     &:focus {
-        border: 1px solid $primary;
+        border: 1px solid $input-border-focus;
     }
 }
 
@@ -119,7 +126,7 @@ select.form-control {
     padding-right: 20px;
     @include transition(border 1s);
     &:focus {
-        border: 1px solid $primary;
+        border: 1px solid $input-border-focus;
     }
     option {
         background: $card-bg;

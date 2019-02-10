@@ -1,0 +1,30 @@
+:host {
+    -webkit-animation-delay: 240s;
+    animation-delay: 240s;
+
+    -moz-animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+
+    -moz-animation-duration: 20s;
+    -webkit-animation-duration: 20s;
+    animation-duration: 20s;
+
+    -moz-animation-name: Slide_TheEnd;
+    -webkit-animation-name: Slide_TheEnd;
+    animation-name: Slide_TheEnd;
+
+    -moz-animation-iteration-count: 1;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+
+    -moz-animation-direction: normal;
+    -webkit-animation-direction: normal;
+    animation-direction: normal;
+
+    -moz-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+
+    transform: scale(0.001);
+}

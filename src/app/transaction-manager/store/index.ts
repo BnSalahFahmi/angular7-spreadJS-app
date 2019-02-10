@@ -3,24 +3,32 @@ import * as fromTransactionTabs from './transactionTabs.reducer';
 import * as fromTransaction from './transaction.reducer';
 import * as TransactionTabsActions from './transactionTabs.actions';
 import * as TransactionActions from './transaction.actions';
+import * as fromRoot from '../../reducers';
+import * as fromTransactionTab from './transactionTabs.reducer';
+
+export interface State extends fromRoot.State {
+    TransactionFeature: TransactionMgtState
+}
 
 export interface TransactionMgtState {
-    TransactionTabs: fromTransactionTabs.TabState[],
-    TransactionList: fromTransaction.TransactionState
+    TransactionTabs: any[],
+    TransactionList: fromTransaction.TransactionState,
 }
 
-export const reducers : ActionReducerMap<TransactionMgtState> = {
-    TransactionTabs: fromTransactionTabs.reducer,
+export const TRANSACTIONTABS_INITIAL_STATE = []
+
+export const reducers: ActionReducerMap<TransactionMgtState> = ({
+    TransactionTabs: reducer,
     TransactionList: fromTransaction.reducer,
-}
+});
 
-export function reducer (state = [], action: any): any[] {
+export function reducer(state = TRANSACTIONTABS_INITIAL_STATE, action: any): any[] {
+    debugger;
     if (!action) return state;
     switch (action.type) {
         case TransactionTabsActions.ActionTypes.OPEN_TAB: {
             return state;
         }
-
         case TransactionTabsActions.ActionTypes.OPEN_TAB_SUCCESS: {
             if (action.payload.type === 0)
                 return [...state, action.payload.tab];
@@ -41,11 +49,17 @@ export function reducer (state = [], action: any): any[] {
             return state;
         }
         case TransactionTabsActions.ActionTypes.CLOSE_TAB: {
-            return state;
+            let tabs: any[] = [...state];
+            let index: any;
+            for (let i = 0; i < tabs.length; i++) {
+                if (tabs[i].id === action.payload.tabId)
+                    index = i
+            }
+            tabs.splice(index, 1);
+            return tabs;
         }
-        default: {
-            return state;
-        }
+        default:
+        return state;
     }
 }
 
@@ -53,4 +67,4 @@ export const selectTransactionMgtFeatureState = createFeatureSelector<Transactio
 
 export const selectTransactionTabs = createSelector(selectTransactionMgtFeatureState, (state: any) => state.TransactionTabs);
 
-//export const selectTransactionList = createSelector(selectTransactionMgtFeatureState, (state: any) => state.TransactionList);
+export const selectTransactionList = createSelector(selectTransactionMgtFeatureState, (state: any) => state.TransactionList);

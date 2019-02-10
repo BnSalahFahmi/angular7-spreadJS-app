@@ -18,8 +18,7 @@ export class ParamNodeComponent implements OnInit {
   }
 
   drag(ev) {
-    //ev.dataTransfer.setData("text", ev.target.id);
-    ev.dataTransfer.setData("string", this.paramNode);
+    ev.dataTransfer.setData("node", JSON.stringify(this.paramNode));
   }
 
 }

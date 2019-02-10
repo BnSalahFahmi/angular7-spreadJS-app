@@ -14,9 +14,9 @@ export function mockTransaction(): Transaction {
 		id: 1,
 		name: 'Test',
 		description: 'Some description',
-		creator: {},
-		creationDate: null,
-		updator: {},
+		creator: new Object('Fahmi BEN SALAH'),
+		creationDate: new Date(),
+		updator: null,
 		updateDate: null,
 		cockpit: null,
 	}

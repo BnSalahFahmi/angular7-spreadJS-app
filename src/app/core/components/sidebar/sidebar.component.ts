@@ -1,6 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { GlobalService } from '../../../shared/services/global.service';
 import { menuService } from '../../../shared/services/menu.service';
+import { Observable, BehaviorSubject } from 'rxjs';
+import * as fromRoot from '../../../reducers';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'sidebar',
@@ -10,27 +13,25 @@ import { menuService } from '../../../shared/services/menu.service';
 })
 export class SidebarComponent implements OnInit {
 
-
   public menuInfo: Array<any> = [];
-  public sidebarToggle = true;
+  public sidebarToggle;
 
-  constructor(private _menuService: menuService,
-    public _globalService: GlobalService) { }
+
+  constructor(private store: Store<fromRoot.State>, private _menuService: menuService,
+    public _globalService: GlobalService) {
+    this.store.pipe(select(fromRoot.getShowSidenav)).subscribe(
+      val => {
+        this.sidebarToggle = val;
+      });
+  }
 
   ngOnInit() {
     this.menuInfo = this._menuService.putSidebarJson();
-    this._sidebarToggle();
-    this._menuService.selectItem(this.menuInfo); /* ----->初始化判断路由isActive状态  未完成  待优化 */
+    this._menuService.selectItem(this.menuInfo); 
     this._isSelectItem(this.menuInfo);
   }
 
   public _sidebarToggle() {
-    // this._globalService._sidebarToggleState(true);
-    /* this._globalService.sidebarToggle$.subscribe(sidebarToggle => {
-      this.sidebarToggle = sidebarToggle;
-    }, error => {
-      console.log('Error: ' + error);
-    }); */
     this._globalService.data$.subscribe(data => {
       if (data.ev === 'sidebarToggle') {
         this.sidebarToggle = data.value;
@@ -41,7 +42,6 @@ export class SidebarComponent implements OnInit {
 
   }
 
-  /* 初始化 判断当前路由状态信息 首次加载菜单状态 */
   _isSelectItem(item) {
     for (const i in item) {
       if (item[i].children) {

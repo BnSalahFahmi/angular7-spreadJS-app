@@ -51,27 +51,8 @@
 
 .add-transaction-icon {
     position: relative;
-    margin-top: 4px;
+    margin-top: 0px;
     float: right;
-}
-
-:host /deep/ .nav-link .bs-remove-tab {
-    position: relative;
-    font-size: 0em;
-}
-
-:host /deep/ .nav-link .bs-remove-tab::after {
-    content: "\f00d";
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
-    color: #757575;
-    font-size: 13px;
-    margin-right: 1px;
-    position: relative;
-    top: -7px;
-    left: 10px;
 }
 
 :host /deep/ .choice-btns {

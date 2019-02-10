@@ -1,0 +1,155 @@
+.my-pagination, .ngx-pagination .current, .ngx-pagination a{
+    height: 34px !important;
+}
+
+.ngx-pagination .current, .ngx-pagination a:hover{
+    background: #607D8B !important;
+}
+
+.my-pagination, .ngx-pagination {
+    border-radius: 1px !important;
+}
+
+.ngx-pagination li{
+    margin-top: -5px !important;
+}
+
+.table {
+    &>thead {
+        &>tr {
+            &>th {
+                border-bottom: 1px solid $table-border-color;
+                text-align: center;
+                white-space: nowrap;
+                font-size: 14px;
+                padding: 0.4rem;
+            }
+        }
+    }
+    &>tbody {
+        &>tr {
+            &>td {
+                border-bottom: 1px solid $table-border-color;
+                text-align: center;
+                vertical-align: middle;
+                padding: 0.4rem;
+            }
+        }
+    }
+}
+
+.table-striped>tbody {
+    &>tr {
+        &:nth-child(odd) {
+            background-color: rgba($fonts-color, .1);
+        }
+        &>td {
+            border-top: 1px solid transparent;
+        }
+    }
+}
+
+.table-hover {
+    >tbody>tr:hover {
+        background-color: rgba($fonts-color, .1);
+    }
+}
+
+.table-bordered,
+.table-bordered>thead>tr>th,
+.table-bordered>tbody>tr>td,
+.table-bordered>tfoot>tr>th {
+    border: 1px solid $table-border-color;
+}
+
+th[sortable] {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  th[sortable]:before {
+    content: '\f0dc';
+    font-family: FontAwesome;
+    display: block;
+    background-size: 22px;
+    width: 22px;
+    height: 20px;
+    float: right;
+    margin-left: -22px;
+  }
+
+  th[sortable].numeric-sort.asc:before{
+    content: '\f162';
+    font-family: FontAwesome;
+    display: block;
+    background-size: 22px;
+    width: 22px;
+    height: 20px;
+    float: right;
+    margin-left: -22px;
+  }
+
+  th[sortable].numeric-sort.desc:before {
+    content: '\f163';
+    font-family: FontAwesome;
+    display: block;
+    background-size: 22px;
+    width: 22px;
+    height: 20px;
+    float: right;
+    margin-left: -22px;
+  }
+
+  th[sortable].alpha-sort.asc:before{
+    content: '\f15d';
+    font-family: FontAwesome;
+    display: block;
+    background-size: 22px;
+    width: 22px;
+    height: 20px;
+    float: right;
+    margin-left: -22px;
+  }
+
+  th[sortable].alpha-sort.desc:before {
+    content: '\f15e';
+    font-family: FontAwesome;
+    display: block;
+    background-size: 22px;
+    width: 22px;
+    height: 20px;
+    float: right;
+    margin-left: -22px;
+  }
+
+  th[sortable].amount-sort.asc:before{
+    content: '\f160';
+    font-family: FontAwesome;
+    display: block;
+    background-size: 22px;
+    width: 22px;
+    height: 20px;
+    float: right;
+    margin-left: -22px;
+  }
+
+  th[sortable].amount-sort.desc:before {
+    content: '\f161';
+    font-family: FontAwesome;
+    display: block;
+    background-size: 22px;
+    width: 22px;
+    height: 20px;
+    float: right;
+    margin-left: -22px;
+  }
+
+  table thead{
+    background: #F5F5F5;
+  }
+
+  table thead th{
+    color: #607D8B;
+    font-weight: 500;
+  }

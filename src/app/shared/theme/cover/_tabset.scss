@@ -17,4 +17,29 @@
     border-right: 1px solid #EEEEEE;
     border-top: 1px solid #EEEEEE;
     border-left: 1px solid #EEEEEE;
+    width: 150px;
+    max-width: 150px;
+    text-align: center;
+    padding: .3rem 1px !important;
+    font-size: 14px;
+}
+
+.nav-link .bs-remove-tab {
+    position: relative;
+    font-size: 0em;
+}
+
+.nav-link .bs-remove-tab::after {
+    content: "\f05c";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #757575;
+    font-size: 13px;
+    margin-right: 1px;
+    position: relative;
+    top: -5px;
+    right: 3px;
+    float: right;
 }

@@ -1,0 +1,233 @@
+.toolboxcontent li {
+    list-style: none;
+}
+
+.drag-item>img {
+    width: 30px;
+    height: 30px;
+}
+
+img {
+    width: 30px;
+    height: 30px;
+    margin: 3px 3px;
+}
+
+.imageleft table {
+    border: #0277ad 1px solid;
+}
+
+.loopIcons {
+    margin: 3px 2px 4px 4px !important;
+}
+
+.title {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #405065;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 49px;
+  }
+  .customBox {
+    margin-top: 5%;
+    padding: 8px 100px;
+    box-shadow: 0 10px 40px 0 #B0C1D9;
+  }
+  
+  .alignleft {
+    float: left;
+  }
+  
+  .alignright {
+    float: right;
+  }
+  
+  .toolboxcontent li {
+    list-style: none;
+  }
+
+  .drag-item>img {
+    width: 30px;
+    height: 30px;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+    margin: 3px 3px;
+  }
+
+.imageleft table {
+    border: #0277ad 1px solid;
+}
+
+// .imageleft table.second, .imageleft table.fourth, .imageleft table.sixth {
+//     border-top-width: 0px !important;
+//     border-bottom-width: 0px !important;
+// }
+
+// .imageleft table.seventh{
+//     border-bottom-width: 0px !important;
+// }
+
+.toolbox {
+    top: 80px;
+    width: 52px;
+    z-index: 999;
+    left: 53px;
+    color: white;
+    font-weight: 600;
+    text-indent: 5px;
+    font-size: 12px;
+}
+
+.toolboxhead {
+    background: #0277AD;
+    border: 1px solid #0277AD;
+    margin-left: -5px;
+    padding: 3px 8px 2px 9px;
+    width: 52px;
+    height: 20px;
+}
+
+.switch-toolbox {
+    position: absolute;
+    font-size: 11px;
+    color: white;
+    margin-top: -1px;
+    left: 44px;
+}
+
+.toolbox .eighth {
+    top: 252px;
+    float: none;
+    width: auto;
+    height: 37px;
+}
+
+.eighth .navigation {
+    color: #0277ad;
+    font-size: 18px;
+    padding: 7px 2px;
+}
+
+.imageleft table.displaytrue{
+    display: table;
+}
+
+.imageleft table.displayfalse{
+    display: none;
+}
+
+// .toolbox li:hover {
+//     border: 1px #0277ad dashed;
+// }
+
+.hoverGroupfalse:hover:after {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    height: 36px;
+    bottom: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid #c6f4ff;
+    content: "";
+}
+
+.OP_NumberGeneratoropIcons:hover {
+	content: url("/assets/images/new_icons/green1hover.png");
+}
+
+.OP_ConstPatternopIcons:hover {
+	content: url("/assets/images/new_icons/green2hover.png");
+}
+
+.OP_ConvPatternopIcons:hover {
+	content: url("/assets/images/new_icons/green3hover.png");
+}
+
+.OP_ConvoluteopIcons:hover {
+	content: url("/assets/images/new_icons/green3hover.png");
+}
+
+.OP_SourceParameteropIcons:hover {
+	content: url("/assets/images/new_icons/green4hover.png");
+}
+
+.OP_TempoAddopIcons:hover {
+	content: url("/assets/images/new_icons/AddHover.png");
+}
+
+.OP_TempoFuncopIcons:hover {
+	content: url("/assets/images/new_icons/opFuncHover.png");
+}
+
+.OP_FuncGenopIcons:hover {
+	content: url("/assets/images/new_icons/opFuncGenHover.png");
+}
+
+.OP_TempoMultopIcons:hover {
+	content: url("/assets/images/new_icons/opMultHover.png");
+}
+
+.OP_TempoDivopIcons:hover {
+	content: url("/assets/images/new_icons/DivideHover.png");
+}
+
+.OP_CaTiFiopIcons:hover {
+	content: url("/assets/images/new_icons/CatifiHover.png");
+}
+
+.OP_ApTiFiopIcons:hover {
+	content: url("/assets/images/new_icons/ApTifiHover.png");
+}
+
+.OP_CuTiFiopIcons:hover {
+	content: url("/assets/images/new_icons/CutifiHover.png");
+}
+
+.OP_ClockopIcons:hover {
+	content: url("/assets/images/new_icons/clockvhover.png");
+}
+
+.OP_FinIncopIcons:hover {
+	content: url("/assets/images/new_icons/finincomehover.png");
+}
+
+.OP_FinDiscopIcons:hover {
+	content: url("/assets/images/new_icons/discountinghover.png");
+}
+
+.OP_CounteropIcons:hover {
+	content: url("/assets/images/new_icons/countophover.png");
+}
+
+.OP_ExitConditionopIcons:hover {
+	content: url("/assets/images/new_icons/exitopthover.png");
+}
+
+.OP_ParameteropIcons:hover {
+	content: url("/assets/images/new_icons/itparamhover.png");
+}
+
+.OP_WeightedAverageopIcons:hover{
+	content: url("/assets/images/new_icons/iwaHover.png");
+}
+
+.OP_WriteopIcons:hover {
+	content: url("/assets/images/new_icons/analysishover.png");
+}
+
+.OP_TempoFwdopIcons:hover {
+	content: url("/assets/images/new_icons/ForwardHover.png");
+}
+
+.OP_TempoAppopIcons:hover {
+	content: url("/assets/images/new_icons/AppendHover.png");
+}
+
+.selected-mode {
+	color: #00bcd4e6 !important;
+}

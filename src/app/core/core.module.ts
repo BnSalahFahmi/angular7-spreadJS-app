@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 /* components */
 import { SharedModule } from './../shared/shared.module';
-import { LoadingComponent } from './../shared/components/loading/loading.component';
 import { RightConfigComponent } from './components/right-config/right-config.component';
 import { NotificationComponent } from './../shared/components/notification/notification.component';
 import { ContentTopComponent } from './components/content-top/content-top.component';
@@ -27,7 +26,7 @@ export const Guards = [
         SharedModule
     ],
     providers: [
-        GlobalService
+        
     ],
     declarations: [
         MenuComponent,
@@ -42,8 +41,7 @@ export const Guards = [
         NavbarComponent,
         ContentTopComponent,
         NotificationComponent,
-        RightConfigComponent,
-        LoadingComponent
+        RightConfigComponent
     ]
 })
 export class CoreModule {

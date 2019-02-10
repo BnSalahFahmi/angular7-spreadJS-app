@@ -1,15 +1,14 @@
-<!-- <card cardTitle="Inline Form"> -->
-    <card class="transaction-info-card">
-        <form class="form-inline">
-          <label for="example1" class="form-label label-with-margin">Transaction Name: </label>
-          <input type="text" class="form-control" value="{{transactionName}}">
-          <label for="example2" class="form-label label-with-margin">{{creator}}</label>
-          <label for="example2" class="form-label label-with-margin">{{creationDate}}</label>
-          <label for="example2" class="form-label label-with-margin">NB Simulation</label>
-          <input type="text" class="form-control" value="1000">
-          <div class="transaction-btns">
-              <button type="submit" class="btn btn-primary btn-with-margin btn-same-width">Save as</button>
-              <button type="submit" class="btn btn-primary btn-with-margin btn-same-width">Save</button>
-          </div>
-        </form>
-      </card>
+<card class="transaction-info-card">
+    <form class="form-inline">
+        <label for="example1" class="form-label label-with-margin">Transaction Name: </label>
+        <input type="text" class="form-control" value="{{transaction.name}}">
+        <label for="example2" class="form-label label-with-margin">{{transaction.creator}}</label>
+        <label for="example2" class="form-label label-with-margin">{{transaction.creationDate | amLocal | amDateFormat: 'DD-MM-YYYY'}}</label>
+        <label for="example2" class="form-label label-with-margin">NB Simulation</label>
+        <input type="text" class="form-control" value="1000">
+        <div class="transaction-btns">
+            <button type="submit" class="btn btn-primary btn-with-margin btn-same-width" (click)="onSaveAsTransaction()">Save as</button>
+            <button type="submit" class="btn btn-primary btn-with-margin btn-same-width" (click)="onSaveTransaction()">Save</button>
+        </div>
+    </form>
+</card>

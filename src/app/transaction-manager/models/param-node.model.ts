@@ -9,7 +9,7 @@ export function mockParamNode(): ParamNode {
 	return {
         id: null,
         name: 'Test',
-        param1: 'Param1',
-        param2: 'Param2'
+        param1: '10',
+        param2: '20'
 	}
 }
