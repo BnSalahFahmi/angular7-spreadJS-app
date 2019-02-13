@@ -18,6 +18,6 @@ export function mockTransaction(): Transaction {
 		creationDate: new Date(),
 		updator: null,
 		updateDate: null,
-		cockpit: null,
+		cockpit: null
 	}
 }

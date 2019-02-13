@@ -79,7 +79,6 @@ export class ProjectListComponent implements OnInit {
   }
 
   onSort({ column, direction }: SortEvent) {
-    debugger;
     // resetting other headers
     this.headers.forEach(header => {
       if (header.sortable !== column) {

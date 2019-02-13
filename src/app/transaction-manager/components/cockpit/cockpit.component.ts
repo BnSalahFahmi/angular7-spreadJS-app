@@ -3,6 +3,10 @@ import * as GC from "@grapecity/spread-sheets";
 import { GlobalService } from '../../../shared/services/global.service';
 import { Transaction } from '../../models/transaction.model';
 import { getValueByType } from '../../utils/Utils';
+import { Store, select } from '@ngrx/store';
+import * as fromTransactionTabs from '../../store/index';
+import * as transactionTabsActions from '../../store/transactionTabs.actions';
+import { Observable } from 'rxjs';
 //import {saveAs} from 'file-saver';
 //GC.Spread.Sheets.LicenseKey = 'x.x.x.x.x.x.x.x.x.x.x.x.x.x.x';
 
@@ -20,7 +24,7 @@ export class CockpitComponent implements OnInit {
   excelIO;
   hostStyle = {
     width: '100%',
-    height: '430px'
+    height: '337px'
   };
   newTabVisible = true;
   tabStripVisible = true;
@@ -32,14 +36,16 @@ export class CockpitComponent implements OnInit {
   grayAreaBackColor = '#E4E4E4';
   data: any;
   autoGenerateColumns = false;
+  tabs$: Observable<any>;
+  listTabs:any = [];
 
-  constructor(private globalService: GlobalService) {
-    
+  constructor(private store: Store<fromTransactionTabs.TransactionMgtState>, private _globalService: GlobalService) {
+    //this.transaction$ = this.store.select(fromTransactionTabs.selectActiveTransaction);
   }
 
   ngOnInit() {
-    this.globalService.refreshSpreadSheetEvent.subscribe(refresh => {
-      if(refresh && this.spread){
+    this._globalService.refreshSpreadSheetEvent.subscribe(refresh => {
+      if (refresh && this.spread) {
         setTimeout(function () {
           this.spread.refresh();
         }, 1000);
@@ -61,7 +67,7 @@ export class CockpitComponent implements OnInit {
     this.initCell(pos, data);
   }
 
-  initCell(position, data){
+  initCell(position, data) {
     var row = position.row;
     var cell = position.col;
     this.spread.suspendPaint();
@@ -89,10 +95,24 @@ export class CockpitComponent implements OnInit {
   }
 
   workbookInit(args) {
+    if(this.listTabs && this.listTabs[0] && this.listTabs[0].transaction.cockpit){
+      return;
+    }
     this.spread = args.spread;
     this.initSpreadSheet(this.spread);
     let sheet = this.spread.getActiveSheet();
     this.bindSheetEvents(sheet);
+    var newTransaction: Transaction = {
+      id: 1,
+      name: 'Test',
+      description: 'Some description',
+      creator: new Object('Fahmi BEN SALAH'),
+      creationDate: new Date(),
+      updator: null,
+      updateDate: null,
+      cockpit: this.spread.toJSON()
+    }
+    this.store.dispatch(new transactionTabsActions.UpdateTabInfos({ tabId: 0, transaction: newTransaction }));
   }
 
   onFileChange(args) {
@@ -418,7 +438,7 @@ export class CockpitComponent implements OnInit {
       spread.contextMenu.menuData.push(showSheets);
     }
     for (let i in this.getSubMenus()) {
-      if(this.sheetMenus[i]){
+      if (this.sheetMenus[i]) {
         var subMenuFound = spread.contextMenu.menuData.find(function (element) {
           return this && element && this.sheetMenus[i] && element.name == this.sheetMenus[i].name;
         });

@@ -24,7 +24,6 @@ export class HttpReqInterceptor implements HttpInterceptor {
     this.hideLoader();
   }
   private showLoader(): void {
-    debugger;
     this.loaderService.show();
   }
   private hideLoader(): void {

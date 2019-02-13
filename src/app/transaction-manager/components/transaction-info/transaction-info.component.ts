@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Transaction } from '../../models/transaction.model';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as transactionActions from '../../store/transaction.actions';
-import * as fromTransaction from '../../store/transaction.reducer';
+import * as fromTransactionTabs from '../../store/index';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'transaction-info',
@@ -13,16 +14,18 @@ export class TransactionInfoComponent implements OnInit {
 
   @Input() transaction : Transaction;
 
-  constructor(private store: Store<fromTransaction.TransactionState>) { }
+  constructor(private store: Store<fromTransactionTabs.TransactionMgtState>) {
+    //this.transaction$ = this.store.select(fromTransactionTabs.selectActiveTransaction);
+  }
 
   ngOnInit() {
   }
 
-  onSaveTransaction(){
+  onSaveTransaction() {
     this.store.dispatch(new transactionActions.LoadDataAction());
   }
 
-  onSaveAsTransaction(){
+  onSaveAsTransaction() {
 
   }
 

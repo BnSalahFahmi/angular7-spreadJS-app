@@ -17,16 +17,15 @@ import { collapse } from '../shared/animation/collapse-animate';
   selector: 'transaction-manager',
   templateUrl: './transaction-manager.component.html',
   styleUrls: ['./transaction-manager.component.scss'],
-  //animations:[collapse]
 })
 export class TransactionMgtComponent implements OnInit {
   showloading: boolean = false;
   tabs$: Observable<any>;
-  listTabs:any = [];
-  displayedView : string = "graph-view";
+  listTabs: any = [];
+  displayedView: string = "graph-view";
   transaction: Transaction = mockTransaction();
 
-  constructor(private store:Store<any>, private globalService: GlobalService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService, private cd: ChangeDetectorRef) {
+  constructor(private store: Store<any>, private globalService: GlobalService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService, private cd: ChangeDetectorRef) {
     this.store.dispatch(new transactionActions.LoadDataAction());
     this.tabs$ = this.store.pipe(select(fromTransactionTabs.selectTransactionTabs));
     // this.tabs$.subscribe((resp)=> {
@@ -48,7 +47,7 @@ export class TransactionMgtComponent implements OnInit {
     // }); 
   }
 
-  get currentTransaction(){
+  get currentTransaction() {
     return this.transaction;
   }
 
@@ -56,11 +55,11 @@ export class TransactionMgtComponent implements OnInit {
     this.listTabs = [];
   }
 
-  get viewDisplayed(){
+  get viewDisplayed() {
     return this.displayedView;
   }
 
-  setDisplayedView(view){
+  setDisplayedView(view) {
     this.displayedView = view;
   }
 
@@ -68,7 +67,7 @@ export class TransactionMgtComponent implements OnInit {
     //return tab.id === this.tabDetail.tabState.id
   }
 
-  newTransaction(){
+  newTransaction() {
     var newTransaction = mockTransaction();
     newTransaction.creator = new Object('Fahmi BEN SALAH');
     newTransaction.creationDate = new Date();
@@ -76,44 +75,42 @@ export class TransactionMgtComponent implements OnInit {
   }
 
   delegateOpenTab(tab: any, event?: Event) {
-     this.store.dispatch(new transactionTabsActions.OpenTabAction({
+    this.store.dispatch(new transactionTabsActions.OpenTabAction({
       type: 0,
       tab: {
         id: this.listTabs.length,
         type: "NEW TRANSACTION",
         heading: 'New Transaction',
-        active:true,
+        active: true,
         closable: true,
         transaction: this.newTransaction()
       }
     }));
   }
 
-  delegateRemoveTab(tab: any, event?:Event) {
-    debugger;
-    this.store.dispatch(new transactionTabsActions.CloseTabAction({tabId: tab.id}));
+  delegateRemoveTab(tab: any, event?: Event) {
+    this.store.dispatch(new transactionTabsActions.CloseTabAction({ tabId: tab.id }));
   }
 
-  removeTabHandler(tab){
+  removeTabHandler(tab) {
     console.log();
   }
 
-  onSelectTab(tab){
-    //tab.active = true
-    //this.globalService.refreshSpreadSheetEvent.next(true);
+  onSelectTab(tab) {
+    // if (!tab.active)
+    //   this.store.dispatch(new transactionTabsActions.SetActiveTab({ tabId: tab.id }));
   }
 
-  onDeSelectTab(tab){
-    //tab.active = false;
+  onDeSelectTab(tab) {
+    //TODO
+  }
+
+  onBeforeRemoveTab(event) {
     console.log();
   }
 
-  onBeforeRemoveTab(event){
-    console.log();
-  }
-
-  open(){
-    this.toastr.error('Hello world!', 'Toastr fun!', {timeOut: 3000, closeButton: true, progressBar: true});
+  open() {
+    this.toastr.error('Hello world!', 'Toastr fun!', { timeOut: 3000, closeButton: true, progressBar: true });
   }
 
   getContext(routerOutlet: RouterOutlet): string {

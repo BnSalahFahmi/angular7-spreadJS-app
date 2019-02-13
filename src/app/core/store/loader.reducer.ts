@@ -10,7 +10,6 @@ const initialState: State = {
 };
 
 export function reducer(state = initialState, action: any): State {
-    debugger;
     //   switch (action.type) { 
     //     case loadingSpinner.SHOW_SPINNER: {
     //       const isActionAlreadyInProgress = state.actionsInProgress.filter(
