@@ -87,6 +87,6 @@ export class RightConfigComponent implements OnInit {
 
   useLang(lang: string) {
     this._translate.use(lang);
-    this._toastrService.success('Language has been changed', 'Success');
+    this._toastrService.info('Language has been changed', 'Success');
   }
 }

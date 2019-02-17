@@ -15,6 +15,7 @@ export class SidebarComponent implements OnInit {
 
   public menuInfo: Array<any> = [];
   public sidebarToggle;
+  fileData: Array<any>;
 
 
   constructor(private store: Store<fromRoot.State>, private _menuService: menuService,
@@ -29,6 +30,50 @@ export class SidebarComponent implements OnInit {
     this.menuInfo = this._menuService.putSidebarJson();
     this._menuService.selectItem(this.menuInfo); 
     this._isSelectItem(this.menuInfo);
+    this.fileData =[
+      {
+          name: 'Folder1',
+          isSelect: true,
+          children: [
+              {
+                  name: 'Item1',
+                  isSelect: true,
+                  children: [
+                      {
+                          name: 'Child1',
+                      },
+                      {
+                          name: 'Child2',
+                      }
+                  ]
+              },
+              {
+                  name: 'Item2',
+              }
+          ]
+      }, {
+          name: 'Folder2',
+          isSelect: true,
+          children: [
+              {
+                  name: 'Item1',
+              },
+              {
+                  name: 'Item2',
+              }
+          ]
+      }, {
+          name: 'Folder3',
+          children: [
+              {
+                  name: 'Item1',
+              },
+              {
+                  name: 'Item2',
+              }
+          ]
+      }
+  ];
   }
 
   public _sidebarToggle() {

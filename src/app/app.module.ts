@@ -24,10 +24,10 @@ import {
   FullLayoutComponent,
   SimpleLayoutComponent
 } from './core/containers';
-import { HttpModule } from '@angular/http';
 // import ngx-translate and the http loader
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SnackBarService } from './shared/services/snackbar.service';
 //import { TransactionMgtComponent } from './Transaction-manager/transaction-manager.component';
 
 
@@ -49,9 +49,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
     }),
     ToastrModule.forRoot({
@@ -62,9 +62,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     SharedModule,
     RouterModule.forRoot(routes, {
-       useHash: true,
-       initialNavigation: 'enabled',
-       paramsInheritanceStrategy: 'always'
+      useHash: true,
+      initialNavigation: 'enabled',
+      paramsInheritanceStrategy: 'always'
     }),
     CoreModule.forRoot(),
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -81,7 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     TabsetConfig,
-    //{ provide: HTTP_INTERCEPTORS, useClass: HttpReqInterceptor, multi: true },
+    SnackBarService,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]

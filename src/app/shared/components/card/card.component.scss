@@ -3,7 +3,7 @@
     //width: 100%;
     height: 32px;
     padding: 0 10px;
-    background: #b2ebf2bd !important;
+    background: #ECEFF1 !important;
     display: flex;
     margin: 1.5px;
     justify-content: space-between; //border-bottom: 1px solid $border-color;
@@ -11,7 +11,7 @@
         display: inline-block;
         margin: 0;
         line-height: 30px;
-        font-size: $default-text+1;
+        font-size: $default-text;
         font-weight: 500;
         text-transform: uppercase;
     }
@@ -64,4 +64,8 @@
     border: none;
     border-top: 1px solid $border-color;
     padding: 0 10px;
+}
+
+card.with-border-styled>.card{
+    border-bottom: 2px solid #007090 !important;
 }

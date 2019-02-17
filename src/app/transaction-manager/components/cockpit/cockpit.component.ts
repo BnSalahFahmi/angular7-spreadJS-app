@@ -44,8 +44,10 @@ export class CockpitComponent implements OnInit {
   }
 
   ngOnInit() {
+    debugger;
     this._globalService.refreshSpreadSheetEvent.subscribe(refresh => {
       if (refresh && this.spread) {
+        debugger;
         setTimeout(function () {
           this.spread.refresh();
         }, 1000);
@@ -95,6 +97,7 @@ export class CockpitComponent implements OnInit {
   }
 
   workbookInit(args) {
+    debugger;
     if(this.listTabs && this.listTabs[0] && this.listTabs[0].transaction.cockpit){
       return;
     }

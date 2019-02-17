@@ -21,7 +21,7 @@
     max-width: 150px;
     text-align: center;
     padding: .3rem 1px !important;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .nav-link .bs-remove-tab {
@@ -30,7 +30,7 @@
 }
 
 .nav-link .bs-remove-tab::after {
-    content: "\f05c";
+    content: "\f00d";
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;

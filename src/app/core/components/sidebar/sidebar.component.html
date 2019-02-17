@@ -7,10 +7,13 @@
 
   <div id="accordion" class="accordion">
     <card cardTitle="Transactions" isCollapse="true">
-      <du-menu [menuInfo]="menuInfo"></du-menu>
+      <!-- <du-menu [menuInfo]="menuInfo"></du-menu> -->
+      <file-tree [model]="fileData"></file-tree>
     </card>
     <card cardTitle="Structures" isCollapse="true">
-      <du-menu [menuInfo]="menuInfo"></du-menu>
+      <span class="empty-data">
+        No Data Found
+      </span>
     </card>
   </div>
   <div class="row">

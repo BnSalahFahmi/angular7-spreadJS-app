@@ -1,4 +1,4 @@
-<card>
+<div class="card-content-container">
   <div class="form-group" style="margin-bottom:7px">
     <input type="text" class="new-task-input" [(ngModel)]="paramNode.name" (keyup.enter)="creatNewTask()">
     <i class="fa fa-bars node-action" draggable="true" (dragstart)="drag($event)"></i>
@@ -21,4 +21,4 @@
       </tr>
     </tbody>
   </table>
-</card>
+</div>

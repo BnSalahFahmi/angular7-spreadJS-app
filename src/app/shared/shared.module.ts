@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { JsonpModule } from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 /* components */
 import { CardComponent } from './components/card/card.component';
@@ -21,6 +20,7 @@ import { RouterModule } from '@angular/router';
 import { NgxBootstrapModule } from '../shared/ui/ngxbootstrap.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
+import { SnackBarComponent } from './components/snackbar/snackbar.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -64,7 +64,8 @@ import { MomentModule } from 'ngx-moment';
     LoaderComponent,
     TabManagerComponent,
     NotFoundComponent,
-    PaginationComponent
+    PaginationComponent,
+    SnackBarComponent
   ],
   exports: [
     // Modules
@@ -93,6 +94,7 @@ import { MomentModule } from 'ngx-moment';
     TabManagerComponent,
     NotFoundComponent,
     PaginationComponent,
+    SnackBarComponent
   ],
   providers: [
     GlobalService,

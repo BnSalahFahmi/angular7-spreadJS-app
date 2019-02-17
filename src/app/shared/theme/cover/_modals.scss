@@ -1,0 +1,54 @@
+@import "../../theme/conf";
+
+.modal-holder{
+    animation-name: example;
+    animation-duration: 0.3s;
+  }
+  
+  @keyframes example {
+    0%   {transform: scale(0.5)}
+    100% {transform: scale(1)}
+  }
+
+.modal-content {
+	border-width: 0px !important;
+	border-radius : 3px !important;
+}
+
+.modal-header {
+	padding: 5px 15px !important;
+	border-bottom-width: 0px !important;
+}
+
+.modal-title {
+    font-size: 14px;
+    font-family: Roboto,sans-serif;
+    line-height: 2rem;
+    letter-spacing: .03em;
+    text-decoration: inherit;
+    text-transform: inherit;
+    display: block;
+    flex-shrink: 0;
+    font-weight: 600;
+}
+
+.modal-footer {
+	border-top-width: 0px !important;
+    padding: 10px 5px !important;
+    
+    .btn {
+        width: 100px !important;
+    }
+}
+
+.label-popup-style {
+    font-size: 14px;
+}
+
+.modal-body {
+    padding: 10px 20px !important;
+}
+
+.pref-modal .modal-lg {
+    max-width: 700px !important;
+}

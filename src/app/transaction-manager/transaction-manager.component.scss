@@ -64,8 +64,21 @@
     width: 120px;
 }
 
-:host /deep/ .transaction-info-container .card-content:first-child {
-    height: auto;
-    max-height: 80vh;
+:host /deep/ .transaction-container>.card-content{
+    height: 70vh;
+    max-height: 70vh;
     overflow-y: scroll;
 }
+
+.card-content-container {
+    width: auto;
+    height: auto;
+    background: #fff;
+    position: relative;
+    border: 1px solid #e4e3e3;
+    border-radius: 1px;
+    color: #26253c;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+  

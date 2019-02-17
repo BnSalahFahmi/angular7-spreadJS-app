@@ -90,3 +90,23 @@
     border: none !important;
     border-radius: 0 !important;
 }
+
+.ng-select .ng-arrow-wrapper {
+    line-height: 0.4 !important;
+}
+
+.ng-dropdown-panel-items{
+    padding: 3px;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15) !important;
+    background-color: #007090 !important;
+    border-radius: .125rem !important;
+    transition: all .1s linear !important;
+    color: #FFF !important;
+}
+
+.ng-select div, .ng-select input, .ng-select span {
+    font-size: 14px;
+}

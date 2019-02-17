@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import * as transactionActions from '../../store/transaction.actions';
 import * as fromTransactionTabs from '../../store/index';
 import { Observable } from 'rxjs';
+import { SnackBarService } from '../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'transaction-info',
@@ -14,7 +15,7 @@ export class TransactionInfoComponent implements OnInit {
 
   @Input() transaction : Transaction;
 
-  constructor(private store: Store<fromTransactionTabs.TransactionMgtState>) {
+  constructor(private store: Store<fromTransactionTabs.TransactionMgtState>, private snackbarService: SnackBarService) {
     //this.transaction$ = this.store.select(fromTransactionTabs.selectActiveTransaction);
   }
 
@@ -26,7 +27,7 @@ export class TransactionInfoComponent implements OnInit {
   }
 
   onSaveAsTransaction() {
-
+    this.snackbarService.dataBusChanged({title: "Test", value: "Saved !"});
   }
 
 }

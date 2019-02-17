@@ -3,8 +3,8 @@
     <div class="avatar">
       <img src="{{avatarImgSrc}}" alt="avatar">
     </div>
-    <div class="info-wrap" >
-      <span class="app-name" title="{{userName}}" style="font-family: 'Jura', sans-serif;">{{TransactionName}}</span>
+    <div class="info-wrap">
+      <span class="app-name" title="{{userName}}" style="font-family: 'Jura', sans-serif;">{{AppName}}</span>
     </div>
   </div>
   <div class="collapse-menu" (click)="_sidebarToggle()">
@@ -13,5 +13,74 @@
   </div>
 
   <div class="msg-tips-wrap">
-    <!-- Add some navbar items here -->
-</div>
+    <div class="dropdown">
+      <i class="fa fa-language fa-lg with-margin" aria-hidden="true" data-toggle="dropdown"></i>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" (click)="useLang('en')">English</a>
+        <a class="dropdown-item" (click)="useLang('fr')">French</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <i class="fa fa-user-circle-o fa-lg" aria-hidden="true" data-toggle="dropdown"></i>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" (click)="openUserPrefModal(content)">User prefrences</a>
+        <a class="dropdown-item" (click)="logOut()">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preferences Modal -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">User Preferences</h4>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="label-popup-style">Number format </div>
+        </div>
+        <div class="col-lg-6">
+          <ng-select #api [searchable]="false" [items]="numberFormats" bindLabel="label" autofocus bindValue="value" [(ngModel)]="selectedNumberFormat"
+            [clearable]="false">
+          </ng-select>
+        </div>
+      </div>
+      <div class="row" style="margin-top:5px">
+        <div class="col-lg-6">
+          <div class="label-popup-style">Date format </div>
+        </div>
+        <div class="col-lg-6">
+          <ng-select #api [searchable]="false" [items]="dateFormats" bindLabel="label" autofocus bindValue="value" [(ngModel)]="selectedDateFormat"
+            [clearable]="false">
+          </ng-select>
+        </div>
+      </div>
+      <div class="row" style="margin-top:5px">
+        <div class="col-lg-6">
+          <div class="label-popup-style">Number of rows displayed in a paginated grid </div>
+        </div>
+        <div class="col-lg-6">
+          <ng-select #api [searchable]="false" [items]="numberRowsDisplayed" bindLabel="label" autofocus bindValue="value" [(ngModel)]="selectedNumberRowsDisplayed"
+            [clearable]="false">
+          </ng-select>
+        </div>
+      </div>
+      <div class="row" style="margin-top:5px">
+        <div class="col-lg-6">
+          <div class="label-popup-style">Time zone </div>
+        </div>
+        <div class="col-lg-6">
+          <ng-select #api [searchable]="false" [items]="timeZones" bindLabel="label" autofocus bindValue="value" [(ngModel)]="selectedTimeZone"
+            [clearable]="false">
+            <ng-template ng-header-tmp>
+                <input style="width: 100%; line-height: 24px" type="text" (input)="api.filter($event.target.value)" />
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Cancel</button>
+    </div>
+  </ng-template>
