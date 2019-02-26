@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store, Action, ActionsSubject } from "@ngrx/store";
-import { TransactionState } from './transaction.reducer';
+import { State } from './transaction.reducer';
 import { Observable } from "rxjs";
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import * as fromTransaction from './transaction.actions';
@@ -25,13 +25,13 @@ export class TransactionEffects {
 
     @Effect()
     loadTransactions$: Observable<Action> = this.actions$.pipe(
-        ofType(TransactionActions.LOAD_DATA),
+        ofType(TransactionActions.LOAD_TRANSACTION_DATA),
             switchMap((action) =>
             this.transactionService.fetchTransactions().pipe(
-                    map(data => new fromTransaction.LoadDataSuccessAction(data)),
+                    map(data => new fromTransaction.LoadTransactionDataSuccessAction(data)),
                     catchError(err => {
                         this.toasterService.error(err.message, '');
-                        return of(new fromTransaction.LoadDataFailAction({ error: err.message }))
+                        return of(new fromTransaction.LoadTransactionDataFailAction({ error: err.message }))
                     }),
                 ),
             ),

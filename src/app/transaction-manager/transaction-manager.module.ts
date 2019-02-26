@@ -31,6 +31,11 @@ import { GraphComponent } from './components/graph/graph.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StructureEffects } from './store/structure.effects';
+import { StructureService } from './services/Structure.service';
+import { ConfigPanelContainer } from './containers/config-panel/config-panel-container.component';
+import { CockpitContainer } from './containers/cockpit/cockpit-container.component';
+import { GraphContainer } from './containers/graph/graph-container.component';
 
 @NgModule({
     imports: [
@@ -39,13 +44,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         SharedModule,
         ReactiveFormsModule,
         RouterModule.forChild(routes),
-        StoreModule.forFeature('TransactionFeature', reducers),
-        EffectsModule.forFeature([TransactionEffects, TransactionTabsEffects]),
+        StoreModule.forFeature('projectMgtFeature', reducers),
+        EffectsModule.forFeature([TransactionEffects, StructureEffects, TransactionTabsEffects]),
         TabsModule,
         SpreadSheetsModule
     ],
     providers: [
-        TransactionService
+        TransactionService,
+        StructureService
     ],
     declarations: [
         TransactionMgtComponent,
@@ -57,8 +63,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         GraphViewComponent,
         GraphComponent,
         ToolboxComponent,
-        ProjectListComponent
-    ],
+        ProjectListComponent,
+        ConfigPanelContainer,
+        CockpitContainer,
+        GraphContainer
+        ],
     exports: [
         
     ],

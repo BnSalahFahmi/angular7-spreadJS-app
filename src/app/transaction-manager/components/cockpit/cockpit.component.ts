@@ -39,7 +39,7 @@ export class CockpitComponent implements OnInit {
   tabs$: Observable<any>;
   listTabs:any = [];
 
-  constructor(private store: Store<fromTransactionTabs.TransactionMgtState>, private _globalService: GlobalService) {
+  constructor(private store: Store<fromTransactionTabs.ProjectMgtState>, private _globalService: GlobalService) {
     //this.transaction$ = this.store.select(fromTransactionTabs.selectActiveTransaction);
   }
 

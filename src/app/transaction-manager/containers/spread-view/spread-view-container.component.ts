@@ -5,7 +5,7 @@ import { Transaction } from '../../models/transaction.model';
 @Component({
   selector: 'spread-view-container',
   templateUrl: './spread-view-container.component.html',
-  styleUrls: ['./spread-view-container.component.css']
+  styleUrls: ['./spread-view-container.component.scss']
 })
 export class SpreadViewComponent implements OnInit {
 

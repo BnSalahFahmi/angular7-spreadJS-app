@@ -47,17 +47,17 @@ export function reducer(state = TRANSACTIONTABS_INITIAL_STATE, action: any): Tra
             let tabs: any[] = [...state];
             const index = state.findIndex(tab => tab.id === action.payload.tabId);
             tabs.splice(index, 1);
-            if (index != 0 && index != -1) {
-                let newTab = {
-                    id: tabs[index].id,
-                    type: tabs[index].type,
-                    heading: tabs[index].heading,
-                    active: true,
-                    closable: tabs[index].closable,
-                    transaction: tabs[index].transaction
-                }
-                tabs[index] = newTab;
-            }
+            // if (index != 0 && index != -1) {
+            //     let newTab = {
+            //         id: tabs[index].id,
+            //         type: tabs[index].type,
+            //         heading: tabs[index].heading,
+            //         active: true,
+            //         closable: tabs[index].closable,
+            //         transaction: tabs[index].transaction
+            //     }
+            //     tabs[index] = newTab;
+            // }
             return tabs;
         }
         case TransactionTabsActions.ActionTypes.SET_ACTIVE_TAB: {

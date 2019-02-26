@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as transactionTabsActions from './store/transactionTabs.actions';
 import * as transactionActions from './store/transaction.actions';
+import * as structureActions from './store/structure.actions';
 import { selectTransactionTabs } from './store';
 import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
 import * as fromTransactionTabs from './store/index';
@@ -19,32 +20,13 @@ import { collapse } from '../shared/animation/collapse-animate';
   styleUrls: ['./transaction-manager.component.scss'],
 })
 export class TransactionMgtComponent implements OnInit {
-  showloading: boolean = false;
   tabs$: Observable<any>;
   listTabs: any = [];
-  displayedView: string = "graph-view";
+  displayedView: string = "spread-view";
   transaction: Transaction = mockTransaction();
 
   constructor(private store: Store<any>, private globalService: GlobalService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService, private cd: ChangeDetectorRef) {
-    this.store.dispatch(new transactionActions.LoadDataAction());
     this.tabs$ = this.store.pipe(select(fromTransactionTabs.selectTransactionTabs));
-    // this.tabs$.subscribe((resp)=> {
-    //   if(resp)
-    //     this.listTabs = resp;
-    //   if (resp && resp.length == 0) {
-    //      this.store.dispatch(new transactionTabsActions.OpenTabAction({
-    //        type: 0,
-    //        tab: {
-    //           id:-1, 
-    //           type: 'HOME',
-    //           name: 'Summary',
-    //           closable: false 
-    //       }
-    //      }));
-    //   }
-    // }, (err)=> {
-    //   console.log(err);
-    // }); 
   }
 
   get currentTransaction() {
@@ -52,6 +34,8 @@ export class TransactionMgtComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.dispatch(new transactionActions.LoadTransactionDataAction());
+    this.store.dispatch(new structureActions.LoadStructureDataAction());
     this.listTabs = [];
   }
 
@@ -78,7 +62,7 @@ export class TransactionMgtComponent implements OnInit {
     this.store.dispatch(new transactionTabsActions.OpenTabAction({
       type: 0,
       tab: {
-        id: this.listTabs.length,
+        id: Math.random(),
         type: "NEW TRANSACTION",
         heading: 'New Transaction',
         active: true,

@@ -11,6 +11,11 @@
         </div>
       </div>
       <div class="card-content-container">
+          <div class="content-view">
+              <i class="fa fa-file-excel-o fa-lg" aria-hidden="true"></i>
+              <i class="fa fa-object-group fa-lg" aria-hidden="true"></i>
+              <i class="fa fa-th-large" aria-hidden="true"></i>
+            </div>
         <graph-view-container *ngIf="viewDisplayed == 'graph-view'"></graph-view-container>
         <spread-view-container [transaction]="currentTransaction" *ngIf="viewDisplayed == 'spread-view'"></spread-view-container>
       </div>

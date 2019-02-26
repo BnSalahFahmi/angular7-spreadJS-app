@@ -1,8 +1,8 @@
-import * as actions from './transaction.actions';
+import * as actions from './Structure.actions';
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { ProjectMgtState } from '.';
-import { Transaction } from '../models/transaction.model';
-import * as TransactionActions from './transaction.actions';
+import { Structure } from '../models/Structure.model';
+import * as StructureActions from './Structure.actions';
 
 export interface State {
     loading: boolean;
@@ -29,10 +29,10 @@ export function reducer(state = INITIAL_STATE, action: any): State {
     switch (action.type) {
 
         /*************************
-        * GET all Transactions actions
+        * GET all Structures actions
         ************************/ 
 
-        case TransactionActions.LOAD_TRANSACTION_DATA: {
+        case StructureActions.LOAD_STRUCTURE_DATA: {
             return Object.assign({}, state, {
                 loading: true,
                 loaded:  false,
@@ -41,7 +41,7 @@ export function reducer(state = INITIAL_STATE, action: any): State {
               });
         }
 
-        case TransactionActions.LOAD_TRANSACTION_DATA_SUCCESS: {
+        case StructureActions.LOAD_STRUCTURE_DATA_SUCCESS: {
             return Object.assign({}, state, {
                 loaded:  true,
                 loading: false,
@@ -50,7 +50,7 @@ export function reducer(state = INITIAL_STATE, action: any): State {
               });
         }
 
-        case TransactionActions.LOAD_TRANSACTION_DATA_FAIL: {
+        case StructureActions.LOAD_STRUCTURE_DATA_FAIL: {
             return Object.assign({}, state, {
                 loaded:  true,
                 loading: false,
@@ -60,23 +60,23 @@ export function reducer(state = INITIAL_STATE, action: any): State {
         }
 
         /*************************
-        * GET Transaction by id actions
+        * GET Structure by id actions
         ************************/
-        // case TransactionActions.GET_TRANSACTION:
+        // case StructureActions.GET_Structure:
         //     return {
         //         ...state,
         //         done: false,
         //         selected: null,
         //         error: null
         //     };
-        // case TransactionActions.GET_TRANSACTION_SUCCESS:
+        // case StructureActions.GET_Structure_SUCCESS:
         //     return {
         //         ...state,
         //         selected: action.payload,
         //         done: true,
         //         error: null
         //     };
-        // case TransactionActions.GET_TRANSACTION_FAIL:
+        // case StructureActions.GET_Structure_FAIL:
         //     return {
         //         ...state,
         //         selected: null,
@@ -85,7 +85,7 @@ export function reducer(state = INITIAL_STATE, action: any): State {
         //     };
 
         
-        // case TransactionActions.ADD_TRANSACTION: {
+        // case StructureActions.ADD_Structure: {
         //     return {
         //         ...state,
         //         selected: action.payload,
@@ -95,17 +95,17 @@ export function reducer(state = INITIAL_STATE, action: any): State {
         // }
 
         // /*************************
-        // * ADD Transaction actions
+        // * ADD Structure actions
         // ************************/
 
-        // case TransactionActions.ADD_TRANSACTION_SUCCESS: {
-        //     const newTransaction = {
+        // case StructureActions.ADD_Structure_SUCCESS: {
+        //     const newStructure = {
         //         ...state.selected,
         //         id: action.payload
         //       };
         //       const data = [
         //         ...state.data,
-        //         newTransaction
+        //         newStructure
         //       ];
         //       return {
         //         ...state,
@@ -116,7 +116,7 @@ export function reducer(state = INITIAL_STATE, action: any): State {
         //       };
         // }
 
-        // case TransactionActions.ADD_TRANSACTION_FAIL: {
+        // case StructureActions.ADD_Structure_FAIL: {
         //     return {
         //         ...state,
         //         selected: null,
@@ -126,10 +126,10 @@ export function reducer(state = INITIAL_STATE, action: any): State {
         // }
 
         // /*************************
-        // * DELETE Transaction actions
+        // * DELETE Structure actions
         // ************************/
 
-        // case TransactionActions.DELETE_TRANSACTION: {
+        // case StructureActions.DELETE_Structure: {
         //     const selected = state.data.find(p => p.id === action.payload);
         //     return {
         //         ...state,
@@ -139,7 +139,7 @@ export function reducer(state = INITIAL_STATE, action: any): State {
         //     };
         // }
 
-        // case TransactionActions.DELETE_TRANSACTION_SUCCESS: {
+        // case StructureActions.DELETE_Structure_SUCCESS: {
         //     const data = state.data.filter(p => p.id !== state.selected.id);
         //     return {
         //         ...state,
@@ -150,7 +150,7 @@ export function reducer(state = INITIAL_STATE, action: any): State {
         //     };
         // }
 
-        // case TransactionActions.DELETE_TRANSACTION_FAIL: {
+        // case StructureActions.DELETE_Structure_FAIL: {
         //     return {
         //         ...state,
         //         selected: null,
@@ -169,10 +169,10 @@ export function reducer(state = INITIAL_STATE, action: any): State {
  * SELECTORS
  ************************/
 
-export const selectProjectMgtFeatureState = createFeatureSelector<ProjectMgtState>('projectMgtFeature');
+export const selectStructureMgtFeatureState = createFeatureSelector<ProjectMgtState>('projectMgtFeature');
 
-export const selectTransactionState  = createSelector(selectProjectMgtFeatureState, (state: any) => state.TransactionList);
+export const selectStructureState  = createSelector(selectStructureMgtFeatureState, (state: any) => state.StructureList);
 
-export const selectAllTransactions = createSelector(selectTransactionState, (state: ProjectMgtState) => state.transactionList);
+export const selectAllStructures = createSelector(selectStructureState, (state: ProjectMgtState) => state.structureList);
 
-// export const selectLoading = createSelector(selectTransactionState, (state: TransactionState) => !state.done);
+// export const selectLoading = createSelector(selectStructureState, (state: StructureState) => !state.done);

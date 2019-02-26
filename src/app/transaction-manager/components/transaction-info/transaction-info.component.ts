@@ -15,15 +15,14 @@ export class TransactionInfoComponent implements OnInit {
 
   @Input() transaction : Transaction;
 
-  constructor(private store: Store<fromTransactionTabs.TransactionMgtState>, private snackbarService: SnackBarService) {
-    //this.transaction$ = this.store.select(fromTransactionTabs.selectActiveTransaction);
+  constructor(private store: Store<fromTransactionTabs.ProjectMgtState>, private snackbarService: SnackBarService) {
   }
 
   ngOnInit() {
   }
 
   onSaveTransaction() {
-    this.store.dispatch(new transactionActions.LoadDataAction());
+    this.store.dispatch(new transactionActions.LoadTransactionDataAction());
   }
 
   onSaveAsTransaction() {

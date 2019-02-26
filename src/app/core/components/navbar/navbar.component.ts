@@ -18,7 +18,7 @@ import * as moment from 'moment-timezone';
 export class NavbarComponent implements OnInit{
   avatarImgSrc: string = 'assets/images/angular_logo.png';
   AppName: string = 'Angular 7';
-  showSidenav$: Observable<boolean>;
+  sideNavVisible: boolean = true;
   numberFormats : any[];
   dateFormats : any[];
   numberRowsDisplayed: any[];
@@ -30,8 +30,11 @@ export class NavbarComponent implements OnInit{
   
 
   constructor(private store: Store<fromRoot.State>, private _globalService: GlobalService, private _translate: TranslateService,
-  private _toastrService: ToastrService, private modalService: NgbModal) {
-
+    private _toastrService: ToastrService, private modalService: NgbModal) {
+    this.store.pipe(select(fromRoot.getShowSidenav)).subscribe(
+      val => {
+        this.sideNavVisible = val;
+      });
   }
 
   ngOnInit(){
@@ -61,7 +64,11 @@ export class NavbarComponent implements OnInit{
   }
 
   public _sidebarToggle() {
-    this.store.dispatch(new LayoutActions.ToggleSidenav());
+    if (this.sideNavVisible) {
+      this.store.dispatch(new LayoutActions.CloseSidenavAction());
+    } else {
+      this.store.dispatch(new LayoutActions.OpenSidenavAction());
+    }
   }
 
   alertMessage(data: NotificationModel = {

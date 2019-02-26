@@ -16,7 +16,7 @@ export class MenuComponent {
   @Input() menuInfo: any;
   @Input() draggable: boolean = false;
 
-  constructor(private store: Store<fromTransactionTabs.TransactionMgtState>, private _globalService: GlobalService) { }
+  constructor(private store: Store<fromTransactionTabs.ProjectMgtState>, private _globalService: GlobalService) { }
 
   private isToggleOn(item) {
     item.toggle === 'on' ? item.toggle = 'off' : item.toggle = 'on';
