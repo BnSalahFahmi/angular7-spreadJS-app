@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { GlobalService } from './../shared/services/global.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from './components/footer/footer.component';
 
 export const Guards = [
     
@@ -36,7 +37,8 @@ export const Guards = [
         NavbarComponent,
         ContentTopComponent,
         NotificationComponent,
-        RightConfigComponent
+        RightConfigComponent,
+        FooterComponent
     ],
     exports: [
         LoginComponent,
@@ -44,7 +46,8 @@ export const Guards = [
         NavbarComponent,
         ContentTopComponent,
         NotificationComponent,
-        RightConfigComponent
+        RightConfigComponent,
+        FooterComponent
     ]
 })
 export class CoreModule {
