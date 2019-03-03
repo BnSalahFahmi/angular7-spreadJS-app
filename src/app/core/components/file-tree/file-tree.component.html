@@ -1,12 +1,11 @@
 <div class="tree">
   <ul>
     <li *ngFor="let item of model" [ngClass]="{'children-list':isChild}">
-      <div class="trees-items" (click)="toggleItem(item)">
+      <div class="trees-items" (click)="toggleItem(item, item.children)">
         <div class="file-ico">
           <i class="fa fa-file fa-fw ico" *ngIf="!item.children"></i>
           <i class="fa fa-caret-right fa-fw ico" *ngIf="item.children&&(item.toggle === 'off'||item.toggle === 'init')"></i>
           <i class="fa fa-folder fa-fw ico" *ngIf="item.children&&(item.toggle === 'off'||item.toggle === 'init')"></i>
-
           <i class="fa fa-caret-down fa-fw ico" *ngIf="item.children&&item.toggle === 'on'"></i>
           <i class="fa fa-folder-open fa-fw ico" *ngIf="item.children&&item.toggle === 'on'"></i>
         </div>

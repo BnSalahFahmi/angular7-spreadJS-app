@@ -36,6 +36,7 @@ import { StructureService } from './services/Structure.service';
 import { ConfigPanelContainer } from './containers/config-panel/config-panel-container.component';
 import { CockpitContainer } from './containers/cockpit/cockpit-container.component';
 import { GraphContainer } from './containers/graph/graph-container.component';
+import { RibbonComponent } from './components/ribbon/ribbon.component';
 
 @NgModule({
     imports: [
@@ -66,7 +67,8 @@ import { GraphContainer } from './containers/graph/graph-container.component';
         ProjectListComponent,
         ConfigPanelContainer,
         CockpitContainer,
-        GraphContainer
+        GraphContainer,
+        RibbonComponent
         ],
     exports: [
         

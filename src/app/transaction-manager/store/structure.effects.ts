@@ -73,11 +73,11 @@ export class StructureEffects {
     switchMap((StructureId) => this.StructureService.deleteStructure(StructureId)),
     map(Structure => {
         this.toasterService.success('Structure Deleted Successfully');
-        return new fromStructure.DeleteStructureSuccess(Structure);
+        return new fromStructure.DeleteStructureSuccessAction(Structure);
     }),
     catchError(err => {
       this.toasterService.error(err.message);
-      return of(new fromStructure.DeleteStructureFail({error: err}));
+      return of(new fromStructure.DeleteStructureFailAction({error: err}));
     })
   );
 

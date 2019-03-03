@@ -1,12 +1,8 @@
-import { Action } from '@ngrx/store';
+import { Action, UPDATE } from '@ngrx/store';
 import { type } from '../../shared/utilityHelpers';
 import { ShowLoader, HideLoader } from '../../shared/decorators';
 import { Transaction } from '../models/transaction.model';
 
-export const SEARCH =           '[Transaction] Search';
-export const SEARCH_COMPLETED =  '[Transaction] Search Completed';
-export const SEARCH_FAILED =  '[Transaction] Search Failed';
-    
 export const LOAD_TRANSACTION_DATA = '[Transaction] Load Transaction Data';
 export const LOAD_TRANSACTION_DATA_SUCCESS= '[Transaction] Load Transaction Data Success';
 export const LOAD_TRANSACTION_DATA_FAIL= '[Transaction] Load Transaction Data Fail';
@@ -14,6 +10,10 @@ export const LOAD_TRANSACTION_DATA_FAIL= '[Transaction] Load Transaction Data Fa
 export const ADD_TRANSACTION= '[Transaction] Add';
 export const ADD_TRANSACTION_SUCCESS= '[Transaction] Add Success';
 export const ADD_TRANSACTION_FAIL= '[Transaction] Add Fail';
+
+export const UPDATE_TRANSACTION= '[Transaction] Update';
+export const UPDATE_TRANSACTION_SUCCESS= '[Transaction] Update Success';
+export const UPDATE_TRANSACTION_FAIL= '[Transaction] Update Fail';
 
 export const GET_TRANSACTION= '[Transaction] Get Transaction';
 export const GET_TRANSACTION_SUCCESS= '[Transaction] Get Transaction Success';
@@ -23,20 +23,9 @@ export const DELETE_TRANSACTION= '[Transaction] Delete';
 export const DELETE_TRANSACTION_SUCCESS= '[Transaction] Delete Success';
 export const DELETE_TRANSACTION_FAIL= '[Transaction] Delete Fail';
 
-export class SearchAction implements Action {
-    readonly type = SEARCH;
-    constructor(public payload?: any) { }
-}
-
-export class SearchCompletedAction implements Action {
-    readonly type = SEARCH_COMPLETED;
-    constructor(public payload?: any[]) { }
-}
-
-export class SearchFailedAction implements Action {
-    readonly type = SEARCH_FAILED;
-    constructor(public payload?: any) { }
-}
+export const SEARCH =           '[Transaction] Search';
+export const SEARCH_COMPLETED =  '[Transaction] Search Completed';
+export const SEARCH_FAILED =  '[Transaction] Search Failed';
 
 @ShowLoader()
 export class LoadTransactionDataAction implements Action {
@@ -71,6 +60,21 @@ export class AddTransactionFailAction implements Action {
     constructor(public payload?: any) { }
 }
 
+export class UpdateTransactionAction implements Action {
+    readonly type = UPDATE_TRANSACTION;
+    constructor(public payload?: any) { }
+}
+
+export class UpdateTransactionSuccessAction implements Action {
+    readonly type = UPDATE_TRANSACTION_SUCCESS;
+    constructor(public payload?: any) { }
+}
+
+export class UpdateTransactionFailAction implements Action {
+    readonly type = UPDATE_TRANSACTION_FAIL;
+    constructor(public payload?: any) { }
+}
+
 export class GetTransactionAction implements Action {
     readonly type = GET_TRANSACTION;
     constructor(public payload?: any) { }
@@ -86,22 +90,39 @@ export class GetTransactionFailAction implements Action {
     constructor(public payload?: any) { }
 }
 
-export class DeleteTransaction implements Action {
+export class DeleteTransactionAction implements Action {
     readonly type = DELETE_TRANSACTION;
     constructor(public payload?: any){ }
 }
 
-export class DeleteTransactionSuccess implements Action {
+export class DeleteTransactionSuccessAction implements Action {
     readonly type = DELETE_TRANSACTION_SUCCESS;
     constructor(public payload?: any){ }
 }
 
-export class DeleteTransactionFail implements Action {
+export class DeleteTransactionFailAction implements Action {
     readonly type = DELETE_TRANSACTION_FAIL;
     constructor(public payload?: any){ }
 }
 
+export class SearchTransactionAction implements Action {
+    readonly type = SEARCH;
+    constructor(public payload?: any) { }
+}
+
+export class SearchTransactionSuccessAction implements Action {
+    readonly type = SEARCH_COMPLETED;
+    constructor(public payload?: any[]) { }
+}
+
+export class SearchTransactionFailAction implements Action {
+    readonly type = SEARCH_FAILED;
+    constructor(public payload?: any) { }
+}
+
 export type ActionType = LoadTransactionDataAction | LoadTransactionDataSuccessAction | LoadTransactionDataFailAction
 | AddTransactionAction | AddTransactionSuccessAction | AddTransactionFailAction
+| UpdateTransactionAction | UpdateTransactionSuccessAction | UpdateTransactionFailAction
 | GetTransactionAction | GetTransactionSuccessAction | GetTransactionFailAction
-| DeleteTransaction | DeleteTransactionSuccess | DeleteTransactionFail;
+| DeleteTransactionAction | DeleteTransactionSuccessAction | DeleteTransactionFailAction
+| SearchTransactionAction | SearchTransactionSuccessAction | SearchTransactionFailAction;

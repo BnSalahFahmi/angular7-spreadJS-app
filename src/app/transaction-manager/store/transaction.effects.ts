@@ -73,11 +73,11 @@ export class TransactionEffects {
     switchMap((TransactionId) => this.transactionService.deleteTransaction(TransactionId)),
     map(Transaction => {
         this.toasterService.success('Transaction Deleted Successfully');
-        return new fromTransaction.DeleteTransactionSuccess(Transaction);
+        return new fromTransaction.DeleteTransactionSuccessAction(Transaction);
     }),
     catchError(err => {
       this.toasterService.error(err.message);
-      return of(new fromTransaction.DeleteTransactionFail({error: err}));
+      return of(new fromTransaction.DeleteTransactionFailAction({error: err}));
     })
   );
 

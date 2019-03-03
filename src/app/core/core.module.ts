@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { GlobalService } from './../shared/services/global.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FileTreeComponent } from './components/file-tree/file-tree.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 export const Guards = [
@@ -38,7 +39,8 @@ export const Guards = [
         ContentTopComponent,
         NotificationComponent,
         RightConfigComponent,
-        FooterComponent
+        FooterComponent,
+        FileTreeComponent
     ],
     exports: [
         LoginComponent,
@@ -47,7 +49,8 @@ export const Guards = [
         ContentTopComponent,
         NotificationComponent,
         RightConfigComponent,
-        FooterComponent
+        FooterComponent,
+        FileTreeComponent
     ]
 })
 export class CoreModule {
