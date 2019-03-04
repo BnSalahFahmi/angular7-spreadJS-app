@@ -45,76 +45,91 @@ export class LoadTransactionDataFailAction implements Action {
     constructor(public payload?: any) { }
 }
 
+@ShowLoader()
 export class AddTransactionAction implements Action {
     readonly type = ADD_TRANSACTION;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(ADD_TRANSACTION)
 export class AddTransactionSuccessAction implements Action {
     readonly type = ADD_TRANSACTION_SUCCESS;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(ADD_TRANSACTION)
 export class AddTransactionFailAction implements Action {
     readonly type = ADD_TRANSACTION_FAIL;
     constructor(public payload?: any) { }
 }
 
+@ShowLoader()
 export class UpdateTransactionAction implements Action {
     readonly type = UPDATE_TRANSACTION;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(UPDATE_TRANSACTION)
 export class UpdateTransactionSuccessAction implements Action {
     readonly type = UPDATE_TRANSACTION_SUCCESS;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(UPDATE_TRANSACTION)
 export class UpdateTransactionFailAction implements Action {
     readonly type = UPDATE_TRANSACTION_FAIL;
     constructor(public payload?: any) { }
 }
 
+@ShowLoader()
 export class GetTransactionAction implements Action {
     readonly type = GET_TRANSACTION;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(GET_TRANSACTION)
 export class GetTransactionSuccessAction implements Action {
     readonly type = GET_TRANSACTION_SUCCESS;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(GET_TRANSACTION)
 export class GetTransactionFailAction implements Action {
     readonly type = GET_TRANSACTION_FAIL;
     constructor(public payload?: any) { }
 }
 
+@ShowLoader()
 export class DeleteTransactionAction implements Action {
     readonly type = DELETE_TRANSACTION;
     constructor(public payload?: any){ }
 }
 
+@HideLoader(DELETE_TRANSACTION)
 export class DeleteTransactionSuccessAction implements Action {
     readonly type = DELETE_TRANSACTION_SUCCESS;
     constructor(public payload?: any){ }
 }
 
+@HideLoader(DELETE_TRANSACTION)
 export class DeleteTransactionFailAction implements Action {
     readonly type = DELETE_TRANSACTION_FAIL;
     constructor(public payload?: any){ }
 }
 
+@ShowLoader()
 export class SearchTransactionAction implements Action {
     readonly type = SEARCH;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(SEARCH)
 export class SearchTransactionSuccessAction implements Action {
     readonly type = SEARCH_COMPLETED;
     constructor(public payload?: any[]) { }
 }
 
+@HideLoader(SEARCH)
 export class SearchTransactionFailAction implements Action {
     readonly type = SEARCH_FAILED;
     constructor(public payload?: any) { }

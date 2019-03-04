@@ -126,15 +126,12 @@
 }
 
 .msg-tips-wrap {
+    height: 45px;
+    color: #fff;
+    float: right;
+    align-items: center;
     display: flex;
-    flex-wrap: nowrap;
-    position: absolute;
-    top: 62%;
-    right: 20px;
-    transform: translate(0, -50%);
-    height: 40px;
-    color: $sidebar-fonts-color;
-    @include transition(all .4s);
+    margin-right: 15px;
 }
 
 .msg-entrance {

@@ -24,6 +24,10 @@ export class StructureService {
         return this.http.post<Observable<Structure>>(this.baseUrl + '/', Structure);
     }
 
+    updateStructure(Structure){
+        return this.http.put<Observable<Structure>>(this.baseUrl + '/', Structure);
+    }
+
     getStructure(Structure){
         return this.http.get<Observable<Structure>>(this.baseUrl + '/', Structure);
     }

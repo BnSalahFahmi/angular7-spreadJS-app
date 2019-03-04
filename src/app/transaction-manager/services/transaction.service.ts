@@ -24,6 +24,11 @@ export class TransactionService {
         return this.http.post<Observable<Transaction>>(this.baseUrl + '/', transaction);
     }
 
+    updateTransaction(transaction){
+        debugger;
+        return this.http.put<Observable<Transaction>>(this.baseUrl + '/', transaction);
+    }
+
     getTransaction(transaction){
         return this.http.get<Observable<Transaction>>(this.baseUrl + '/', transaction);
     }

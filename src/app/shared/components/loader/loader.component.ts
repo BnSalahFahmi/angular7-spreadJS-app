@@ -16,22 +16,16 @@ export class LoaderComponent implements OnInit {
 
   isLoading: Observable<any>;
 
-  //private subscription: Subscription;
-
   constructor(private store: Store<fromApp.State>) {
-    this.isLoading = this.store.pipe(
-      select((state: fromApp.State) => state.loading.active)
-    )
-
-    this.isLoading.subscribe(data => console.log(data));
+    this.isLoading = this.store.pipe(select((state: fromApp.State) => state.loading.active))
   }
 
   ngOnInit() {
-    
+
   }
 
   ngOnDestroy() {
-    
+
   }
 
 }

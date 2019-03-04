@@ -17,7 +17,7 @@ export class StructureEffects {
 
     constructor(
         private actions$: Actions,
-        private StructureService: StructureService,
+        private structureService: StructureService,
         private router: Router,
         private toasterService: ToastrService
     ) { }
@@ -26,59 +26,82 @@ export class StructureEffects {
     @Effect()
     loadStructures$: Observable<Action> = this.actions$.pipe(
         ofType(StructureActions.LOAD_STRUCTURE_DATA),
-            switchMap((action) =>
-            this.StructureService.fetchStructures().pipe(
-                    map(data => new fromStructure.LoadStructureDataSuccessAction(data)),
-                    catchError(err => {
-                        this.toasterService.error(err.message, '');
-                        return of(new fromStructure.LoadStructureDataFailAction({ error: err.message }))
-                    }),
-                ),
+        switchMap((action) =>
+            this.structureService.fetchStructures().pipe(
+                map(data => new fromStructure.LoadStructureDataSuccessAction(data)),
+                catchError(err => {
+                    this.toasterService.error(err.message, '');
+                    return of(new fromStructure.LoadStructureDataFailAction({ error: err.message }))
+                }),
             ),
-      );
+        ),
+    );
 
-  @Effect()
-  addStructure$: Observable<Action> = this.actions$.pipe(
-    ofType(StructureActions.ADD_STRUCTURE),
-    map((action: any) => action.payload),
-    switchMap((Structure) => this.StructureService.addStructure(Structure)),
-    map(Structure => {
-        this.toasterService.success('Structure Added Successfully');
-        return new fromStructure.AddStructureSuccessAction(Structure);
-    }),
-    catchError(err => {
-      this.toasterService.error(err.message);
-      return of(new fromStructure.AddStructureFailAction({error: err}));
-    })
-  );
+    @Effect()
+    addStructure$: Observable<Action> = this.actions$.pipe(
+        ofType(StructureActions.ADD_STRUCTURE),
+        switchMap((structure) =>
+            this.structureService.addStructure(structure).pipe(
+                map(data => {
+                    this.toasterService.success('Structure Added Successfully');
+                    return new fromStructure.AddStructureSuccessAction(data)
+                }),
+                catchError(err => {
+                    this.toasterService.error(err.message, '');
+                    return of(new fromStructure.AddStructureFailAction({ error: err.message }))
+                }),
+            ),
+        ),
+    );
 
-  @Effect()
-  getStructure$: Observable<Action> = this.actions$.pipe(
-    ofType(StructureActions.GET_STRUCTURE),
-    map((action: any) => action.payload),
-    switchMap((StructureId) => this.StructureService.getStructure(StructureId)),
-    map(Structure => {
-        return new fromStructure.GetStructureSuccessAction(Structure);
-    }),
-    catchError(err => {
-      this.toasterService.error(err.message);
-      return of(new fromStructure.GetStructureFailAction({error: err}));
-    })
-  );
+    @Effect()
+    updateStructure$: Observable<Action> = this.actions$.pipe(
+        ofType(StructureActions.UPDATE_STRUCTURE),
+        switchMap((structure) =>
+            this.structureService.updateStructure(structure).pipe(
+                map(data => {
+                    this.toasterService.success('Structure Updated Successfully');
+                    return new fromStructure.UpdateStructureSuccessAction(data)
+                }),
+                catchError(err => {
+                    this.toasterService.error(err.message, '');
+                    return of(new fromStructure.UpdateStructureFailAction({ error: err.message }))
+                }),
+            ),
+        ),
+    );
 
-  @Effect()
-  deleteStructure$: Observable<Action> = this.actions$.pipe(
-    ofType(StructureActions.DELETE_STRUCTURE),
-    map((action: any) => action.payload),
-    switchMap((StructureId) => this.StructureService.deleteStructure(StructureId)),
-    map(Structure => {
-        this.toasterService.success('Structure Deleted Successfully');
-        return new fromStructure.DeleteStructureSuccessAction(Structure);
-    }),
-    catchError(err => {
-      this.toasterService.error(err.message);
-      return of(new fromStructure.DeleteStructureFailAction({error: err}));
-    })
-  );
+    @Effect()
+    getStructure$: Observable<Action> = this.actions$.pipe(
+        ofType(StructureActions.GET_STRUCTURE),
+        switchMap((structure) =>
+            this.structureService.getStructure(structure).pipe(
+                map(data => {
+                    return new fromStructure.GetStructureSuccessAction(data)
+                }),
+                catchError(err => {
+                    this.toasterService.error(err.message, '');
+                    return of(new fromStructure.GetStructureFailAction({ error: err.message }))
+                }),
+            ),
+        ),
+    );
+
+    @Effect()
+    deleteStructure$: Observable<Action> = this.actions$.pipe(
+        ofType(StructureActions.DELETE_STRUCTURE),
+        switchMap((structure) =>
+            this.structureService.deleteStructure(structure).pipe(
+                map(data => {
+                    this.toasterService.success('Structure Deleted Successfully');
+                    return new fromStructure.DeleteStructureSuccessAction(structure);
+                }),
+                catchError(err => {
+                    this.toasterService.error(err.message, '');
+                    return of(new fromStructure.DeleteStructureFailAction({ error: err.message }))
+                }),
+            ),
+        ),
+    );
 
 }

@@ -26,77 +26,82 @@ export class TransactionEffects {
     @Effect()
     loadTransactions$: Observable<Action> = this.actions$.pipe(
         ofType(TransactionActions.LOAD_TRANSACTION_DATA),
-            switchMap((action) =>
+        switchMap((action) =>
             this.transactionService.fetchTransactions().pipe(
-                    map(data => new fromTransaction.LoadTransactionDataSuccessAction(data)),
-                    catchError(err => {
-                        this.toasterService.error(err.message, '');
-                        return of(new fromTransaction.LoadTransactionDataFailAction({ error: err.message }))
-                    }),
-                ),
+                map(data => new fromTransaction.LoadTransactionDataSuccessAction(data)),
+                catchError(err => {
+                    this.toasterService.error(err.message, '');
+                    return of(new fromTransaction.LoadTransactionDataFailAction({ error: err.message }))
+                }),
             ),
-      );
+        ),
+    );
 
-  @Effect()
-  addTransaction$: Observable<Action> = this.actions$.pipe(
-    ofType(TransactionActions.ADD_TRANSACTION),
-    map((action: any) => action.payload),
-    switchMap((Transaction) => this.transactionService.addTransaction(Transaction)),
-    map(Transaction => {
-        this.toasterService.success('Transaction Added Successfully');
-        return new fromTransaction.AddTransactionSuccessAction(Transaction);
-    }),
-    catchError(err => {
-      this.toasterService.error(err.message);
-      return of(new fromTransaction.AddTransactionFailAction({error: err}));
-    })
-  );
+    @Effect()
+    addTransaction$: Observable<Action> = this.actions$.pipe(
+        ofType(TransactionActions.ADD_TRANSACTION),
+        switchMap((transaction) =>
+            this.transactionService.addTransaction(transaction).pipe(
+                map(data => {
+                    this.toasterService.success('Transaction Added Successfully');
+                    return new fromTransaction.AddTransactionSuccessAction(data)
+                }),
+                catchError(err => {
+                    this.toasterService.error(err.message, '');
+                    return of(new fromTransaction.AddTransactionFailAction({ error: err.message }))
+                }),
+            ),
+        ),
+    );
 
-  @Effect()
-  getTransaction$: Observable<Action> = this.actions$.pipe(
-    ofType(TransactionActions.GET_TRANSACTION),
-    map((action: any) => action.payload),
-    switchMap((TransactionId) => this.transactionService.getTransaction(TransactionId)),
-    map(Transaction => {
-        return new fromTransaction.GetTransactionSuccessAction(Transaction);
-    }),
-    catchError(err => {
-      this.toasterService.error(err.message);
-      return of(new fromTransaction.GetTransactionFailAction({error: err}));
-    })
-  );
+    @Effect()
+    updateTransaction$: Observable<Action> = this.actions$.pipe(
+        ofType(TransactionActions.UPDATE_TRANSACTION),
+        switchMap((transaction) =>
+            this.transactionService.updateTransaction(transaction).pipe(
+                map(data => {
+                    this.toasterService.success('Transaction Updated Successfully');
+                    return new fromTransaction.UpdateTransactionSuccessAction(data)
+                }),
+                catchError(err => {
+                    this.toasterService.error(err.message, '');
+                    return of(new fromTransaction.UpdateTransactionFailAction({ error: err.message }))
+                }),
+            ),
+        ),
+    );
 
-  @Effect()
-  deleteTransaction$: Observable<Action> = this.actions$.pipe(
-    ofType(TransactionActions.DELETE_TRANSACTION),
-    map((action: any) => action.payload),
-    switchMap((TransactionId) => this.transactionService.deleteTransaction(TransactionId)),
-    map(Transaction => {
-        this.toasterService.success('Transaction Deleted Successfully');
-        return new fromTransaction.DeleteTransactionSuccessAction(Transaction);
-    }),
-    catchError(err => {
-      this.toasterService.error(err.message);
-      return of(new fromTransaction.DeleteTransactionFailAction({error: err}));
-    })
-  );
+    @Effect()
+    getTransaction$: Observable<Action> = this.actions$.pipe(
+        ofType(TransactionActions.GET_TRANSACTION),
+        switchMap((transactionId) =>
+            this.transactionService.getTransaction(transactionId).pipe(
+                map(data => {
+                    return new fromTransaction.GetTransactionSuccessAction(transaction)
+                }),
+                catchError(err => {
+                    this.toasterService.error(err.message, '');
+                    return of(new fromTransaction.GetTransactionFailAction({ error: err.message }))
+                }),
+            ),
+        ),
+    );
 
-  // @Effect()
-    // load$ = this.actions$.pipe(
-    //     ofType(TransactionActions.LOAD_DATA),
-    //     map((action) => action.payload),
-    //     concatMap((payload: any) =>
-    //         makeRequest(5000).pipe(
-    //             map((data) => new fromTransaction.LoadDataSuccessAction(data)),
-    //             catchError(error =>
-    //                 of(new fromTransaction.LoadDataFailAction({ error: error.message }))
-    //             )
-    //         )
-    //     )
-    // );
+    @Effect()
+    deleteTransaction$: Observable<Action> = this.actions$.pipe(
+        ofType(TransactionActions.DELETE_TRANSACTION),
+        switchMap((transactionId) =>
+            this.transactionService.deleteTransaction(transactionId).pipe(
+                map(data => {
+                    this.toasterService.success('Transaction Deleted Successfully');
+                    return new fromTransaction.DeleteTransactionSuccessAction(data)
+                }),
+                catchError(err => {
+                    this.toasterService.error(err.message, '');
+                    return of(new fromTransaction.DeleteTransactionFailAction({ error: err.message }))
+                }),
+            ),
+        ),
+    );
 
-    // simulate request
-    // function makeRequest(timeToDelay) {
-    //     return of("Request Complete!").pipe(delay(timeToDelay));
-    // }
 }

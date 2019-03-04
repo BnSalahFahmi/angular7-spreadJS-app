@@ -45,76 +45,91 @@ export class LoadStructureDataFailAction implements Action {
     constructor(public payload?: any) { }
 }
 
+@ShowLoader()
 export class AddStructureAction implements Action {
     readonly type = ADD_STRUCTURE;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(ADD_STRUCTURE)
 export class AddStructureSuccessAction implements Action {
     readonly type = ADD_STRUCTURE_SUCCESS;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(ADD_STRUCTURE)
 export class AddStructureFailAction implements Action {
     readonly type = ADD_STRUCTURE_FAIL;
     constructor(public payload?: any) { }
 }
 
+@ShowLoader()
 export class UpdateStructureAction implements Action {
     readonly type = UPDATE_STRUCTURE;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(UPDATE_STRUCTURE)
 export class UpdateStructureSuccessAction implements Action {
     readonly type = UPDATE_STRUCTURE_SUCCESS;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(UPDATE_STRUCTURE)
 export class UpdateStructureFailAction implements Action {
     readonly type = UPDATE_STRUCTURE_FAIL;
     constructor(public payload?: any) { }
 }
 
+@ShowLoader()
 export class GetStructureAction implements Action {
     readonly type = GET_STRUCTURE;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(GET_STRUCTURE)
 export class GetStructureSuccessAction implements Action {
     readonly type = GET_STRUCTURE_SUCCESS;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(GET_STRUCTURE)
 export class GetStructureFailAction implements Action {
     readonly type = GET_STRUCTURE_FAIL;
     constructor(public payload?: any) { }
 }
 
+@ShowLoader()
 export class DeleteStructureAction implements Action {
     readonly type = DELETE_STRUCTURE;
     constructor(public payload?: any){ }
 }
 
+@HideLoader(DELETE_STRUCTURE)
 export class DeleteStructureSuccessAction implements Action {
     readonly type = DELETE_STRUCTURE_SUCCESS;
     constructor(public payload?: any){ }
 }
 
+@HideLoader(DELETE_STRUCTURE)
 export class DeleteStructureFailAction implements Action {
     readonly type = DELETE_STRUCTURE_FAIL;
     constructor(public payload?: any){ }
 }
 
+@ShowLoader()
 export class SearchStructureAction implements Action {
     readonly type = SEARCH;
     constructor(public payload?: any) { }
 }
 
+@HideLoader(SEARCH)
 export class SearchStructureSuccessAction implements Action {
     readonly type = SEARCH_COMPLETED;
     constructor(public payload?: any[]) { }
 }
 
+@HideLoader(SEARCH)
 export class SearchStructureFailAction implements Action {
     readonly type = SEARCH_FAILED;
     constructor(public payload?: any) { }

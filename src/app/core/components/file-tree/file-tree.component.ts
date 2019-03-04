@@ -4,6 +4,7 @@ import * as fromTransactionTabs from '../../../transaction-manager/store/index';
 import * as transactionTabsActions from '../../../transaction-manager/store/transactionTabs.actions';
 import * as transactionActions from '../../../transaction-manager/store/transaction.actions';
 import { collapse } from '../../../shared/animation/collapse-animate';
+import { mockTransaction } from '../../../transaction-manager/models/transaction.model';
 
 @Component({
   selector: 'file-tree',
@@ -31,6 +32,7 @@ export class FileTreeComponent implements OnInit {
   }
 
   delegateOpenTabDetails(tab: any, event?: Event) {
+    let transaction = mockTransaction();
     this.store.dispatch(new transactionTabsActions.OpenTabAction({
       type: 0,
       tab: {
@@ -39,7 +41,7 @@ export class FileTreeComponent implements OnInit {
         heading: tab.name,
         active: true,
         closable: true,
-        transaction: null
+        transaction: transaction
       }
     }));
   }

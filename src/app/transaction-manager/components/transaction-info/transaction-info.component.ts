@@ -22,7 +22,7 @@ export class TransactionInfoComponent implements OnInit {
   }
 
   onSaveTransaction() {
-    this.store.dispatch(new transactionActions.LoadTransactionDataAction());
+    this.store.dispatch(new transactionActions.UpdateTransactionAction(this.transaction));
   }
 
   onSaveAsTransaction() {
