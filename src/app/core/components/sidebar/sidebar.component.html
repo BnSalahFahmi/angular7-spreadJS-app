@@ -2,13 +2,34 @@
   <span class="sidebar-top-line"></span>
   <div class="form-group has-search">
     <span class="fa fa-search form-control-feedback"></span>
-    <input type="text" class="form-control" placeholder="Search ...">
+    <input type="text" class="form-control" #filter (keyup)="filterNodes(filter.value, tree)" placeholder="Search ...">
   </div>
 
   <div id="accordion" class="accordion">
-    <card cardTitle="Transactions" isCollapse="true">
-      <!-- <du-menu [menuInfo]="menuInfo"></du-menu> -->
-      <file-tree [model]="fileData"></file-tree>
+    <card cardTitle="Transactions" isCollapse="true" class="transaction-container-card">
+      <tree-root #tree [ngClass]="expand-tree" [nodes]="nodes" [options]="customTemplateStringOptions" [focused]="true" (event)="onEvent($event)"
+        (initialized)="onInitialized(tree)">
+        <ng-template #treeNodeTemplate let-node>
+          <i class="fa fa-file fa-fw ico" *ngIf="!node.children"></i>
+          <i class="fa fa-folder fa-fw ico" *ngIf="node.children && node.isCollapsed"></i>
+          <i class="fa fa-folder-open fa-fw ico" *ngIf="node.children && !node.isCollapsed"></i>
+          <span class="node-subtitle" title="{{node.data.subTitle}}">{{ node.data.name }}</span>
+          <span class="pull-right">
+            <span class="badge badge-info node-children-count">{{ childrenCount(node) }}</span>
+          </span>
+        </ng-template>
+        <ng-template #loadingTemplate>Loading, please hold....</ng-template>
+      </tree-root>
+      <div class="menu" *ngIf="contextMenu" [style.left.px]="contextMenu.x" [style.top.px]="contextMenu.y">
+          <!-- <div>Menu for {{ contextMenu.node.data.name }}</div>
+            <hr> -->
+            <ul>
+              <li (click)="copy()"><a>Copy</a></li>
+              <li (click)="cut()"><a>Cut</a></li>
+              <li (click)="remove()"><a>Remove</a></li>
+              <li (click)="paste()"><a [style.opacity]="canPaste() && 1 || 0.3">Paste</a></li>
+            </ul>
+        </div>
     </card>
     <card cardTitle="Structures" isCollapse="true">
       <span class="empty-data">
@@ -22,5 +43,11 @@
       <button class="btn btn-small btn-secondary">Show Only Mine</button>
     </div> -->
   </div>
+
+  <!-- <div #contextualMenu id="contextualMenu" class="dropdown-menu dropdown-menu-sm">
+    <a class="dropdown-item" (click)="ction1()">Action One</a>
+    <a class="dropdown-item" (click)="action2()">Action Two</a>
+    <a class="dropdown-item" (click)="action3()">Action Three</a>
+  </div> -->
 
 </div>

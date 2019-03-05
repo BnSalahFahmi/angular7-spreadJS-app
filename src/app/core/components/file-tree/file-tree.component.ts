@@ -15,7 +15,7 @@ import { mockTransaction } from '../../../transaction-manager/models/transaction
 export class FileTreeComponent implements OnInit {
   @Input() model: any;
   @Input() isChild: boolean;
-  constructor(private store: Store<fromTransactionTabs.ProjectMgtState>, ) { }
+  constructor(private store: Store<fromTransactionTabs.ProjectMgtState> ) { }
 
   ngOnInit() {
     this.model.forEach(element => {

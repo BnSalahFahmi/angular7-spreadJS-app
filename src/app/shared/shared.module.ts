@@ -17,7 +17,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { TabManagerComponent } from './components/tab-manager/tab-manager.component';
 import { RouterModule } from '@angular/router';
 import { NgxBootstrapModule } from '../shared/ui/ngxbootstrap.module';
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
 import { SnackBarComponent } from './components/snackbar/snackbar.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';

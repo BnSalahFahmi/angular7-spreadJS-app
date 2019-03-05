@@ -77,7 +77,7 @@ export class TransactionEffects {
         switchMap((transactionId) =>
             this.transactionService.getTransaction(transactionId).pipe(
                 map(data => {
-                    return new fromTransaction.GetTransactionSuccessAction(transaction)
+                    return new fromTransaction.GetTransactionSuccessAction(data)
                 }),
                 catchError(err => {
                     this.toasterService.error(err.message, '');

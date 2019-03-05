@@ -62,7 +62,7 @@ export class TransactionMgtComponent implements OnInit {
     this.store.dispatch(new transactionTabsActions.OpenTabAction({
       type: 0,
       tab: {
-        id: Math.random(),
+        id: this.uuid(),
         type: "NEW TRANSACTION",
         heading: 'New Transaction',
         active: true,
@@ -99,5 +99,9 @@ export class TransactionMgtComponent implements OnInit {
 
   getContext(routerOutlet: RouterOutlet): string {
     return routerOutlet.activatedRouteData['context'];
+  }
+
+  uuid() {
+    return Math.floor(Math.random() * 10000000000000);
   }
 }

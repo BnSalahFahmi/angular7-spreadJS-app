@@ -1,0 +1,30 @@
+<form>
+  <input #filter (keyup)="filterNodes(filter.value, tree)" placeholder="filter nodes"/>
+</form>
+<div style="height: 400px; width: 400px; overflow: hidden;">
+  <tree-root
+    #tree
+    [ngClass]="expand-tree"
+    [nodes]="nodes"
+    [options]="customTemplateStringOptions"
+    [focused]="true"
+    (event)="onEvent($event)"
+    (initialized)="onInitialized(tree)">
+    <ng-template #treeNodeTemplate let-node>
+      <i class="fa fa-file fa-fw ico" *ngIf="!node.children"></i>
+      <i class="fa fa-folder fa-fw ico" *ngIf="node.children"></i>
+      <span title="{{node.data.subTitle}}">{{ node.data.name }}</span>
+      <span class="pull-right"><span class="badge badge-success">{{ childrenCount(node) }}</span></span>
+    </ng-template>
+    <ng-template #loadingTemplate>Loading, please hold....</ng-template>
+  </tree-root>
+</div>
+<br>
+<button
+  (click)="tree.treeModel.expandAll()">
+  Expand All
+</button>
+<button
+  (click)="tree.treeModel.collapseAll()">
+  Collapse All
+</button>

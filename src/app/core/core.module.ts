@@ -15,6 +15,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileTreeComponent } from './components/file-tree/file-tree.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TreeViewComponent } from './components/tree-view/tree-view.component';
+import { TreeModule } from 'angular-tree-component';
 
 export const Guards = [
     
@@ -26,7 +28,8 @@ export const Guards = [
         ReactiveFormsModule,
         CommonModule,
         BrowserModule,
-        SharedModule
+        SharedModule,
+        TreeModule.forRoot()
     ],
     providers: [
         
@@ -40,7 +43,8 @@ export const Guards = [
         NotificationComponent,
         RightConfigComponent,
         FooterComponent,
-        FileTreeComponent
+        FileTreeComponent,
+        TreeViewComponent
     ],
     exports: [
         LoginComponent,
@@ -50,7 +54,8 @@ export const Guards = [
         NotificationComponent,
         RightConfigComponent,
         FooterComponent,
-        FileTreeComponent
+        FileTreeComponent,
+        TreeViewComponent
     ]
 })
 export class CoreModule {

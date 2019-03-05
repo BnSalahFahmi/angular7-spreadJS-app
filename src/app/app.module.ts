@@ -28,7 +28,6 @@ import {
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SnackBarService } from './shared/services/snackbar.service';
-//import { TransactionMgtComponent } from './Transaction-manager/transaction-manager.component';
 
 
 const APP_CONTAINERS = [

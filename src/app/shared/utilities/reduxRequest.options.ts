@@ -1,26 +1,26 @@
-import { BaseRequestOptions } from '@angular/http';
+// import { BaseRequestOptions } from '@angular/http';
 
-export class AngularReduxRequestOptions extends BaseRequestOptions {
+// export class AngularReduxRequestOptions extends BaseRequestOptions {
 
-    public token: string;
+//     public token: string;
 
-    constructor (angularReduxOptions?: any) {
+//     constructor (angularReduxOptions?: any) {
 
-        super();
+//         super();
         
-        var user = JSON.parse(localStorage.getItem('user'));
-        this.token = user && user.token;
-        this.headers.append('Content-Type', 'application/json');
-        this.headers.append('Authorization', 'Bearer ' + this.token );
+//         var user = JSON.parse(localStorage.getItem('user'));
+//         this.token = user && user.token;
+//         this.headers.append('Content-Type', 'application/json');
+//         this.headers.append('Authorization', 'Bearer ' + this.token );
 
-        if (angularReduxOptions != null) {
+//         if (angularReduxOptions != null) {
 
-            for (let option in angularReduxOptions) {
-                let optionValue = angularReduxOptions[option];
-                this[option] = optionValue;
-            }
-        }
-    }
+//             for (let option in angularReduxOptions) {
+//                 let optionValue = angularReduxOptions[option];
+//                 this[option] = optionValue;
+//             }
+//         }
+//     }
 
     
-}
+// }
