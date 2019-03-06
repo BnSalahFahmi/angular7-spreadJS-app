@@ -1,3 +1,24 @@
-<p>
-  source-parameter-node works!
-</p>
+<div class="card-content-container">
+  <div class="form-group" style="margin-bottom:7px">
+    <input type="text" class="new-task-input" [(ngModel)]="sourceParameterNode.name" (keyup.enter)="creatNewTask()">
+    <i class="fa fa-bars node-action" draggable="true" (dragstart)="drag($event)"></i>
+    <i class="fa fa-trash node-action"></i>
+    <i class="fa fa-plus node-action"></i>
+  </div>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>Param 1</td>
+        <td>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="sourceParameterNode.param1">
+        </td>
+      </tr>
+      <tr>
+        <td>Param 2</td>
+        <td>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="sourceParameterNode.param2">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

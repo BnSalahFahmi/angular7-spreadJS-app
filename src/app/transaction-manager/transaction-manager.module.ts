@@ -24,7 +24,7 @@ import { TransactionEffects } from './store/transaction.effects';
 import { TransactionTabsEffects } from './store/transactionTabs.effects';
 import { SpreadSheetsModule } from "@grapecity/spread-sheets-angular";
 import {TransactionInfoComponent} from "./components/transaction-info/transaction-info.component";
-import { ParamNodeComponent } from './components/param-node/param-node.component';
+import { SourceParameterNodeComponent } from './components/source-parameter-node/source-parameter-node.component';
 import { SpreadViewComponent } from './containers/spread-view/spread-view-container.component';
 import { GraphViewComponent } from './containers/graph-view/graph-view-container.component';
 import { GraphComponent } from './components/graph/graph.component';
@@ -59,7 +59,7 @@ import { RibbonComponent } from './components/ribbon/ribbon.component';
         CockpitComponent,
         TransactionInfoComponent,
         IconComponent,
-        ParamNodeComponent,
+        SourceParameterNodeComponent,
         SpreadViewComponent,
         GraphViewComponent,
         GraphComponent,

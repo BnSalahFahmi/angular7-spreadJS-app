@@ -17,6 +17,8 @@ import { FileTreeComponent } from './components/file-tree/file-tree.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { TreeModule } from 'angular-tree-component';
+import { StructuresTreeViewComponent } from './components/structures-tree-view/structures-tree-view.component';
+import { TransactionsTreeViewComponent } from './components/transactions-tree-view/transactions-tree-view.component';
 
 export const Guards = [
     
@@ -44,7 +46,9 @@ export const Guards = [
         RightConfigComponent,
         FooterComponent,
         FileTreeComponent,
-        TreeViewComponent
+        TreeViewComponent,
+        TransactionsTreeViewComponent,
+        StructuresTreeViewComponent
     ],
     exports: [
         LoginComponent,
@@ -55,7 +59,9 @@ export const Guards = [
         RightConfigComponent,
         FooterComponent,
         FileTreeComponent,
-        TreeViewComponent
+        TreeViewComponent,
+        TransactionsTreeViewComponent,
+        StructuresTreeViewComponent
     ]
 })
 export class CoreModule {
