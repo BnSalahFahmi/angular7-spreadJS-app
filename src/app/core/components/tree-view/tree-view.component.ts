@@ -1,28 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions } from 'angular-tree-component';
 
-const actionMapping: IActionMapping = {
-  mouse: {
-    contextMenu: (tree, node, $event) => {
-      $event.preventDefault();
-      alert(`context menu for ${node.data.name}`);
-    },
-    dblClick: (tree, node, $event) => {
-      if (node.hasChildren) {
-        TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event);
-      }
-    },
-    click: (tree, node, $event) => {
-      $event.shiftKey
-        ? TREE_ACTIONS.TOGGLE_ACTIVE_MULTI(tree, node, $event)
-        : TREE_ACTIONS.TOGGLE_ACTIVE(tree, node, $event)
-    }
-  },
-  keys: {
-    [KEYS.ENTER]: (tree, node, $event) => alert(`This is ${node.data.name}`)
-  }
-};
-
 @Component({
   selector: 'tree-view',
   templateUrl: './tree-view.component.html',
@@ -30,19 +8,60 @@ const actionMapping: IActionMapping = {
 })
 export class TreeViewComponent implements OnInit {
 
-  nodes: any[];
-  nodes2 = [{name: 'root'}, {name: 'root2'}];
-  asyncChildren = new Array(4).fill(null).map((item, n) => ({
-    name: 'async child2.' + n,
-    subTitle: 'async child ' + n,
-    hasChildren: n < 5
-  }));
+  contextMenu: { node: TreeNode, x: number, y: number } = null;
+    sourceNode: TreeNode = null;
+    editNode: TreeNode = null;
+    doCut = false;
+    nodes: any[];
+    nodes2 = [{ name: 'root' }, { name: 'root2' }];
+    asyncChildren = new Array(4).fill(null).map((item, n) => ({
+        name: 'async child2.' + n,
+        subTitle: 'async child ' + n,
+        hasChildren: n < 5
+    }));
   customTemplateStringOptions: ITreeOptions = {
     // displayField: 'subTitle',
     isExpandedField: 'expanded',
     idField: 'uuid',
     getChildren: this.getChildren.bind(this),
-    actionMapping,
+    actionMapping: {
+      mouse: {
+          contextMenu: (treeModel: TreeModel, treeNode: TreeNode, e: MouseEvent) => {
+              // var contextualMenuContainer = $('#contextualMenu');
+              // $event.preventDefault();
+              // contextualMenuContainer.css({
+              //     position: "fixed",
+              //     left: $event.clientX + 'px',
+              //     top: $event.clientY + 'px'
+              // });
+              // contextualMenuContainer.addClass('show');
+              e.preventDefault();
+              if (this.contextMenu && treeNode === this.contextMenu.node) {
+                   return this.closeMenu();
+              }
+              this.contextMenu = {
+                  node: treeNode,
+                  x: e.pageX,
+                  y: e.pageY
+              };
+          },
+          dblClick: (treeModel: TreeModel, treeNode: TreeNode, e: MouseEvent) => {
+              if (treeNode.hasChildren) {
+                  TREE_ACTIONS.TOGGLE_EXPANDED(treeModel, treeNode, e);
+              } 
+          },
+          click: (treeModel: TreeModel, treeNode: TreeNode, e: MouseEvent) => {
+              // $event.shiftKey
+              //     ? TREE_ACTIONS.TOGGLE_ACTIVE_MULTI(tree, node, $event)
+              //     : TREE_ACTIONS.TOGGLE_ACTIVE(tree, node, $event)
+              this.closeMenu();
+              TREE_ACTIONS.TOGGLE_ACTIVE(treeModel, treeNode, e);
+          }
+      },
+      keys: {
+          [KEYS.ENTER]: (tree, node, $event) => alert(`This is ${node.data.name}`)
+      }
+  },
     nodeHeight: 23,
     allowDrag: (node) => {
       // console.log('allowDrag?');
@@ -132,40 +151,89 @@ export class TreeViewComponent implements OnInit {
   addNode(tree: any) {
     this.nodes[0].children.push({
 
-      name: 'a new child'
+        name: 'a new child'
     });
     tree.treeModel.update();
-  }
+}
 
-  childrenCount(node: TreeNode): string {
+childrenCount(node: TreeNode): string {
     return node && node.children ? `${node.children.length}` : '';
-  }
+}
 
-  filterNodes(text: string, tree: any) {
+filterNodes(text: string, tree: any) {
     tree.treeModel.filterNodes(text);
-  }
+}
 
-  activateSubSub(tree: any) {
+activateSubSub(tree: any) {
     // tree.treeModel.getNodeBy((node) => node.data.name === 'subsub')
     tree.treeModel.getNodeById(1001)
-      .setActiveAndVisible();
-  }
+        .setActiveAndVisible();
+}
 
-  onEvent(event: any) {
+onEvent(event: any) {
     console.log(event);
-  }
+}
 
-  onInitialized(tree: any) {
+onInitialized(tree: any) {
     // tree.treeModel.getNodeById('11').setActiveAndVisible();
-  }
+}
 
-  go($event: any) {
+go($event: any) {
     $event.stopPropagation();
     alert('this method is on the app component');
-  }
+}
 
-  activeNodes(treeModel: TreeModel) {
+activeNodes(treeModel: TreeModel) {
     console.log(treeModel.activeNodes);
+}
+
+closeMenu = () => {
+    this.contextMenu = null;
+}
+
+remove = () => {
+    this.editNode = this.contextMenu.node;
+    this.contextMenu.node.parent.data.children.splice(0, 1)
+    this.closeMenu();
+}
+
+stopEdit = () => {
+    this.editNode = null;
+}
+
+copy = () => {
+    this.sourceNode = this.contextMenu.node;
+    this.doCut = false;
+    this.closeMenu();
+}
+
+cut = () => {
+    this.sourceNode = this.contextMenu.node;
+    this.doCut = true;
+    this.closeMenu();
+}
+
+paste = () => {
+    if (!this.canPaste()) {
+        return;
+    }
+    this.doCut
+        ? this.sourceNode.treeModel.moveNode(this.sourceNode, { parent: this.contextMenu.node, index: 0 })
+        : this.sourceNode.treeModel.copyNode(this.sourceNode, { parent: this.contextMenu.node, index: 0 });
+
+    this.sourceNode = null;
+    this.closeMenu();
+}
+
+canPaste = () => {
+    if (!this.sourceNode) {
+        return false;
+    }
+    return this.sourceNode.treeModel.canMoveNode(this.sourceNode, { parent: this.contextMenu.node, index: 0 });
+}
+
+  uuid() {
+    return Math.floor(Math.random() * 10000000000000);
   }
 
 }
