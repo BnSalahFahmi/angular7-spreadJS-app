@@ -27,7 +27,7 @@ import {TransactionInfoComponent} from "./components/transaction-info/transactio
 import { SourceParameterNodeComponent } from './components/source-parameter-node/source-parameter-node.component';
 import { SpreadViewComponent } from './containers/spread-view/spread-view-container.component';
 import { GraphViewComponent } from './containers/graph-view/graph-view-container.component';
-import { GraphComponent } from './components/graph/graph.component';
+import { CanvasComponent } from './components/canvas/canvas.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -37,6 +37,8 @@ import { ConfigPanelContainer } from './containers/config-panel/config-panel-con
 import { CockpitContainer } from './containers/cockpit/cockpit-container.component';
 import { GraphContainer } from './containers/graph/graph-container.component';
 import { RibbonComponent } from './components/ribbon/ribbon.component';
+import { UserEffects } from './store/user.effects';
+import { UserService } from './services/user.service';
 
 @NgModule({
     imports: [
@@ -46,11 +48,12 @@ import { RibbonComponent } from './components/ribbon/ribbon.component';
         ReactiveFormsModule,
         RouterModule.forChild(routes),
         StoreModule.forFeature('projectMgtFeature', reducers),
-        EffectsModule.forFeature([TransactionEffects, StructureEffects, TransactionTabsEffects]),
+        EffectsModule.forFeature([TransactionEffects, UserEffects, StructureEffects, TransactionTabsEffects]),
         TabsModule,
         SpreadSheetsModule
     ],
     providers: [
+        UserService,
         TransactionService,
         StructureService
     ],
@@ -62,7 +65,7 @@ import { RibbonComponent } from './components/ribbon/ribbon.component';
         SourceParameterNodeComponent,
         SpreadViewComponent,
         GraphViewComponent,
-        GraphComponent,
+        CanvasComponent,
         ToolboxComponent,
         ProjectListComponent,
         ConfigPanelContainer,

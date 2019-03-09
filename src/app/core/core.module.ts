@@ -19,6 +19,7 @@ import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { TreeModule } from 'angular-tree-component';
 import { StructuresTreeViewComponent } from './components/structures-tree-view/structures-tree-view.component';
 import { TransactionsTreeViewComponent } from './components/transactions-tree-view/transactions-tree-view.component';
+import { TreeService } from './services/tree.service';
 
 export const Guards = [
     
@@ -34,7 +35,7 @@ export const Guards = [
         TreeModule.forRoot()
     ],
     providers: [
-        
+        TreeService
     ],
     declarations: [
         LoginComponent,

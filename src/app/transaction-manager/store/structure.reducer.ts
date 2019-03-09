@@ -226,6 +226,4 @@ export function reducer(state = INITIAL_STATE, action: any): State {
 
 export const selectStructureMgtFeatureState = createFeatureSelector<ProjectMgtState>('projectMgtFeature');
 
-export const selectStructureState = createSelector(selectStructureMgtFeatureState, (state: any) => state.StructureList);
-
-export const selectAllStructures = createSelector(selectStructureState, (state: ProjectMgtState) => state.structureList);
+//export const selectStructureState = createSelector(selectStructureMgtFeatureState, (state: any) => state.StructureList);

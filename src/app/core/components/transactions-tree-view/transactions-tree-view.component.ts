@@ -1,14 +1,16 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GlobalService } from '../../../shared/services/global.service';
 import { menuService } from '../../../shared/services/menu.service';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import * as fromRoot from '../../../reducers';
 import { Store, select } from '@ngrx/store';
-import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions } from 'angular-tree-component';
+import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions, TreeComponent, ITreeState } from 'angular-tree-component';
 import { mockTransaction } from '../../../transaction-manager/models/transaction.model';
-import * as fromTransactionTabs from '../../../transaction-manager/store/index';
+import * as fromUsers from '../../../transaction-manager/store/index';
 import * as transactionTabsActions from '../../../transaction-manager/store/transactionTabs.actions';
-import * as transactionActions from '../../../transaction-manager/store/transaction.actions';
+import { UserService } from '../../../transaction-manager/services/user.service';
+import * as _ from 'lodash';
+import { TreeService } from '../../services/tree.service';
 
 @Component({
   selector: 'transactions-tree-view',
@@ -17,24 +19,21 @@ import * as transactionActions from '../../../transaction-manager/store/transact
 })
 export class TransactionsTreeViewComponent implements OnInit {
 
+  @ViewChild('tree') tree: TreeComponent;
+
   contextMenu: { node: TreeNode, x: number, y: number } = null;
   sourceNode: TreeNode = null;
   editNode: TreeNode = null;
   doCut = false;
-  nodes: any[];
-  asyncChildren = new Array(4).fill(null).map((item, n) => ({
-    name: 'async child2.' + n,
-    subTitle: 'async child ' + n,
-    hasChildren: n < 5
-  }));
+  nodes : any[] = [];
   customTemplateStringOptions: ITreeOptions = {
     isExpandedField: 'expanded',
-    idField: 'uuid',
+    idField: 'name',
+    useCheckbox: false,
     getChildren: this.getChildren.bind(this),
     actionMapping: {
       mouse: {
         contextMenu: (treeModel: TreeModel, treeNode: TreeNode, e: MouseEvent) => {
-          debugger;
           e.preventDefault();
           if (this.contextMenu && treeNode === this.contextMenu.node) {
             return this.closeMenu();
@@ -53,11 +52,10 @@ export class TransactionsTreeViewComponent implements OnInit {
           }
         },
         click: (treeModel: TreeModel, treeNode: TreeNode, e: MouseEvent) => {
-          // $event.shiftKey
-          //     ? TREE_ACTIONS.TOGGLE_ACTIVE_MULTI(tree, node, $event)
-          //     : TREE_ACTIONS.TOGGLE_ACTIVE(tree, node, $event)
           this.closeMenu();
-          TREE_ACTIONS.TOGGLE_ACTIVE(treeModel, treeNode, e);
+          e.shiftKey
+              ? TREE_ACTIONS.TOGGLE_ACTIVE_MULTI(treeModel, treeNode, e)
+              : TREE_ACTIONS.TOGGLE_ACTIVE(treeModel, treeNode, e)
         }
       },
       keys: {
@@ -81,86 +79,44 @@ export class TransactionsTreeViewComponent implements OnInit {
   };
 
 
-  constructor(private store: Store<fromRoot.State>, private _menuService: menuService,
-    public _globalService: GlobalService) {
+  constructor(private store: Store<fromRoot.State>, private _treeService: TreeService) {
+    this._treeService.filterSubject.subscribe(
+      (query) => {
+        if(query)
+          this.filterNodes(query);
+      }
+    )
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.nodes = [
-        {
-          expanded: true,
-          name: 'root expanded',
-          subTitle: 'the root',
-          children: [
-            {
-              name: 'child 1',
-              subTitle: 'a bad child',
-              hasChildren: false
-            },
-            {
-              name: 'child 2',
-              subTitle: 'a bad child',
-              hasChildren: false
-            }
-          ]
-        },
-        {
-          name: 'root2',
-          subTitle: 'the second root',
-          children: [
-            {
-              name: 'child2.1',
-              subTitle: 'new and improved',
-              uuid: '11',
-              hasChildren: false
-            }, {
-              name: 'child2.2',
-              subTitle: 'new and improved2',
-              children: [
-                {
-                  uuid: 1001,
-                  name: 'subsub',
-                  subTitle: 'subsub',
-                  hasChildren: false
-                }
-              ]
-            }
-          ]
-        },
-        {
-          name: 'asyncroot',
-          hasChildren: true
-        }
-      ];
-    }, 1);
+    this.store.pipe(select(fromUsers.selectUsersList)).subscribe(
+      data => {
+        this.nodes = _.cloneDeep(data);
+      }
+    )
+  }
+
+  get state() {
+    return localStorage.treeState && JSON.parse(localStorage.treeState);
+  }
+  set state(state) {
+    localStorage.treeState = JSON.stringify(state);
   }
 
   getChildren(node: TreeNode) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(this.asyncChildren.map((c) => {
-        return Object.assign({}, c, {
-          hasChildren: node.level < 5
-        });
-      })), 2000);
-    });
+    return [];
   }
 
   addNode(tree: any) {
-    this.nodes[0].children.push({
-
-      name: 'a new child'
-    });
     tree.treeModel.update();
   }
 
   childrenCount(node: TreeNode): string {
-    debugger;
     return node && node.children ? `${node.children.length}` : '';
   }
 
-  filterNodes(text: string, tree: any) {
-    tree.treeModel.filterNodes(text);
+  filterNodes(text: string) {
+    this.tree.treeModel.filterNodes(text);
   }
 
   activateSubSub(tree: any) {
@@ -173,13 +129,15 @@ export class TransactionsTreeViewComponent implements OnInit {
     console.log(event);
   }
 
-  onInitialized(tree: any) {
-    // tree.treeModel.getNodeById('11').setActiveAndVisible();
+  onInitialized(tree) {
+    // if (localStorage.treeState) {
+    //   tree.treeModel.setState(JSON.parse(localStorage.treeState));
+    // }
+    // this.state(tree.treeModel.state);
   }
 
   go($event: any) {
     $event.stopPropagation();
-    alert('this method is on the app component');
   }
 
   activeNodes(treeModel: TreeModel) {
@@ -191,10 +149,13 @@ export class TransactionsTreeViewComponent implements OnInit {
   }
 
   remove = () => {
-    this.editNode = this.contextMenu.node;
-    this.contextMenu.node.parent.data.children.splice(0, 1)
-    this.closeMenu();
-  }
+    var node = this.contextMenu.node;
+    if (node.parent != null) {
+        node.parent.children.splice(node.index, 1)
+        //node.treeModel.update();
+        this.closeMenu();
+    }
+}
 
   stopEdit = () => {
     this.editNode = null;
@@ -232,7 +193,6 @@ export class TransactionsTreeViewComponent implements OnInit {
   }
 
   delegateOpenTabDetails(tab: any, event?: Event) {
-    debugger;
     let transaction = mockTransaction();
     this.store.dispatch(new transactionTabsActions.OpenTabAction({
       type: 0,
@@ -251,4 +211,35 @@ export class TransactionsTreeViewComponent implements OnInit {
     return Math.floor(Math.random() * 10000000000000);
   }
 
+  onSort(direction, node) {
+    debugger;
+    if(!node)
+      return;
+    if (direction == 'Asc') {
+      node.data.children.sort(function (child1, child2) {
+        if (child1.name < child2.name) {
+          return -1;
+        } else if (child1.name > child2.name) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    } else {
+      node.data.children.sort(function (child1, child2) {
+        if (child1.name < child2.name) {
+          return 1;
+        } else if (child1.name > child2.name) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+    }
+    this.tree.treeModel.update();
+  }
+
+  onStateChange(event){
+    //TODO
+  }
 }

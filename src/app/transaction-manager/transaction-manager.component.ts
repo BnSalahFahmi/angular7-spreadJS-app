@@ -22,7 +22,7 @@ import { collapse } from '../shared/animation/collapse-animate';
 export class TransactionMgtComponent implements OnInit {
   tabs$: Observable<any>;
   listTabs: any = [];
-  displayedView: string = "spread-view";
+  displayedView: string = "graph-view";
   transaction: Transaction = mockTransaction();
 
   constructor(private store: Store<any>, private globalService: GlobalService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService, private cd: ChangeDetectorRef) {
@@ -34,8 +34,8 @@ export class TransactionMgtComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new transactionActions.LoadTransactionDataAction());
-    this.store.dispatch(new structureActions.LoadStructureDataAction());
+    //this.store.dispatch(new transactionActions.LoadTransactionDataAction());
+    //this.store.dispatch(new structureActions.LoadStructureDataAction());
     this.listTabs = [];
   }
 

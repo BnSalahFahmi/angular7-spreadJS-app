@@ -1,13 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { GlobalService } from '../../../shared/services/global.service';
 import { menuService } from '../../../shared/services/menu.service';
-import { Observable, BehaviorSubject } from 'rxjs';
 import * as fromRoot from '../../../reducers';
 import { Store, select } from '@ngrx/store';
 import { mockTransaction } from '../../../transaction-manager/models/transaction.model';
-import * as fromTransactionTabs from '../../../transaction-manager/store/index';
 import * as transactionTabsActions from '../../../transaction-manager/store/transactionTabs.actions';
-import * as transactionActions from '../../../transaction-manager/store/transaction.actions';
+import * as userActions from '../../../transaction-manager/store/user.actions';
+import { TreeService } from '../../services/tree.service';
 
 
 @Component({
@@ -18,10 +17,9 @@ import * as transactionActions from '../../../transaction-manager/store/transact
 })
 export class SidebarComponent implements OnInit {
 
-    public sidebarToggle;
+    public sidebarToggle: boolean;
     
-    constructor(private store: Store<fromRoot.State>, private _menuService: menuService,
-        public _globalService: GlobalService) {
+    constructor(private store: Store<fromRoot.State>, public _globalService: GlobalService, private _treeService: TreeService) {
         this.store.pipe(select(fromRoot.getShowSidenav)).subscribe(
             val => {
                 this.sidebarToggle = val;
@@ -29,7 +27,7 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+        this.store.dispatch(new userActions.InitUsersAction());
     }
 
     public _sidebarToggle() {
@@ -40,11 +38,9 @@ export class SidebarComponent implements OnInit {
         }, error => {
             console.log('Error: ' + error);
         });
-
     }
 
     delegateOpenTabDetails(tab: any, event?: Event) {
-        debugger;
         let transaction = mockTransaction();
         this.store.dispatch(new transactionTabsActions.OpenTabAction({
           type: 0,
@@ -61,5 +57,9 @@ export class SidebarComponent implements OnInit {
 
       uuid() {
         return Math.floor(Math.random() * 10000000000000);
+      }
+
+      filterNodes(query) {
+          this._treeService.doFilter(query);
       }
 }
