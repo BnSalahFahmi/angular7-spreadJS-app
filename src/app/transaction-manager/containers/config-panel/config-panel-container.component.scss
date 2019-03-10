@@ -5,3 +5,7 @@
 :host /deep/ .fa {
     color: #007090;
 }
+
+:host /deep/ .card-content {
+    height: 63vh !important;
+}

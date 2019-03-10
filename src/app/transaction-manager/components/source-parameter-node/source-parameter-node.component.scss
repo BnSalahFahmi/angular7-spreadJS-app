@@ -5,7 +5,7 @@
     width: 70%;
     background: transparent;
     border: none;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid #007090;
     outline: none;
     @include transition(all 1s);
     &:focus {
@@ -32,4 +32,8 @@
     color: #26253c;
     padding: 5px;
     margin-bottom: 5px;
+}
+
+.combo-type {
+    margin-bottom: 3px;
 }

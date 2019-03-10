@@ -1,7 +1,10 @@
 .ng-select-container{
-    border-radius: 0px !important;
+    border-radius: 1px !important;
     height: 32px !important;
     min-height: 32px !important;
+    border-color: #E0E0E0 !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .ng-select{
@@ -14,7 +17,7 @@
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked{
     background-color: #428bca;
-    color: #FFF !important;
+    color: #FFF;
 }
 
 .ng-value-container .ng-value b {
@@ -100,11 +103,11 @@
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
-    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15) !important;
-    background-color: #007090 !important;
+    //box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15) !important;
+    background-color: #EEEEEE !important;
     border-radius: .125rem !important;
     transition: all .1s linear !important;
-    color: #FFF !important;
+    color: #303030 !important;
 }
 
 .ng-select div, .ng-select input, .ng-select span {

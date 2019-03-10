@@ -11,8 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '../core/core.module';
 import { TransactionMgtRoutingModule } from './transaction-manager.routing';
 import { TransactionMgtComponent } from './transaction-manager.component';
-import { NgxBootstrapModule } from '../shared/ui/ngxbootstrap.module';
 import { TabsModule } from 'ngx-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { IconComponent } from './components/icon/icon.component';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
@@ -50,6 +50,7 @@ import { UserService } from './services/user.service';
         StoreModule.forFeature('projectMgtFeature', reducers),
         EffectsModule.forFeature([TransactionEffects, UserEffects, StructureEffects, TransactionTabsEffects]),
         TabsModule,
+        BsDatepickerModule.forRoot(),
         SpreadSheetsModule
     ],
     providers: [

@@ -5,7 +5,40 @@
     <i class="fa fa-trash node-action"></i>
     <i class="fa fa-plus node-action"></i>
   </div>
-  <table class="table table-bordered">
+  <ng-select class="combo-type" [searchable]="false" [items]="types" bindLabel="label" autofocus bindValue="value" [(ngModel)]="selectedType"
+    [clearable]="false">
+  </ng-select>
+  <table *ngIf="selectedType == 'int'" class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>Integer</td>
+        <td>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="sourceParameterNode.param1">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table *ngIf="selectedType == 'double'" class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>Double</td>
+        <td>
+          <input type="text" class="form-control form-control-sm" [(ngModel)]="sourceParameterNode.param1">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table *ngIf="selectedType == 'date'" class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>Date</td>
+        <td>
+          <input placeholder="dd/mm/yyyy" type="text" class="form-control" bsDatepicker #dp="bsDatepicker">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table *ngIf="selectedType == 'intList'" class="table table-bordered">
     <tbody>
       <tr>
         <td>Param 1</td>

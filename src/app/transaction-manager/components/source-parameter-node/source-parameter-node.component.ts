@@ -9,6 +9,15 @@ import { SourceParamaterNode, mockSourceParamaterNode } from '../../models/sourc
 export class SourceParameterNodeComponent implements OnInit {
 
   sourceParameterNode: SourceParamaterNode;
+  types: any[] = [
+    { value: 'int', label: 'Integer' },
+    { value: 'double', label: 'Double' },
+    { value: 'date', label: 'Date' },
+    { value: 'intList', label: 'List of Integers' },
+    { alue: 'doubleList', label: 'List of Doubles' },
+    { value: 'dateList', label: 'List of Dates' }
+  ]
+  selectedType: string = 'int';
 
   constructor() { }
 
