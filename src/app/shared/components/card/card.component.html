@@ -1,5 +1,5 @@
 <div class="card animated fadeIn">
-  <div class="card-header" *ngIf="cardTitle">
+  <div class="card-header" *ngIf="cardTitle" [ngClass]="clickableHeader ? 'clickable' : ''" (click)="onHeaderClick()">
     <h4 class="card-title">{{cardTitle}}</h4>
     <div class="btn-group" *ngIf="cardTitle&&isCollapse">
       <button class="collapse-btn" (click)="collapseCard()">
