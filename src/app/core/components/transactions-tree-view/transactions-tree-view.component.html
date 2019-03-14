@@ -1,7 +1,7 @@
-<tree-root #tree [ngClass]="'expand-tree'" [(state)]="state" [nodes]="nodes" [options]="customTemplateStringOptions" [focused]="true" (event)="onEvent($event)"
+<tree-root #tree [ngClass]="'expand-tree'" [nodes]="nodes" [options]="customTemplateStringOptions" [focused]="true" (event)="onEvent($event)"
   (initialized)="onInitialized(tree)" (stateChange)="onStateChange($event)">
   <ng-template #treeNodeTemplate let-node>
-    <i class="fa fa-file fa-fw file-ico" *ngIf="!node.isRoot && !node.children"></i>
+    <i class="fa fa-rocket fa-fw file-ico" *ngIf="!node.isRoot && !node.children"></i>
     <i class="fa fa-folder fa-fw ico" *ngIf="!node.isRoot && node.children && node.isCollapsed"></i>
     <i class="fa fa-folder-open fa-fw ico" *ngIf="!node.isRoot && node.children && !node.isCollapsed"></i>
     <span class="node-subtitle" title="{{node.data.subTitle}}" [ngClass]="node.isRoot ? 'root-node' : ''">{{ node.data.name }}</span>

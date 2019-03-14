@@ -28,6 +28,7 @@ import {
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SnackBarService } from './shared/services/snackbar.service';
+import { UserService } from './transaction-manager/services/user.service';
 
 
 const APP_CONTAINERS = [
@@ -81,6 +82,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     TabsetConfig,
     SnackBarService,
+    UserService,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]

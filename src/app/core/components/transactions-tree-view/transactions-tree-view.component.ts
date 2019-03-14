@@ -28,7 +28,7 @@ export class TransactionsTreeViewComponent implements OnInit {
   nodes : any[] = [];
   customTemplateStringOptions: ITreeOptions = {
     isExpandedField: 'expanded',
-    idField: 'name',
+    idField: 'id',
     useCheckbox: false,
     getChildren: this.getChildren.bind(this),
     actionMapping: {
@@ -79,10 +79,10 @@ export class TransactionsTreeViewComponent implements OnInit {
   };
 
 
-  constructor(private store: Store<fromRoot.State>, private _treeService: TreeService) {
+  constructor(private store: Store<fromRoot.State>, private _treeService: TreeService, private userService : UserService) {
     this._treeService.filterSubject.subscribe(
       (query) => {
-        if(query)
+        if(query != undefined)
           this.filterNodes(query);
       }
     )
@@ -104,7 +104,13 @@ export class TransactionsTreeViewComponent implements OnInit {
   }
 
   getChildren(node: TreeNode) {
-    return [];
+    var newNodes = [];
+    this.userService.getUser(100).subscribe((data) => {
+      newNodes = data.map((c) => Object.assign({}, c));
+    })
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(newNodes), 1000);
+    });
   }
 
   addNode(tree: any) {
@@ -120,7 +126,6 @@ export class TransactionsTreeViewComponent implements OnInit {
   }
 
   activateSubSub(tree: any) {
-    // tree.treeModel.getNodeBy((node) => node.data.name === 'subsub')
     tree.treeModel.getNodeById(1001)
       .setActiveAndVisible();
   }
@@ -162,6 +167,7 @@ export class TransactionsTreeViewComponent implements OnInit {
   }
 
   copy = () => {
+    debugger;
     this.sourceNode = this.contextMenu.node;
     this.doCut = false;
     this.closeMenu();

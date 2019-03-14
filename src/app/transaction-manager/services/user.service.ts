@@ -11,60 +11,48 @@ export class UserService {
     baseUrl : string = url.environment.API_PATH + '/UserController';
     list$: Observable<Transaction[]>;
     private _observableList: BehaviorSubject<any[]>;
+    private _observableUser: BehaviorSubject<any[]>;
     users : any [] = [
         {
-          uuid: 1001,
+          id: 1,
           name: 'TEMPLATE',
           subTitle: 'the root',
-          children: [
-            {
-              name: 'Folder 1',
-              subTitle: 'a bad child',
-              children: [
-                {
-                  uuid: 1003,
-                  name: 'Example 1',
-                  subTitle: 'subsub',
-                  hasChildren: false
-                }
-              ]
-            },
-            {
-              name: 'Example 2',
-              subTitle: 'a bad child',
-              hasChildren: false
-            }
-          ]
+          hasChildren: true
         },
         {
+          id: 2,
           name: 'BEN SALAH FAHMI',
           subTitle: 'the second root',
-          children: [
-            {
-              name: 'Example 3',
-              subTitle: 'new and improved',
-              uuid: '11',
-              hasChildren: false
-            }, {
-              name: 'Folder 2',
-              subTitle: 'new and improved2',
-              children: [
-                {
-                  uuid: 1002,
-                  name: 'Example 4',
-                  subTitle: 'subsub',
-                  hasChildren: false
-                }
-              ]
-            }
-          ]
+          hasChildren: true
         }
-      ];
+    ];
+
+    userExample: any [] = [
+      {
+        id: 11,
+        name: 'Folder 1',
+        subTitle: 'F1',
+        children: [
+          {
+            id: 5,
+            name: 'Example ',
+            hasChildren: false
+          }
+        ]
+      },
+      {
+        id: 22,
+        name: 'Folder 2',
+        subTitle: 'F2',
+        hasChildren: false
+      }
+  ];
 
     constructor(private http: HttpClient){
         // keep in cache the last result  
         this.list$ = this.http.get<Transaction[]>(this.baseUrl + '/').pipe(map(response => response), publishLast(), refCount());
         this._observableList = new BehaviorSubject(this.users);
+        this._observableUser = new BehaviorSubject(this.userExample);
     }
 
     initUsers() {
@@ -82,7 +70,9 @@ export class UserService {
     }
 
     getUser(userId){
-        return this.http.get<Observable<Transaction>>(this.baseUrl + '/', userId);
+      debugger;
+        //return this.http.get<Observable<Transaction>>(this.baseUrl + '/', userId);
+        return this._observableUser.asObservable();
     }
 
     deleteUser(userId){

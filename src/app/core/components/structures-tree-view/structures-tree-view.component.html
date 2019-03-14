@@ -1,1 +1,38 @@
-Tree view wirks !
+<tree-root #tree [ngClass]="'expand-tree'" [nodes]="nodes" [options]="customTemplateStringOptions" [focused]="true" (event)="onEvent($event)"
+  (initialized)="onInitialized(tree)" (stateChange)="onStateChange($event)">
+  <ng-template #treeNodeTemplate let-node>
+    <i class="fa fa-rocket fa-fw file-ico" *ngIf="!node.isRoot && !node.children"></i>
+    <i class="fa fa-folder fa-fw ico" *ngIf="!node.isRoot && node.children && node.isCollapsed"></i>
+    <i class="fa fa-folder-open fa-fw ico" *ngIf="!node.isRoot && node.children && !node.isCollapsed"></i>
+    <span class="node-subtitle" title="{{node.data.subTitle}}" [ngClass]="node.isRoot ? 'root-node' : ''">{{ node.data.name }}</span>
+    <span class="pull-right" *ngIf="node.isRoot && !node.isCollapsed" style= "margin-top: 28px">
+      <div class="dropdown">
+        <i class="fa fa-sort" aria-hidden="true" data-toggle="dropdown" style="font-size: 13px; color:#FAFAFA;"></i>
+        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" (click)="onSort('Asc', node)"><span class="sortAscend"></span> Sort Ascending</a>
+          <a class="dropdown-item" (click)="onSort('Desc', node)"><span class="sortDescend"></span> Sort Descending</a>
+        </div>
+      </div>
+    </span>
+  </ng-template>
+  <ng-template #loadingTemplate><span class="loadingimg"></span></ng-template>
+</tree-root>
+<div #menu class="menu" id="menu" *ngIf="contextMenu" [style.left.px]="contextMenu.x" [style.top.px]="contextMenu.y">
+  <ul>
+    <li (click)="copy()">
+      <span class="custom-copy"></span><a style="display: inline-block;">Copy</a>
+    </li>
+    <li (click)="cut()">
+      <span class="custom-cut"></span><a>Cut</a>
+    </li>
+    <li (click)="rename()">
+      <span class="custom-rename"></span><a>Rename</a>
+    </li>
+    <li (click)="remove()">
+      <span class="custom-remove"></span><a>Remove</a>
+    </li>
+    <li (click)="paste()">
+      <span class="custom-paste"></span><a [style.opacity]="canPaste() && 1 || 0.3">Paste</a>
+    </li>
+  </ul>
+</div>
