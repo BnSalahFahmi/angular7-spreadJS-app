@@ -17,7 +17,6 @@ import * as moment from 'moment-timezone';
 })
 export class NavbarComponent implements OnInit{
   avatarImgSrc: string = 'assets/images/angular_logo.png';
-  AppName: string = 'Angular 7';
   sideNavVisible: boolean = true;
   numberFormats : any[];
   dateFormats : any[];
@@ -27,7 +26,7 @@ export class NavbarComponent implements OnInit{
   selectedDateFormat = '1';
   selectedNumberRowsDisplayed = '10';
   selectedTimeZone = '(UTC+01:00) Europe/Paris';
-  
+  loggedUser = "FAHMI BEN SALAH";
 
   constructor(private store: Store<fromRoot.State>, private _globalService: GlobalService, private _translate: TranslateService,
     private _toastrService: ToastrService, private modalService: NgbModal) {

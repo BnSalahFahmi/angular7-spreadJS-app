@@ -1,10 +1,12 @@
-<div class="card-content-container">
+<div class="card-content-container" style="background-color: #f5f5f5 !important">
     <form class="form-inline">
-        <label for="example1" class="form-label label-with-margin">Transaction Name: </label>
+            <label for="example1" class="form-label label-with-margin">ID: </label>
+            <label for="example1" class="form-label label-with-margin">{{transaction.id}}</label>
+        <label for="example2" class="form-label label-with-margin">Transaction Name: </label>
         <input type="text" class="form-control" value="{{transaction.name}}">
-        <label for="example2" class="form-label label-with-margin">{{transaction.creator}}</label>
-        <label for="example2" class="form-label label-with-margin">{{transaction.creationDate | amLocal | amDateFormat: 'DD-MM-YYYY'}}</label>
-        <label for="example2" class="form-label label-with-margin">NB Simulation</label>
+        <label for="example3" class="form-label label-with-margin">{{transaction.creator}}</label>
+        <label for="example3" class="form-label label-with-margin">{{transaction.creationDate | amLocal | amDateFormat: 'DD-MM-YYYY'}}</label>
+        <label for="example3" class="form-label label-with-margin">NB Simulation</label>
         <input type="text" class="form-control" value="1000">
         <div class="transaction-btns">
             <button type="submit" class="btn btn-primary btn-with-margin btn-same-width" (click)="onSaveAsTransaction()">Save as</button>

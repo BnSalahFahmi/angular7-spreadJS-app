@@ -1,11 +1,20 @@
 :host /deep/ .nav-tabs .nav-link {
-    width: 50px;
-    max-width: 150px;
+    width: 50px !important;
+    max-width: 150px !important;
 }
+
+:host /deep/ .tab-container .nav-tabs, :host /deep/ .tab-container .tab-content, :host /deep/ .tab-container .nav-tabs .nav-link {
+    border-color: #dee2e6 !important;
+}
+
+:host /deep/ .tab-container .nav-tabs .nav-link.active {
+    border-bottom-color: #FFFFFF !important;
+}
+
 :host /deep/ .fa {
     color: #007090;
 }
 
 :host /deep/ .card-content {
-    height: 63vh !important;
+    height: 60vh !important;
 }

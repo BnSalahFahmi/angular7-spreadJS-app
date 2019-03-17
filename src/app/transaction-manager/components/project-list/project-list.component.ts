@@ -32,7 +32,7 @@ export class ProjectListComponent implements OnInit {
 
   tableData: Array<any>;
   page = 1;
-  pageSize = 4;
+  pageSize = 5;
   collectionSize = PROJECTS.length;
   paginator: Paginator;
 

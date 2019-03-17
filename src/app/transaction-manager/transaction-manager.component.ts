@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as transactionTabsActions from './store/transactionTabs.actions';
@@ -17,7 +17,7 @@ import { collapse } from '../shared/animation/collapse-animate';
 @Component({
   selector: 'transaction-manager',
   templateUrl: './transaction-manager.component.html',
-  styleUrls: ['./transaction-manager.component.scss'],
+  styleUrls: ['./transaction-manager.component.scss']
 })
 export class TransactionMgtComponent implements OnInit {
   tabs$: Observable<any>;

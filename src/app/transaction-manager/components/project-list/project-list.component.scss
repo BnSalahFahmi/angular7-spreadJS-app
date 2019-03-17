@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     .input-group {
         width: 150px;
         .input-group-addon {
@@ -48,4 +48,16 @@
         color: rgba($fonts-color, .4);
         cursor: not-allowed;
     }
+}
+
+table th,  table td {
+    border: 1px solid #bdbdbd;
+}
+
+table thead {
+    background: #E0E0E0;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: #EEEEEE !important;
 }

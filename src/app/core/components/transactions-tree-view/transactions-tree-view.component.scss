@@ -52,6 +52,10 @@
     padding: 2px 5px 2px 0px !important;
 }
 
+:host /deep/ .node-content-wrapper:hover {
+    background: transparent !important;
+}
+
 :host /deep/ .transaction-container-card .card .collapse-btn {
     top: 0px !important;
     width: 190px !important;
