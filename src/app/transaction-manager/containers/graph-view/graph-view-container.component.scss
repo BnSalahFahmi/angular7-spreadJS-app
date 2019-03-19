@@ -28,3 +28,18 @@
 
     transform: scale(0.001);
 }
+
+.open {
+    bottom: 3px;
+    position: absolute;
+    display: flex;
+    z-index: 1000 !important;
+}
+
+.open .fa {
+    cursor: pointer;
+}
+
+.open>.ng-star-inserted {
+    width: 100%;
+}

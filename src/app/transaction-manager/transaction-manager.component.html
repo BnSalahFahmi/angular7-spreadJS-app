@@ -16,6 +16,12 @@
           <spread-view-container [transaction]="currentTransaction" *ngIf="viewDisplayed == 'spread-view'"></spread-view-container>
         </div>
       </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 open">
+          <span *ngIf="!displayPanelInfo" class="fa fa-file-text-o" (click)= "onDisplayPanelInfoClick()"></span>
+          <info-panel *ngIf="displayPanelInfo"></info-panel>
+        </div>
+      </div>
     </tab>
   </tabset>
 </div>

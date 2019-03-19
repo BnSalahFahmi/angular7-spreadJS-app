@@ -39,6 +39,7 @@ import { GraphContainer } from './containers/graph/graph-container.component';
 import { RibbonComponent } from './components/ribbon/ribbon.component';
 import { UserEffects } from './store/user.effects';
 import { UserService } from './services/user.service';
+import { InfoPanelComponent } from './components/info-panel/info-panel.component';
 
 @NgModule({
     imports: [
@@ -72,7 +73,8 @@ import { UserService } from './services/user.service';
         ConfigPanelContainer,
         CockpitContainer,
         GraphContainer,
-        RibbonComponent
+        RibbonComponent,
+        InfoPanelComponent
         ],
     exports: [
         

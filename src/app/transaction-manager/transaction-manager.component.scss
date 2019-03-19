@@ -4,7 +4,7 @@
 }
 
 :host /deep/ .tab-container .tab-content {
-    height: 90%;
+    height: 94%;
 }
 .tip-card {
     padding: 10px;
@@ -85,6 +85,7 @@
 
 :host /deep/ .main-tabs-container .nav-tabs, :host /deep/ .main-tabs-container .tab-content {
     border-color: transparent;
+    position: relative;
 }
 
 .card-content-container {
@@ -109,6 +110,8 @@
 }
 
 .save {
-    margin-top: -45px;
     margin-left: 15px;
+    position: absolute;
+    margin-top: 119px;
 }
+

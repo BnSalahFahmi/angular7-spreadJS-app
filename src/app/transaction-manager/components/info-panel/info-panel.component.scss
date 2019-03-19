@@ -1,0 +1,178 @@
+html *{
+    -webkit-font-smoothing: antialiased !important;
+}
+h3{
+    font-size: 25px !important !important;
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+    line-height: 1.4em !important !important;
+}
+
+p {
+    font-size: 14px !important;
+    margin: 0 0 10px !important !important;
+    font-weight: 300 !important;
+} 
+
+ small {
+    font-size: 75% !important;
+    color: #777 !important;
+    font-weight: 400 !important;
+}
+
+.container .title{
+    color: #3c4858 !important;
+    text-decoration: none !important;
+    margin-top: 30px !important;
+    margin-bottom: 25px !important;
+    min-height: 32px !important;
+}
+
+.container .title h3{
+    font-size: 25px !important;
+    font-weight: 300 !important;
+}
+
+div.card {
+    border: 0 !important;
+    margin-bottom: 5px !important;
+    margin-top: 30px !important;
+    border-radius: 6px !important;
+    color: rgba(0,0,0,.87) !important;
+    background: #fff !important;
+    width: 100% !important;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12) !important;
+}
+
+div.card.card-plain {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+div.card .card-header {
+    border-radius: 3px !important;
+    padding: 5px 15px !important;
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+    margin-top: -30px !important;
+    border: 0 !important;
+    background: linear-gradient(60deg,#eee,#bdbdbd) !important;
+}
+
+.card-plain .card-header:not(.card-avatar) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.div.card .card-body{
+    padding: 15px 30px !important;
+}
+
+div.card .card-header-primary {
+    background: #007090 !important;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6) !important;
+}
+
+div.card .card-header-danger {
+    background: linear-gradient(60deg,#ef5350,#d32f2f) !important;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(244,67,54,.6) !important;
+}
+
+
+.card-nav-tabs .card-header {
+    margin-top: -30px!important !important;
+}
+
+.card .card-header .nav-tabs {
+    padding: 0 !important;
+}
+
+.nav-tabs {
+    border: 0 !important;
+    border-radius: 3px !important;
+    padding: 0 15px !important;
+}
+
+.nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+    list-style: none !important;
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: -1px !important;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+    background-color: hsla(0,0%,100%,.2) !important;
+    transition: background-color .3s .2s !important;
+}
+
+.nav-tabs .nav-item .nav-link{
+    border: 0!important !important;
+    color: #fff!important !important;
+    font-weight: 500 !important;
+}
+
+.nav-tabs .nav-item .nav-link {
+    color: #fff !important;
+    border: 0 !important;
+    margin: 0 !important;
+    border-radius: 3px !important;
+    line-height: 24px !important;
+    text-transform: uppercase !important;
+    font-size: 12px !important;
+    padding: 3px 10px !important;
+    background-color: transparent !important;
+    transition: background-color .3s 0s !important;
+}
+
+.nav-link{
+    display: block !important;
+}
+
+.nav-tabs .nav-item .material-icons {
+    margin: -1px 5px 0 0 !important;
+    vertical-align: middle !important;
+}
+
+.nav .nav-item {
+    position: relative !important;
+}
+footer{
+    margin-top:100px !important;
+    color: #555 !important;
+    background: #fff !important;
+    padding: 25px !important;
+    font-weight: 300 !important;
+    
+}
+.footer p{
+    margin-bottom: 0 !important;
+    font-size: 14px !important;
+    margin: 0 0 10px !important;
+    font-weight: 300 !important;
+}
+footer p a{
+    color: #555 !important;
+    font-weight: 400 !important;
+}
+
+footer p a:hover {
+    color: #9f26aa !important;
+    text-decoration: none !important;
+}
+
+.close {
+    margin-left: auto !important;
+    cursor: pointer;
+    color: #FFF;
+    font-size: 18px;
+}
+
+.tab-pane{
+    height: 100px;
+    max-height: 100px;
+    overflow-y: scroll;
+}

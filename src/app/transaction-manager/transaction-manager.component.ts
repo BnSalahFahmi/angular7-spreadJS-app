@@ -24,6 +24,7 @@ export class TransactionMgtComponent implements OnInit {
   listTabs: any = [];
   displayedView: string = "graph-view";
   transaction: Transaction = mockTransaction();
+  displayPanelInfo: boolean = false;
 
   constructor(private store: Store<any>, private globalService: GlobalService, private router: Router, private route: ActivatedRoute, private toastr: ToastrService, private cd: ChangeDetectorRef) {
     this.tabs$ = this.store.pipe(select(fromTransactionTabs.selectTransactionTabs));
@@ -97,6 +98,10 @@ export class TransactionMgtComponent implements OnInit {
     this.toastr.error('Hello world!', 'Toastr fun!', { timeOut: 3000, closeButton: true, progressBar: true });
   }
 
+  onDisplayPanelInfoClick(){
+    this.displayPanelInfo = true;
+  }
+
   getContext(routerOutlet: RouterOutlet): string {
     return routerOutlet.activatedRouteData['context'];
   }
@@ -104,4 +109,5 @@ export class TransactionMgtComponent implements OnInit {
   uuid() {
     return Math.floor(Math.random() * 10000000000000);
   }
+
 }

@@ -1,9 +1,9 @@
 <div class="card-content-container">
   <div class="form-group" style="margin-bottom:7px">
     <input type="text" class="new-task-input" [(ngModel)]="sourceParameterNode.name" (keyup.enter)="creatNewTask()">
-    <i class="fa fa-bars node-action" draggable="true" (dragstart)="drag($event)"></i>
-    <i class="fa fa-trash node-action"></i>
     <i class="fa fa-plus node-action"></i>
+    <i class="fa fa-trash node-action"></i>
+    <i class="fa fa-bars node-action" draggable="true" (dragstart)="drag($event)"></i>
   </div>
   <ng-select class="combo-type" [searchable]="false" [items]="types" bindLabel="label" autofocus bindValue="value" [(ngModel)]="selectedType"
     [clearable]="false">
